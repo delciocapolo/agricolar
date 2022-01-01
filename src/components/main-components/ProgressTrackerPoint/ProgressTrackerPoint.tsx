@@ -1,5 +1,5 @@
 import { Check } from "lucide-react";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState, JSX } from "react";
 import {v4 as uuid} from 'uuid';
 
 export interface IProgressTrackerPoint {
@@ -7,33 +7,35 @@ export interface IProgressTrackerPoint {
     statusPoint: statusPoint;
 }
 
-type statusPoint = 'initial-point' | 'mid-point' | 'done-point';
-
 interface II {
-    tracker: Array<IProgressTrackerPoint>
+    tracker: Array<IProgressTrackerPoint>;
+    children: JSX.Element;
 }
 
-const changeProgressPoint = (status: statusPoint = 'initial-point', progressive:boolean = true, setState: IProgressTrackerPoint) => {
+const changeProgressPoint = (point: IProgressTrackerPoint, progressive:boolean = true) => {
+    const {statusPoint: status} = point;
+    
     if(status === 'initial-point' && progressive) {
-        setState.statusPoint = 'mid-point';
+        point.statusPoint = 'mid-point';
         return;
     }
-    if(status === 'mid-point' && progressive) {
-        setState.statusPoint = 'done-point';
+    /* if(status === 'mid-point' && progressive) {
+        point.statusPoint = 'done-point';
         return
     }
     
     if(status === 'done-point' && !progressive) {
-        setState.statusPoint = 'mid-point';
+        point.statusPoint = 'mid-point';
         return;
-    }
+        } */
+
     if(status === 'mid-point' && !progressive) {
-        setState.statusPoint = 'initial-point';
+        point.statusPoint = 'initial-point';
         return
     }
 }
 
-const ProgressTrackerPoint:FC<II> = ({tracker}) => {
+const ProgressTrackerPoint:FC<II> = ({tracker, children}) => {
     const [stepNumber, setStepNumber] = useState<number>(0);
     const size = 23;
 
@@ -41,28 +43,31 @@ const ProgressTrackerPoint:FC<II> = ({tracker}) => {
         if(stepNumber < 0) {
             setStepNumber(step => step + 1);
         }
-        if(stepNumber > tracker.length) {
+        if(stepNumber >= tracker.length) {
             setStepNumber(step => step - 1);
         }
+
     }, [stepNumber]);
 
     return (
-        <>
+        <div className="container-progress d-flex">
             <div className="container-progress-tracker-point d-flex">
                 <ProgressTrackerPoints tracker={tracker} size={size}/>
             </div>
-            <div className="d-flex">
-                <button type="button" onClick={() => {
+            {
+                children
+            }
+            <div className="container-btn-progress d-flex">
+                <button className="btn-point btn-next-point" type="button" onClick={() => {
+                    changeProgressPoint(tracker[stepNumber], true);
                     setStepNumber(step => step + 1);
-                    console.log()
-                    // changeProgressPoint(tracker[stepNumber].statusPoint, true, tracker[stepNumber]);
-                }}>Avancar</button>
-                <button type="button" onClick={() => {
+                }}>Avançar</button>
+                <button className="btn-point btn-back-point" type="button" onClick={() => {
+                    changeProgressPoint(tracker[stepNumber], false);
                     setStepNumber(step => step - 1);
-                    // changeProgressPoint(tracker[stepNumber].statusPoint, false, tracker[stepNumber]);
                 }}>Recuar</button>
             </div>
-        </>
+        </div>
     )
 }
 

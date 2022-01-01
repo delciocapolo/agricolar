@@ -55,3 +55,26 @@
 	border-style: none;
 	background-color: var(--Success);
 }
+
+/* Inline #3 | http://localhost:5173/ */
+
+.container-progress {
+  flex-direction: column;
+  align-items: space-around;
+}
+
+.container-progress > * {
+  width: 100%;
+}
+
+.container-progress {
+  padding: 0.7rem;
+}
+
+.btn-point {
+  padding: .6rem 1.9rem;
+  border-radius: var(--border-radius);
+  font: var(--Body-Small-500);
+  color: var(--White);
+  background-color: var(--Success);
+}
