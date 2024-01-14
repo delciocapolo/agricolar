@@ -1,0 +1,10 @@
+@import url("./banner.css");
+@import url("./defaultComponents.css");
+@import url("./history.css");
+@import url("./service.css");
+
+.skeleton {
+  /* background-color: blue; */
+  width: 100%;
+  padding: 1rem 0;
+}

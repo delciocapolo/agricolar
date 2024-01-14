@@ -1,0 +1,7 @@
+@import url("./default/index.css");
+@import url("./root/palete.css");
+@import url("./definition/index.css");
+@import url("./root/config.css");
+
+@import url("./header/header.css");
+@import url("./skeleton/skeleton.css");
