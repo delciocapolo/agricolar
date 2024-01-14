@@ -1,25 +1,28 @@
 import { IService } from "../components/skeleton/Service";
-import BackgroundImage from "../assets/logo.svg";
+import note from "../assets/serviceIcons/note.svg";
+import statitic from "../assets/serviceIcons/statitic.svg";
+import strategy from "../assets/serviceIcons/strategy.svg";
+import nworldote from "../assets/serviceIcons/world.svg";
 
 export const services: IService[] = [
   {
     url: "logistica",
-    pathImage: BackgroundImage,
+    pathImage: note,
     descriptionImg: "elaborar estrategias e consultoria",
   },
   {
     url: "marketing",
-    pathImage: BackgroundImage,
+    pathImage: statitic,
     descriptionImg: "consolidar fazenda no mercado digital",
   },
   {
     url: "agricolar",
-    pathImage: BackgroundImage,
+    pathImage: strategy,
     descriptionImg: "monitoramento áereo das plantações",
   },
   {
     url: "farmonline",
-    pathImage: BackgroundImage,
+    pathImage: nworldote,
     descriptionImg: "tornar a fazenda online",
   },
 ];

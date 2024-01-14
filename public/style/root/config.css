@@ -1,6 +1,8 @@
 :root {
-    --border-radius: 7px;
-    --size-font-btn: 0.87rem;
-    --border-radius-btn: 5px;
-    --padding-default: 0 0.8rem;
+  --border-radius: 7px;
+  --size-font-btn: 0.87rem;
+  --border-radius-btn: 5px;
+  --padding-default: 0 0.8rem;
+  --width-container: calc(100% - 230px);
+  --padding-card: 5rem 0 0 0;
 }

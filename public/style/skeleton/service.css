@@ -1,31 +1,47 @@
-/* Inline #1 | http://localhost:5173/ */
-
-.service > .container > .content > .title {
-  color: var(--primary);
+.service {
+  padding: var(--padding-card);
 }
 
 .service > .container {
-  grid-auto-flow: dense;
-  flex-direction: column;
+  grid-auto-flow: row;
+  margin: auto;
+  gap: 50px;
+}
+
+.service > .container > .content > .title {
+  color: var(--primary);
+  text-align: center;
 }
 
 .service > .container > .image-content {
-  grid-auto-flow: dense;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.service > .container > .content {
+  grid-auto-flow: row;
 }
 
 .service > .container > .image-content > .card-service {
   background-color: #fff;
-  width: 300px;
-  height: 275px;
+  width: 245px;
+  height: 255px;
   border-radius: 15px;
   padding: 2.5rem;
 }
 
-.service > .container > .image-content > .card-service > img {
-  width: 150px;
-  height: 150px;
+.service > .container > .image-content > .card-service > .descriptio-img {
+  text-align: center;
+  font-family: "Poppins-bold";
+  font-weight: 500;
+  text-transform: capitalize;
+  color: var(--primary);
 }
 
-.service > .container > .content {
-  gap: 15px;
+.service > .container > .content > .subtitle {
+  text-align: center;
+}
+
+.actived {
+  height: 350px;
 }
