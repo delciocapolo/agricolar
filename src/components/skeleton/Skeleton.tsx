@@ -59,7 +59,7 @@ const Skeleton = (): JSX.Element => {
         description="li europan lingues es membres del sam familie. lor separat existentie es un myth. por scientie, musical, sport etc. litot europa usa li sam vocabular"
         services={services}
         key={uuidv4()}
-        actived="actived"
+        actived
       />
     </section>
   );

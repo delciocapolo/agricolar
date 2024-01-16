@@ -1,10 +1,10 @@
-import { IService } from "../components/skeleton/Service";
+import { IItemService } from "../components/skeleton/Service";
 import note from "../assets/serviceIcons/note.svg";
 import statitic from "../assets/serviceIcons/statitic.svg";
 import strategy from "../assets/serviceIcons/strategy.svg";
 import nworldote from "../assets/serviceIcons/world.svg";
 
-export const services: IService[] = [
+export const services: IItemService[] = [
   {
     url: "logistica",
     pathImage: note,
@@ -18,7 +18,7 @@ export const services: IService[] = [
   {
     url: "agricolar",
     pathImage: strategy,
-    descriptionImg: "monitoramento áereo das plantações",
+    descriptionImg: "monitoramento áereo dos plantios",
   },
   {
     url: "farmonline",

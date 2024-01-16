@@ -1,28 +1,37 @@
-import { JSX, FC } from "react";
+import { JSX, FC, useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 export interface IService {
   title?: string;
   description?: string;
+  services?: Array<IItemService>;
+  actived?: boolean;
+}
+
+export interface IItemService {
   url?: string;
   pathImage?: string;
   descriptionImg?: string;
-  services?: Array<IService>;
-  actived?: string;
+  descriptionFeaturedProduct?: string;
 }
 
-const ItemService: FC<IService> = ({
+const ItemService: FC<IItemService & { status?: string; }> = ({
   url,
   descriptionImg,
   pathImage,
-  actived,
-}): JSX.Element | undefined => {
+  status = '',
+  descriptionFeaturedProduct = ''
+}): JSX.Element | null => {
+  if(!url) return null;
+
+  const imageUrl = `http://localhost:5173/service/${url}`;
+
   return (
     <a
-      href={`http://localhost:5173/service/${url}`}
+      href={imageUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className={`card-service ${actived} d-grid`}
+      className={`card-service ${status} d-grid`}
     >
       <svg
         width="125"
@@ -30,7 +39,6 @@ const ItemService: FC<IService> = ({
         viewBox="0 0 300 300"
         xmlns="https://www.w3c.org/2000/svg"
       >
-        {/* <rect x="0" y="0" width="300" height="300" fill="lightgray" /> */}
         <image
           xlinkHref={pathImage}
           width="165"
@@ -41,7 +49,10 @@ const ItemService: FC<IService> = ({
         />
       </svg>
       <b className="descriptio-img">{descriptionImg}</b>
-      {actived ? <span className="desc-card"></span> : <></>}
+      {
+        (descriptionFeaturedProduct !== '' && descriptionFeaturedProduct) 
+        && <span className="desc-card">{descriptionFeaturedProduct}</span>
+      }
     </a>
   );
 };
@@ -50,21 +61,34 @@ const Service: FC<IService> = ({
   title,
   description,
   services,
-}): JSX.Element => {
+  actived,
+}): JSX.Element | null => {
+  const [activedStatus, setActivedStatus] = useState<string>('');
+  
+  if(!title && !description && services?.length === 0) return null;
+
+  useEffect(() => {
+    if(actived) {
+      setActivedStatus("actived");
+    }
+  }, [actived]);
+
   return (
     <article className="service">
       <div className="container d-grid">
         <div className="content d-grid">
-          {title ? <h1 className="title">{title}</h1> : <></>}
-          {description ? <h2 className="subtitle">{description}</h2> : <></>}
+          {title && <h1 className="title">{title}</h1>}
+          {description && <h2 className="subtitle">{description}</h2>}
         </div>
         <nav className="image-content d-flex">
-          {services?.map(({ url, descriptionImg, pathImage }) => (
+          {services?.map(({ url, descriptionImg, pathImage, descriptionFeaturedProduct }) => (
             <ItemService
               descriptionImg={descriptionImg}
               pathImage={pathImage}
               url={url}
               key={uuidv4()}
+              status={activedStatus}
+              descriptionFeaturedProduct={descriptionFeaturedProduct}
             />
           ))}
         </nav>
