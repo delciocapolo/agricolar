@@ -20,13 +20,22 @@
   box-sizing: border-box;
   font-family: "Poppins", "Poppins-regular", sans-serif;
   font-style: normal;
-  font-weight: 200;
-  font-display: swap;
+  min-width: 0;
 }
 
 body {
+  min-height: 100dvh;
   overflow-x: hidden;
   background-color: var(--zeros);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+p {
+  font-weight: 200;
+  text-wrap: pretty;
 }
 
 .main {

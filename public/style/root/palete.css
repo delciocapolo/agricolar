@@ -1,7 +1,31 @@
 :root {
-  --primary: #078348;
-  --secundary: #0a4c2d;
-  --zeros: #f0f0f0;
-  --void: #333;
+  /* Font */
+  --Heading1: 64px 'Poppins-bold', sans-serif;
+  --Heading2: 48px 'Poppins-bold', sans-serif;
+  --Heading3: 32px 'Poppins-bold', sans-serif;
+  --Heading4: 28px 'Poppins-bold', sans-serif;
+  --Heading5: 22px 'Poppins-bold', sans-serif;
+  --Heading6: 16px 'Poppins-bold', sans-serif;
+  --Paragraph-Big: 30px 'Poppins-regular', sans-serif;
+  --Paragraph: 20px 'Poppins-regular', sans-serif;
+  --Paragraph-Highlights: 20px 'Poppins-bold', sans-serif;
+  --Menu-text: 20px 'Poppins-bold', sans-serif;
+  --Product-Title: 20px 'Poppins-regular', sans-serif;
+  --Product-Price: 20px 'Poppins-bold', sans-serif;
+  --Footer-Links: 20px 'Poppins-bold', sans-serif;
+  --Form-Field: 24px 'Poppins-bold', sans-serif;
+
+  /* fill */
+  --columns: 12px;
+
+
+  /* Colors */
+  --primary: #3F6050;
+  --Light-Green: #40A469;
+  --Dark-Grey: #333333;
+  --Dim-Gray: #666666;
+  --Light-Grey: #BBBBBB;
+  --Soft-Grey: #F4F4F4;
+  --White: #ffffff;
   --box-shadow-general: 0px 0px 15px 5px rgba(51, 51, 51, 0.09);
 }
