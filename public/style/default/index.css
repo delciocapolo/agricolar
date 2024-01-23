@@ -21,12 +21,17 @@
   font-family: "Poppins", "Poppins-regular", sans-serif;
   font-style: normal;
   min-width: 0;
+  text-transform: capitalize;
 }
 
-body {
-  min-height: 100dvh;
+html, body {
+  height: 100%;
   overflow-x: hidden;
-  background-color: var(--zeros);
+  background-color: var(--White);
+}
+
+.main {
+  min-height: 100vh;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -48,6 +53,7 @@ li {
 }
 
 a {
+  color: var(--White);
   text-decoration: none;
 }
 

@@ -1,19 +1,19 @@
 :root {
   /* Font */
-  --Heading1: 64px 'Poppins-bold', sans-serif;
-  --Heading2: 48px 'Poppins-bold', sans-serif;
-  --Heading3: 32px 'Poppins-bold', sans-serif;
-  --Heading4: 28px 'Poppins-bold', sans-serif;
-  --Heading5: 22px 'Poppins-bold', sans-serif;
-  --Heading6: 16px 'Poppins-bold', sans-serif;
-  --Paragraph-Big: 30px 'Poppins-regular', sans-serif;
-  --Paragraph: 20px 'Poppins-regular', sans-serif;
-  --Paragraph-Highlights: 20px 'Poppins-bold', sans-serif;
-  --Menu-text: 20px 'Poppins-bold', sans-serif;
-  --Product-Title: 20px 'Poppins-regular', sans-serif;
-  --Product-Price: 20px 'Poppins-bold', sans-serif;
-  --Footer-Links: 20px 'Poppins-bold', sans-serif;
-  --Form-Field: 24px 'Poppins-bold', sans-serif;
+  --Heading1: 4rem 'Poppins-bold', sans-serif;
+  --Heading2: 3rem 'Poppins-bold', sans-serif;
+  --Heading3: 2rem 'Poppins-bold', sans-serif;
+  --Heading4: 1.75rem 'Poppins-bold', sans-serif;
+  --Heading5: 1.375rem 'Poppins-bold', sans-serif;
+  --Heading6: 1rem 'Poppins-bold', sans-serif;
+  --Paragraph-Big: 1.875rem 'Poppins-regular', sans-serif;
+  --Paragraph: 1.25rem 'Poppins-regular', sans-serif;
+  --Paragraph-Highlights: 1.25rem 'Poppins-bold', sans-serif;
+  --Menu-text: 1.25rem 'Poppins-bold', sans-serif;
+  --Product-Title: 1.25rem 'Poppins-regular', sans-serif;
+  --Product-Price: 1.25rem 'Poppins-bold', sans-serif;
+  --Footer-Links: 1.25rem 'Poppins-bold', sans-serif;
+  --Form-Field: 1.5rem 'Poppins-bold', sans-serif;
 
   /* fill */
   --columns: 12px;
@@ -26,6 +26,6 @@
   --Dim-Gray: #666666;
   --Light-Grey: #BBBBBB;
   --Soft-Grey: #F4F4F4;
-  --White: #ffffff;
+  --White: #f2f2f2;
   --box-shadow-general: 0px 0px 15px 5px rgba(51, 51, 51, 0.09);
 }

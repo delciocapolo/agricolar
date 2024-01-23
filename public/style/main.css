@@ -2,3 +2,6 @@
 @import url("./root/palete.css");
 @import url("./definition/index.css");
 @import url("./root/config.css");
+
+/* Components's style */
+@import url("./header/index.css");
