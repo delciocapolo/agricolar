@@ -5,3 +5,5 @@
 
 /* Components's style */
 @import url("./header/index.css");
+@import url('./sections/featuredProducts.css');
+@import url('./generalUse/index.css');

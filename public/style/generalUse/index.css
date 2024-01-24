@@ -1,0 +1,10 @@
+.btn-all {
+    gap: 5px;
+    font: var(--Paragraph);
+    font-size: 0.9rem;
+    color: var(--Light-Green);
+    align-items: center;
+    width: 114px;
+    height: 34px;
+    justify-content: flex-start;
+  }

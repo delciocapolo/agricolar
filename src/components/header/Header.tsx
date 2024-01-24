@@ -9,7 +9,7 @@ const Header: FC<IHeader> = ({urlBackgroundImage}) => {
 
     return (
         <header 
-            className="header b-image d-grid"
+            className="header b-image d-grid mg-bottom"
             style={{ backgroundImage: urlBackgroundImage }}
         >
             <div className="content d-grid">

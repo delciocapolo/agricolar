@@ -1,0 +1,66 @@
+.mg-bottom {
+  margin-bottom: 70px;
+}
+
+.product-section .banner-started {
+    width: calc(100% - 100px);
+    margin: auto;
+    grid-auto-flow: column;
+    gap: 0;
+    justify-content: space-between;
+  }
+  
+  .product-section .banner-started > .container > * {
+    position: absolute;
+  }
+  
+  .product-section .banner-started > .container > .image-epoch {
+    width: 465px;
+    /* width: 505px; */
+    /* width: calc(100% - 145px); */
+    height: calc(100% - 40px);
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 25px 9px rgba(0, 0, 0, 0.17);
+  }
+  
+  .product-section .banner-started > .container {
+    width: 530px;
+    /* width: 650px; */
+    padding: 0.5rem;
+    height: 550px;
+    position: relative;
+  }
+  
+  .product-section > .banner-started > .content > h1 {
+    font: var(--Heading5);
+  }
+  
+  .product-section .banner-started > .content > p {
+    font: var(--Paragraph);
+    font-size: 0.9rem;
+    text-align: justify;
+    text-transform: none;
+  }
+  
+  .product-section .banner-started > .content {
+    /* background-color: rebeccapurple; */
+    /* width: calc(100% - 185px); */
+    /* width: calc(100% - 85px); */
+    width: 513px;
+    gap: 25px;
+    place-items: flex-start;
+    padding: 0.5rem;
+  }
+  
+  .product-section .banner-started > .container > .spn-desc-img {
+    background-color: var(--White);
+    padding: 0.8rem 1.9rem;
+    border-radius: var(--border-radius);
+    font: var(--Heading6);
+    bottom: -5px;
+    font-size: 1.25rem;
+    color: var(--Light-Green);
+    /* box-shadow: var(--box-shadow-general); */
+  }
+  

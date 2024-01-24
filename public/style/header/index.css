@@ -78,7 +78,7 @@
 }
 
 .line {
-    width: 0.1px;
+    width: 1.1px;
     height: calc(100% - 23px);
     background-color: rgba(255, 255, 255, 0.5);
 }
@@ -105,7 +105,7 @@
 
 .link-menu {
     display: block;
-    padding: 0.7rem;
+    padding: 0.6rem 0.7rem;
     height: 37px;
     text-align: center;
     transition: background-color 0.3s;
