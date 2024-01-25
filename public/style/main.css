@@ -5,5 +5,10 @@
 
 /* Components's style */
 @import url("./header/index.css");
-@import url('./sections/featuredProducts.css');
+
+    /* Featured Products */
+@import url('./sections/featuredProducts/featuredProducts.css');
+@import url('./sections/featuredProducts/bannerServices.css');
+
+    /* General Use of the components */
 @import url('./generalUse/index.css');

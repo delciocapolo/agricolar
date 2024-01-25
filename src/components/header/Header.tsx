@@ -1,6 +1,6 @@
 import {FC} from "react";
 import { IHeader } from "./interfaces";
-import { Home, Search, ShoppingCart, User } from "lucide-react";
+import { ChevronDown, Home, Search, ShoppingCart, User } from "lucide-react";
 
 const Header: FC<IHeader> = ({urlBackgroundImage}) => {
     const size = 20;
@@ -9,7 +9,7 @@ const Header: FC<IHeader> = ({urlBackgroundImage}) => {
 
     return (
         <header 
-            className="header b-image d-grid mg-bottom"
+            className="header b-image d-grid margin-bottom-banners"
             style={{ backgroundImage: urlBackgroundImage }}
         >
             <div className="content d-grid">
@@ -27,7 +27,10 @@ const Header: FC<IHeader> = ({urlBackgroundImage}) => {
                         <a className="link-menu" href="/home" target="_self" rel="noopener noreferrer">fazendas</a>
                     </div>
                     <div className="item-menu submenu d-flex">
-                        <span className="spn-menu">recursos</span>
+                        <span className="spn-menu d-flex">
+                            recursos
+                            <ChevronDown style={{color: "var(--White"}} size={size} />
+                        </span>
                         <menu className="submenu-list d-flex">
                             <li className="item-menu">
                                 <a className="link-menu" href="/farm" target="_self" rel="noopener noreferrer">
@@ -47,7 +50,10 @@ const Header: FC<IHeader> = ({urlBackgroundImage}) => {
                         </menu>
                     </div>
                     <div className="item-menu submenu  d-flex">
-                        <span className="spn-menu">ajuda</span>
+                        <span className="spn-menu d-flex">
+                            ajuda
+                            <ChevronDown style={{color: "var(--White"}} size={size} />
+                        </span>
                         <menu className="submenu-list d-flex">
                             <li className="item-menu">
                                 <a className="link-menu" href="http://" target="_self" rel="noopener noreferrer">
@@ -62,7 +68,10 @@ const Header: FC<IHeader> = ({urlBackgroundImage}) => {
                         </menu>
                     </div>
                     <div className="item-menu submenu d-flex">
-                        <span className="spn-menu">idioma</span>
+                        <span className="spn-menu d-flex">
+                            idioma
+                            <ChevronDown style={{color: "var(--White"}} size={size} />
+                        </span>
                         <menu className="submenu-list d-flex">
                             <li className="item-menu">
                                 <a className="link-menu" href="" target="_self" rel="noopener noreferrer">
