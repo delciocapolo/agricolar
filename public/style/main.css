@@ -1,14 +1,4 @@
-@import url("./default/index.css");
-@import url("./root/palete.css");
-@import url("./definition/index.css");
-@import url("./root/config.css");
-
-/* Components's style */
-@import url("./header/index.css");
-
-    /* Featured Products */
-@import url('./sections/featuredProducts/featuredProducts.css');
-@import url('./sections/featuredProducts/bannerServices.css');
-
-    /* General Use of the components */
-@import url('./generalUse/index.css');
+@import url('./default/index.css');
+@import url('./root/palete.css');
+@import url('./definition/index.css');
+@import url('./root/config.css');
