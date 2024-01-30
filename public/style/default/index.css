@@ -1,63 +1,85 @@
 @font-face {
-  font-family: "Poppins-Light";
-  font-style: normal;
-  src: url('../../fonts/Poppins-Light.ttf') format("truetype");
+	font-family: 'Poppins-light';
+	font-style: normal;
+	src: url('../../fonts/Poppins-Light.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "Poppins-bold";
-  src: url("../../fonts/Poppins-Medium.ttf") format("truetype");
+	font-family: 'Poppins-regular';
+	font-style: normal;
+	src: url('../../fonts/Poppins-Regular.ttf') format('truetype');
 }
 
+@font-face {
+	font-family: 'Poppins-medium';
+	font-style: normal;
+	src: url('../../fonts/Poppins-Medium.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Poppins-bold';
+	src: url('../../fonts/Poppins-Bold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Poppins-semibold';
+	src: url('../../fonts/Poppins-SemiBold.ttf') format('truetype');
+}
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins-Light", sans-serif;
-  font-style: normal;
-  min-width: 0;
-  text-transform: capitalize;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins-light', sans-serif;
+	font-style: normal;
+	min-width: 0;
+	text-transform: capitalize;
 }
 
-html, body {
-  height: 100%;
-  overflow-x: hidden;
-  background-color: var(--White);
+html,
+body {
+	height: 100%;
+	overflow-x: hidden;
+	background-color: var(--White);
 }
 
 .main {
-  min-height: 100vh;
+	min-height: 100vh;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  text-wrap: balance;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
 }
 
 p {
-  font-weight: 200;
-  text-wrap: pretty;
+	font-weight: 200;
+	text-wrap: pretty;
 }
 
 .main {
-  width: 100%;
-  min-height: 100vh;
+	width: 100%;
+	min-height: 100vh;
 }
 
 li {
-  list-style: none;
+	list-style: none;
 }
 
 a {
-  color: var(--White);
-  text-decoration: none;
+	color: var(--White);
+	text-decoration: none;
 }
 
 input {
-  outline: none;
+	outline: none;
 }
 
 button {
-  cursor: pointer;
-  border: none;
+	cursor: pointer;
+	border: none;
 }

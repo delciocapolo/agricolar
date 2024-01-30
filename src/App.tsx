@@ -1,14 +1,7 @@
-import {JSX} from "react";
-import urlBackgroundImage from "./assets/background.jpg";
-import Header from "./components/header/Header";
-import ProductSection from "./components/sections/featuredProducts/ProductSection";
 
-
-const App = ():JSX.Element => {
+const App = () => {
   return (
     <main className="main">
-      <Header urlBackgroundImage={urlBackgroundImage} />
-      <ProductSection />
     </main>
   );
 }

@@ -1,0 +1,37 @@
+.container-inputfield {
+	background-color: var(--White);
+	width: fit-content;
+	margin: auto;
+	padding: 0.5rem 0.7rem;
+	border-radius: var(--border-radius);
+	place-items: flex-start;
+}
+
+.lbl-inputfield {
+	font: var(--Body-Samll-400);
+	color: var(--Warning);
+	text-transform: none;
+}
+
+.container-field > input {
+	min-width: 320px;
+	height: 100%;
+	background-color: transparent;
+	outline: none;
+	border: none;
+	padding: 0 0.3rem;
+	color: var(--Gray-700);
+	font: 1rem 'Poppins-regular';
+	text-transform: none;
+	width: calc(100% - 35px);
+}
+
+.container-field {
+	background-color: transparent;
+	padding: 0.2rem 0.7rem;
+	/* border: 1px solid var(--Sucess); */
+	width: 100%;
+	height: 60px;
+	box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.06);
+	border-radius: var(--border-radius);
+}
