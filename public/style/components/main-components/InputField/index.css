@@ -8,7 +8,7 @@
 }
 
 .lbl-inputfield {
-	font: var(--Body-Samll-400);
+	font: var(--Body-Small-400);
 	color: var(--Warning);
 	text-transform: none;
 }

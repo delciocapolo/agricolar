@@ -45,9 +45,9 @@
 	--Body-Medium-600: 1rem 'Poppins-semi-bold';
 
 	/* Body Normal */
-	--Body-Samll-400: 0.875rem 'Poppins-regular';
-	--Body-Samll-500: 0.875rem 'Poppins-medium';
-	--Body-Samll-600: 0.875rem 'Poppins-semi-bold';
+	--Body-Small-400: 0.875rem 'Poppins-regular';
+	--Body-Small-500: 0.875rem 'Poppins-medium';
+	--Body-Small-600: 0.875rem 'Poppins-semi-bold';
 
 	/* Body XL */
 	--Body-Tiny-400: 0.75rem 'Poppins-regular';

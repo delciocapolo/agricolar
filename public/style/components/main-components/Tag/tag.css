@@ -1,0 +1,28 @@
+.container-subtotal {
+	padding: 0.3rem 0.9rem;
+}
+
+.tag {
+	background: var(--Error);
+	padding: 0.4rem 0.7rem;
+	border-radius: var(--border-radius);
+	color: var(--White);
+	text-transform: none;
+	font: var(--Body-Small-400);
+}
+/* Tags */
+.out-of-stock {
+	background-color: var(--Gray-900);
+}
+
+.best-sale {
+	background-color: #2388ff;
+}
+
+.new {
+	background-color: var(--Warning);
+}
+
+.default {
+	background-color: var(--Error);
+}
