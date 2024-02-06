@@ -1,0 +1,41 @@
+:root {
+	--ease-value: 0.3s;
+}
+
+.container-normal:hover {
+	box-shadow: var(--Hover-Shadow);
+	border: 1px solid var(--Success-Dark);
+	transition: var(--ease-value) ease-out;
+}
+
+.container-normal:hover
+	> .container-product-info
+	> .container-info
+	> .title-product {
+	color: var(--Success-Dark);
+	transition: var(--ease-value) ease-out;
+}
+
+.container-normal:hover
+	> .container-product-info
+	> .container-add-to-cart
+	> .btn-add-to-cart {
+	background-color: var(--Success);
+	transition: var(--ease-value) ease-out;
+}
+
+.container-normal:hover
+	> .container-product-info
+	> .container-add-to-cart
+	> .btn-add-to-cart
+	> .svg-cart {
+	color: var(--White) !important;
+}
+
+.container-normal:hover
+	> .container-product-image
+	> .container-view-more-options
+	> .container-view {
+	opacity: 1;
+	transition: 0.3s ease-out;
+}
