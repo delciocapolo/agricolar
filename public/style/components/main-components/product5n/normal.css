@@ -43,7 +43,8 @@
 
 .container-rating {
 	justify-content: flex-start;
-	gap: 3px;
+	gap: 1px;
+	width: 80px;
 }
 
 .container-info {

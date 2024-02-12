@@ -18,7 +18,13 @@ const Rating:FC<IRating> = ({ratingNumber, sizeStar=15}) => {
             items.push(<Star style={{fill: "var(--Gray-200)", color: "transparent"}} size={sizeStar} key={uuidv4()} />)
             }
     }
-    return items
+    return (
+        <div className="container-rating d-flex">
+            {
+                items
+            }
+        </div>
+    )
 }
 
 export default Rating;

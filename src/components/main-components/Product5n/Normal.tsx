@@ -48,9 +48,7 @@ const Normal:FC<INormal> = ({ratingNumber=1, saleStatus = [], saleValue = undefi
               </h2>
             }
           </div>
-          <div className="container-rating d-flex">
-            <Rating ratingNumber={ratingNumber} sizeStar={sizeStar} />
-          </div>
+          <Rating ratingNumber={ratingNumber} sizeStar={sizeStar} />
         </div>
         <div className="container-add-to-cart">
           <button type="button" className="btn-add-to-cart d-flex" title="Adicionar ao carrinho">

@@ -1,0 +1,26 @@
+.container-big-product:hover {
+	box-shadow: var(--Hover-Shadow);
+}
+
+.container-big-product:hover
+	> .container-big-product-card-image
+	> .buttons-view-big-product
+	> .btn-add-to-big-product {
+	background-color: var(--Success);
+	color: var(--White);
+}
+
+.container-big-product:hover
+	> .container-big-product-card-image
+	> .buttons-view-big-product
+	> .btn-add-to-big-product
+	> .svg-big-product {
+	color: var(--White) !important;
+}
+
+.container-big-product:hover
+	> .container-info-product
+	> .container-product
+	> .title-product {
+	color: var(--Success);
+}
