@@ -1,0 +1,11 @@
+.healthy {
+	padding: 10px 31px;
+	color: var(--Gray-900);
+	background-color: var(--Gray-50);
+	font: var(--Body-Small-400);
+	border-radius: 50px;
+}
+.healthy:hover {
+	color: var(--White);
+	background-color: var(--Success);
+}

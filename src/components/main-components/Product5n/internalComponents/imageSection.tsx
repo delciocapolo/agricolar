@@ -1,5 +1,5 @@
 import { FC } from "react";
-import Default from "../../Tag/Default";
+import Default from "../../Tag/Healthy/Healthy";
 import New from "../../Tag/New";
 import BestSale from "../../Tag/BestSale";
 import OutOfStock from "../../Tag/OutOfStock";

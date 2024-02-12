@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { Eye, Heart, ShoppingBasket } from "lucide-react";
 import maca from "../../../assets/products/Rectangle 5.jpg";
-import Default from "../Tag/Default";
+import Default from "../Tag/Healthy/Healthy";
 import New from "../Tag/New";
 import Rating from "../Product5n/internalComponents/Rating";
 import Ads from "./internalComponents/Ads";
