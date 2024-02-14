@@ -1,0 +1,56 @@
+.container-progress-tracker-point {
+	/* background-color: red; */
+	padding: 0.2rem;
+	gap: 0;
+	width: 100%;
+}
+
+.container-progress-point {
+	background-color: transparent;
+	width: fit-content;
+	padding: 0.1rem;
+	gap: 2px;
+}
+
+.container-tracker {
+	/* 250px: ; */
+	/* background-color: aqua; */
+	width: fit-content;
+	height: fit-content;
+	gap: 2px;
+}
+
+.progress-point {
+	width: 40px;
+	height: 40px;
+	border-radius: 50px;
+	font: var(--Body-Small-400);
+}
+
+.line-progress-tracker {
+	min-width: 20px;
+	height: 1.5px;
+	padding: 0 1.4rem;
+	background-color: var(--Success);
+	border-radius: var(--border-radius);
+}
+
+.initial-point {
+	background: var(--White);
+	border: 2px solid var(--Success);
+	border-style: dashed;
+	color: var(--Success);
+}
+
+.mid-point {
+	background: var(--Success);
+	border: none;
+	border-style: none;
+	color: var(--White);
+}
+
+.done-point {
+	border: none;
+	border-style: none;
+	background-color: var(--Success);
+}
