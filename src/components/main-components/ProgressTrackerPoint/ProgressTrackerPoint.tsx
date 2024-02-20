@@ -24,9 +24,10 @@ const ProgressTrackerPoint: FC<II> = ({ TRACKER }) => {
                             if (nextStep >= tracker.length) {
                                 return prevStepNumber;
                             } else {
-                                const updatedTracker = tracker.map((point, index) => {
+                                const updatedTracker = tracker.map((point, index, arr) => {
                                     if (index === nextStep) {
                                         if (point.statusPoint === 'initial-point') {
+                                            arr[prevStepNumber].statusPoint = 'done-point';
                                             return { ...point, statusPoint: 'mid-point' };
                                         } else if (point.statusPoint === 'mid-point') {
                                             return { ...point, statusPoint: 'done-point' };
@@ -51,11 +52,14 @@ const ProgressTrackerPoint: FC<II> = ({ TRACKER }) => {
                             if (nextStep < 0) {
                                 return prevStepNumber;
                             } else {
-                                const updatedTracker = tracker.map((point, index) => {
+                                const updatedTracker = tracker.map((point, index, arr) => {
                                     if (index === prevStepNumber) {
+                                        if(arr[nextStep].statusPoint === 'done-point') {
+                                            arr[nextStep].statusPoint = 'mid-point';
+                                        }
                                         if (point.statusPoint === 'done-point') {
                                             return { ...point, statusPoint: 'mid-point' };
-                                        } else if (point.statusPoint === 'mid-point') {
+                                        } if (point.statusPoint === 'mid-point') {
                                             return { ...point, statusPoint: 'initial-point' };
                                         }
                                     }
