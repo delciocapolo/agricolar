@@ -5,8 +5,53 @@ import { II, IProgressTrackerPoint } from "./interfaces/interfaces";
 
 const ProgressTrackerPoint: FC<II> = ({ TRACKER }) => {
     const [stepNumber, setStepNumber] = useState<number>(0);
+    const [tracker, setTracker] = useState<IProgressTrackerPoint[]>(TRACKER);
     const size = 23;
-    const [tracker, setTracker] = useState(TRACKER);
+
+    const handleNext = () => {
+        setStepNumber(prevStepNumber => {
+            const nextStep = prevStepNumber + 1;
+            if (nextStep >= tracker.length) return prevStepNumber;
+
+            const updatedTracker: IProgressTrackerPoint[] = tracker.map((point, index, arr) => {
+                if (index === nextStep) {
+                    if (point.statusPoint === 'initial-point') {
+                        arr[prevStepNumber].statusPoint = 'done-point';
+                        return { ...point, statusPoint: 'mid-point' };
+                    } else if (point.statusPoint === 'mid-point') {
+                        return { ...point, statusPoint: 'done-point' };
+                    }
+                }
+                return point;
+            });
+            setTracker(updatedTracker);
+            return nextStep;
+        });
+    };
+
+    const handleBack = () => {
+        setStepNumber(prevStepNumber => {
+            const nextStep = prevStepNumber - 1;
+            if (nextStep < 0) return prevStepNumber;
+
+            const updatedTracker: IProgressTrackerPoint[] = tracker.map((point, index) => {
+                if (index === prevStepNumber) {
+                    if (tracker[nextStep].statusPoint === 'done-point') {
+                        tracker[nextStep].statusPoint = 'mid-point';
+                    }
+                    if (point.statusPoint === 'done-point') {
+                        return { ...point, statusPoint: 'mid-point' };
+                    }
+                    if (point.statusPoint === 'mid-point') {
+                        return { ...point, statusPoint: 'initial-point' };
+                    }
+                }
+                return point;
+            });
+            setTracker(updatedTracker);
+            return nextStep;
+        });
+    };
 
     return (
         <div className="container-progress d-flex">
@@ -18,58 +63,16 @@ const ProgressTrackerPoint: FC<II> = ({ TRACKER }) => {
                 <button
                     className="btn-point btn-next-point"
                     type="button"
-                    onClick={() => {
-                        setStepNumber(prevStepNumber => {
-                            const nextStep = prevStepNumber + 1;
-                            if (nextStep >= tracker.length) {
-                                return prevStepNumber;
-                            } else {
-                                const updatedTracker = tracker.map((point, index, arr) => {
-                                    if (index === nextStep) {
-                                        if (point.statusPoint === 'initial-point') {
-                                            arr[prevStepNumber].statusPoint = 'done-point';
-                                            return { ...point, statusPoint: 'mid-point' };
-                                        } else if (point.statusPoint === 'mid-point') {
-                                            return { ...point, statusPoint: 'done-point' };
-                                        }
-                                    }
-                                    return point;
-                                }) as IProgressTrackerPoint[];
-                                setTracker(updatedTracker);
-                                return nextStep;
-                            }
-                        });
-                    }}
+                    onClick={handleNext}
+                    disabled={stepNumber >= tracker.length - 1}
                 >
                     Avançar
                 </button>
                 <button
                     className="btn-point btn-back-point"
                     type="button"
-                    onClick={() => {
-                        setStepNumber(prevStepNumber => {
-                            const nextStep = prevStepNumber - 1;
-                            if (nextStep < 0) {
-                                return prevStepNumber;
-                            } else {
-                                const updatedTracker = tracker.map((point, index, arr) => {
-                                    if (index === prevStepNumber) {
-                                        if(arr[nextStep].statusPoint === 'done-point') {
-                                            arr[nextStep].statusPoint = 'mid-point';
-                                        }
-                                        if (point.statusPoint === 'done-point') {
-                                            return { ...point, statusPoint: 'mid-point' };
-                                        } if (point.statusPoint === 'mid-point') {
-                                            return { ...point, statusPoint: 'initial-point' };
-                                        }
-                                    }
-                                    return point;
-                                }) as IProgressTrackerPoint[];
-                                setTracker(updatedTracker);
-                                return nextStep;
-                            }
-                        });
-                    }}
+                    onClick={handleBack}
+                    disabled={stepNumber <= 0}
                 >
                     Recuar
                 </button>
