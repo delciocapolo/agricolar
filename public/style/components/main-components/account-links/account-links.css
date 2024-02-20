@@ -1,0 +1,9 @@
+@import url('./effects.css');
+
+.container-account-links {
+	max-width: 300px;
+	height: 65px;
+	padding: 0.9rem;
+	border-radius: var(--border-radius);
+	box-shadow: var(--box-shadow-general);
+}

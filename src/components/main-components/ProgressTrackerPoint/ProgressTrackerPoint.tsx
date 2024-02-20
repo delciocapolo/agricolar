@@ -61,20 +61,20 @@ const ProgressTrackerPoint: FC<II> = ({ TRACKER }) => {
             {tracker[stepNumber].frame}
             <div className="container-btn-progress d-flex">
                 <button
-                    className="btn-point btn-next-point"
-                    type="button"
-                    onClick={handleNext}
-                    disabled={stepNumber >= tracker.length - 1}
-                >
-                    Avançar
-                </button>
-                <button
                     className="btn-point btn-back-point"
                     type="button"
                     onClick={handleBack}
                     disabled={stepNumber <= 0}
                 >
                     Recuar
+                </button>
+                <button
+                    className="btn-point btn-next-point"
+                    type="button"
+                    onClick={handleNext}
+                    disabled={stepNumber >= tracker.length - 1}
+                >
+                    Avançar
                 </button>
             </div>
         </div>
