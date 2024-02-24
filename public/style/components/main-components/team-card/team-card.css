@@ -1,0 +1,42 @@
+@import url("./effects.css");
+
+/* Inline #3 | http://localhost:5173/ */
+
+.container-team-card {
+  width: 260px;
+  height: 285px;
+  padding: 1px;
+  border-radius: var(--border-radius);
+  background-color: var(--White);
+  box-shadow: var(--box-shadow-general);
+}
+
+.image-team-card {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  border-radius: 7px 7px 0 0;
+}
+
+.name-team-card {
+  font: var(--Body-Large-500);
+  color: var(--Gray-900);
+}
+
+.category-team-card {
+  font: var(--Body-Small-400);
+  color: var(--Gray-500);
+}
+
+.container-team-card > * {
+  display: block;
+}
+
+.container-info-team-card {
+  padding: 0 1rem;
+  margin: 14px 0;
+}
+
+.container-image-team-card {
+  height: 200px;
+}

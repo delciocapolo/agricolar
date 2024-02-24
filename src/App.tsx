@@ -1,26 +1,14 @@
-import Default from "./components/main-components/Feature/Default";
+import TeamCard from "./components/main-components/TeamCard/TeamCard";
+import image from "./assets/containers/Image.jpg";
 
 const App = () => {
   return (
     <main className="main">
       <div className="aux d-flex">
-        <Default
-          props={{
-            container: false,
-            imageState: "shipping",
-            title: "Free shipping",
-            info: "Free shipping on all your order",
-            orientation: "default",
-          }}
-        />
-        <Default
-          props={{
-            container: true,
-            imageState: "shipping",
-            title: "Free shipping",
-            info: "Free shipping on all your order",
-            orientation: "reverse",
-          }}
+        <TeamCard
+          name="Delcio Capolo"
+          category="CEO & Co-founder"
+          pathImage={image}
         />
       </div>
     </main>
