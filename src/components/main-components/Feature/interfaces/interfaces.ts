@@ -2,7 +2,7 @@ type imageState =
   | "box"
   | "heartbeat"
   | "sucure"
-  | "start"
+  | "star"
   | "clean"
   | "time"
   | "shipping";

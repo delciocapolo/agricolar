@@ -7,7 +7,7 @@ const App = () => {
         <Default
           props={{
             container: false,
-            imageState: "box",
+            imageState: "shipping",
             title: "Free shipping",
             info: "Free shipping on all your order",
             orientation: "default",
@@ -16,7 +16,7 @@ const App = () => {
         <Default
           props={{
             container: true,
-            imageState: "box",
+            imageState: "shipping",
             title: "Free shipping",
             info: "Free shipping on all your order",
             orientation: "reverse",

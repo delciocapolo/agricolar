@@ -35,9 +35,9 @@ const IconFeature: FC<
         {imageState === "heartbeat" && <HeartPulse size={size} style={style} />}
         {imageState === "clean" && <Sparkles size={size} style={style} />}
         {imageState === "sucure" && <ShieldCheck size={size} style={style} />}
-        {imageState === "start" && <Star size={size} style={style} />}
+        {imageState === "star" && <Star size={size} style={style} />}
         {imageState === "time" && <Phone size={size} style={style} />}
-        {imageState === "time" && <Truck size={size} style={style} />}
+        {imageState === "shipping" && <Truck size={size} style={style} />}
       </div>
     </div>
   );
