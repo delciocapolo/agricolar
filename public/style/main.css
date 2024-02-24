@@ -1,14 +1,14 @@
-@import url('./default/index.css');
-@import url('./root/palete.css');
-@import url('./definition/index.css');
-@import url('./root/config.css');
-@import url('./components/main-components/product5n/normal.css');
-@import url('./components/main-components/Tag/tag.css');
-@import url('./components/main-components/Tag/healthy/healthy.css');
-@import url('./components/main-components/account-links/account-links.css');
+@import url("./default/index.css");
+@import url("./root/palete.css");
+@import url("./definition/index.css");
+@import url("./root/config.css");
+@import url("./components/main-components/product5n/normal.css");
+@import url("./components/main-components/Tag/tag.css");
+@import url("./components/main-components/Tag/healthy/healthy.css");
+@import url("./components/main-components/feature/index.css");
 
 .aux {
-	width: 750px;
-	height: 500px;
-	margin: 20px auto;
+  width: 750px;
+  height: 500px;
+  margin: 20px auto;
 }
