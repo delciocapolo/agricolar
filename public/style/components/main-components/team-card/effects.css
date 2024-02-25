@@ -1,0 +1,7 @@
+.container-media-card:hover {
+  background-color: var(--Success);
+}
+
+.container-medias-card:hover {
+  opacity: 1;
+}

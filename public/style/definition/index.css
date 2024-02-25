@@ -1,23 +1,27 @@
+.d-none {
+  display: none !important;
+}
+
 .d-flex {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .d-grid {
-    display: grid;
-    place-items: center;
+  display: grid;
+  place-items: center;
 }
 
 .d-flex,
 .d-grid {
-    gap: 10px;
-    flex-wrap: wrap;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .b-image {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    object-fit: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
 }
