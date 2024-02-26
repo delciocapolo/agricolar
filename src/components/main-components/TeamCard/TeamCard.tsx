@@ -3,22 +3,24 @@ import QRCode from "react-qr-code";
 import { v4 as uuid } from "uuid";
 import { ITeamCard } from "./interfaces/interface";
 import MediaCard from "./internalComponents/MediaCard";
-import Card from "../Containers/Card";
+import Card from "../Containers/Card/Card";
+import { IChildrenImage } from "../Containers/Card/interfaces/interface";
 
 const TeamCard: FC<ITeamCard> = ({
   name,
   category,
-  pathImage,
   social_medias = [],
+  pathImage,
 }) => {
+  const propsImage: IChildrenImage = {
+    name,
+    category,
+    pathImage,
+  };
+
   const ContainerImage = () => {
     return (
       <>
-        <img
-          src={pathImage}
-          alt={`${name} - ${category}`}
-          className="image-team-card"
-        />
         <nav className="container-medias-card d-flex">
           {social_medias.map(({ media, url }) => (
             <MediaCard media={media} url={url} key={uuid()} />
@@ -40,8 +42,14 @@ const TeamCard: FC<ITeamCard> = ({
       </>
     );
   };
+
   return (
-    <Card childrenImage={<ContainerImage />} childrenInfo={<ContainerInfo />} />
+    <Card
+      sizeType="small"
+      propsImage={propsImage}
+      childrenImage={<ContainerImage />}
+      childrenInfo={<ContainerInfo />}
+    />
   );
 };
 

@@ -6,6 +6,8 @@
 @import url("./components/main-components/Tag/tag.css");
 @import url("./components/main-components/Tag/healthy/healthy.css");
 @import url("./components/main-components/team-card/team-card.css");
+@import url("./components/main-components/blog-card/blog-card.css");
+@import url("./components/main-components/containers/card.css");
 
 .aux {
   width: 750px;

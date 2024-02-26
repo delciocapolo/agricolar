@@ -1,25 +1,4 @@
 @import url("./effects.css");
-:root {
-  --local-border-radius: 7px 7px 0 0;
-}
-/* Inline #3 | http://localhost:5173/ */
-
-.container-team-card {
-  height: fit-content;
-  /* height: 285px; */
-  /* padding: 1px; */
-  border-radius: var(--border-radius);
-  background-color: var(--White);
-  box-shadow: var(--box-shadow-general);
-}
-
-.container-team-card.small {
-  width: 260px;
-}
-
-.container-team-card.medium {
-  width: 260px;
-}
 
 .name-team-card {
   font: var(--Body-Large-500);
@@ -31,45 +10,13 @@
   color: var(--Gray-500);
 }
 
-/* .container-team-card > * {
-  display: block;
-} */
-
-.container-image-team-card {
-  height: 200px;
-  position: relative;
-}
-
-.image-team-card {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-  border-radius: var(--local-border-radius);
-}
-
-.container-info-team-card {
-  padding: 0 1rem;
-  margin: 14px 0;
-  grid-auto-flow: column;
-  justify-content: space-between;
-}
-
 .info-team-card {
   flex-direction: column;
   gap: 0px;
   justify-content: space-between;
 }
 
-.container-info-team-card > div {
-  height: 50px;
-}
-
 /* Inline #41 | http://localhost:5173/ */
-
-.container-image-team-card > * {
-  position: absolute;
-}
 
 .container-medias-card {
   background-color: rgba(0, 0, 0, 0.5);

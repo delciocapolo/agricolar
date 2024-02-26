@@ -7,7 +7,7 @@ import { z } from "zod";
 import { AlertTitle } from "@mui/material";
 
 const MediaCard: FC<IMediaCard> = ({ media, url }) => {
-  const size = 20;
+  const size = 22;
   const urlSchema = z.string().url().safeParse(url);
   const iconSchema: CSSProperties = {
     fill: "var(--White)",
