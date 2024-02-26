@@ -33,7 +33,11 @@ const App = () => {
           category="CEO & Co-Founder"
           pathImage={image}
         />
-        <BlogCard url_readmore={social_medias[0].url} url_imagefood={food} />
+        <BlogCard
+          num_comments={150}
+          url_readmore={social_medias[0].url}
+          url_imagefood={food}
+        />
       </div>
     </main>
   );
