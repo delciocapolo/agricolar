@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import Box from "../TopLevelComponent/Box/Box";
 import Feature from "./internalComponents/Feature";
 import { Headset, Package, ShieldCheck, Truck } from "lucide-react";
+import Line from "../TopLevelComponent/Box/Line";
 
 const FeaturedContainer = styled(Box)`
     box-shadow: var(--box-shadow-double-face);
@@ -9,12 +10,6 @@ const FeaturedContainer = styled(Box)`
     gap: 0;
     width: clamp(310px, 85%, 1224px);
     margin-top: 20px;
-`;
-
-const Line = styled['div']`
-    height: clamp(10px, 45px, 50px);
-    padding: 0.7px;
-    background-color: var(--Gray-100);
 `;
 
 const FeaturedSubContainer = styled(Box)`
