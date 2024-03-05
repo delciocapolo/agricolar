@@ -44,10 +44,12 @@ const ItemMenu = styled['li']`
 
 interface IMenuToggle {
     title: string;
+    type?: 'menu' | 'select'
 }
 
 
-const MenuToggle: FC<IMenuToggle> = ({ title = 'Menu' }) => {
+const MenuToggle: FC<IMenuToggle> = ({ title = 'Menu', type = 'select' }) => {
+    // working at type menu --------- *** 8askasaskasmaskasmas
     const configs = {
         color: 'var(--Gray-700)'
     }
