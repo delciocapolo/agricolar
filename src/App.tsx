@@ -1,6 +1,4 @@
-import Featured from "./components/main-components/Featured/Featured";
 import { IMediaCard } from "./components/main-components/TeamCard/interfaces/interface";
-import Box from "./components/main-components/TopLevelComponent/Box/Box";
 
 const App = () => {
   const social_medias: IMediaCard[] = [
@@ -23,9 +21,9 @@ const App = () => {
   ];
 
   return (
-    <main className="main">
-      <Featured />
-    </main>
+    <>
+
+    </>
   );
 };
 
