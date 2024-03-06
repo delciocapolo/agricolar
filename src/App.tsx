@@ -1,5 +1,5 @@
-import MenuToggle from "./components/main-components/MenuToggle/MenuToggle";
-// import Menu from "./components/main-components/Navigation/Menu";
+// import { MenuToggle } from "./components/main-components/MenuToggle/MenuToggle";
+import Menu from "./components/main-components/Navigation/Menu";
 // import { IMediaCard } from "./components/main-components/TeamCard/interfaces/interface";
 
 const App = () => {
@@ -24,9 +24,7 @@ const App = () => {
 
   return (
     <>
-      <MenuToggle title="Menu">
-
-      </MenuToggle>
+      <Menu />
     </>
   );
 };
