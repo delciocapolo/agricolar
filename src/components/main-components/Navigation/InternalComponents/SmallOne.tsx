@@ -9,6 +9,7 @@ import { MenuToggle } from "../../MenuToggle/MenuToggle";
 const SmallOneContainer = styled(Box)`
     justify-content: space-between;
     width: 100%;
+    border-bottom: 0.5px solid rgba(51, 51, 51, 0.05)
 `;
 const ContactContainer = styled(Box)`
     gap: 5px;
@@ -20,7 +21,7 @@ const TitleContact = styled['h1']`
 `;
 
 const LineContainer = styled(Line)({
-    height: '25px'
+    height: '18px'
 });
 
 const LinksContainer = styled(Box)({
@@ -29,6 +30,7 @@ const LinksContainer = styled(Box)({
 });
 
 const ButtonSignUpIn = styled['button']`
+    text-align: right;
     text-transform: capitalize;
     font: var(--Body-Tiny-400);
     color: var(--Gray-600);

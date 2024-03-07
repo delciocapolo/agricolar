@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { FC, useState } from "react";
 import Box from "../TopLevelComponent/Box/Box";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronRight, ChevronUp } from "lucide-react";
 import { z } from "zod";
 import { v4 as uuid } from "uuid";
 
@@ -24,6 +24,7 @@ const Title = styled['h1']`
 `;
 const ListItemsMenu = styled['ul']`
     width: clamp(95px, 100%, 1024px);
+    height: fit-content;
     content: '';
     position: absolute;
     top: 45px;
@@ -33,19 +34,25 @@ const ListItemsMenu = styled['ul']`
     gap: 5px;
     padding: 0.5rem;
     border-radius: var(--border-radius);
-    background-color:rgba(244, 244, 244, 0.7);
-    backdrop-filter: blur(14px);
+    background-color:rgba(244, 244, 244, 0.3);
+    backdrop-filter: blur(12px);
     box-shadow: 0 0 1px 1px rgba(51, 51, 51, 0.1), inset 0 0 1px 0px rgba(51, 51, 51, 0.04);
 `;
 const Content = styled(Box)`
+    width: fit-content;
     padding: 0.3rem 0;
     gap: 15px;
-    width: 100%;
+
     justify-content: space-between;
-    width: clamp(75px, 85px, 200px);
+    flex-wrap: nowrap;
 `;
 const ItemMenu = styled['li']`
+    position: realtive;
     width: 100%;
+
+    &:hover > .submenu-menu-toggle {
+        display: flex !important;
+    }
 `;
 const LinkMenu = styled['a']`
     line-height: 2.5 !important;
@@ -54,7 +61,9 @@ const LinkMenu = styled['a']`
     display: block;
 `;
 
-interface IItemMenu {
+export interface IItemMenu {
+    type?: 'link' | 'submenu';
+    subitems?: Omit<IItemMenu, 'subitems'>[];
     url?: string;
     text?: string;
 }
@@ -77,22 +86,42 @@ export const MenuToggle: FC<IMenuToggle> = ({ title = 'Menu', items }) => {
         throw new Error('Informe uma url valida!');
     }
 
+    const thereAreSubmenu = items?.some((item) => item.type === 'submenu') ? { width: 'clamp(95px, calc(100% + 50px), 1024px)' } : undefined;
+
     return (
         <MenuToggleContainer className="d-flex menu-toggle">
-            <Content onClick={handleCLick} className="d-flex">
-                <Title>{title}</Title>
+            <Content onClick={handleCLick} className="content d-flex">
+                <Title className="title-menubar">{title}</Title>
                 {currentState && <ChevronDown {...configs} />}
                 {!currentState && <ChevronUp {...configs} />}
             </Content>
             {
                 !currentState && (
-                    <ListItemsMenu className="d-flex">
+                    <ListItemsMenu className="d-flex list-items-menu" style={{ ...thereAreSubmenu }}>
                         {
-                            items!.map((item) => (
-                                <ItemMenu key={uuid()}>
-                                    <LinkMenu href={item.url} key={uuid()}>{item.text}</LinkMenu>
-                                </ItemMenu>
-                            ))
+                            items!.map((item) => {
+                                return (
+                                    <ItemMenu className="item-menu" key={uuid()}>
+                                        <div className="d-flex" style={{ justifyContent: 'space-between' }}>
+                                            <LinkMenu className="link-menu" href={item.url} key={uuid()}>{item.text}</LinkMenu>
+                                            {(item.type === 'submenu') && <ChevronRight size={15} />}
+                                        </div>
+                                        {(item.type === 'submenu') &&
+                                            (
+                                                <ListItemsMenu className="list-items-menu d-flex d-none submenu-menu-toggle">
+                                                    {
+                                                        item.subitems?.map((subitem) => (
+                                                            <ItemMenu className="item-menu" key={uuid()}>
+                                                                <LinkMenu className="link-menu" href={subitem.url} key={uuid()}>{subitem.text}</LinkMenu>
+                                                            </ItemMenu>
+                                                        ))
+                                                    }
+                                                </ListItemsMenu>
+                                            )
+                                        }
+                                    </ItemMenu>
+                                )
+                            })
                         }
                     </ListItemsMenu>
                 )

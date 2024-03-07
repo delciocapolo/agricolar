@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { FC, HTMLAttributes, ReactNode } from "react";
 
 const configs = {
-    width: 'clamp(310px, 85%, 1024px)',
+    width: 'clamp(310px, 85%, 1440px)',
     height: 'fit-content',
     margin: 'auto',
     padding: '0.3rem'

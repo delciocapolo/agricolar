@@ -7,6 +7,7 @@ const MiddleMenuContainer = styled['div']`
     justify-content: space-between;
     width: 100%;
     flex-wrap: wrap;
+    padding: 1.5rem 0;
 `;
 const Form = styled['form']`
     width: 35%;
@@ -79,6 +80,9 @@ const Info = styled['div']`
     color: 100%;
     backgroun-color: red;
 `;
+const CartContainer = styled['div']`
+    min-width: 218px;
+`;
 
 const MiddleMenu = () => {
     const moeda = 'AO';
@@ -98,7 +102,7 @@ const MiddleMenu = () => {
                 }} />
                 <TextField type="submit" name="submit_search_bar" value="Pesquisar" style={{ padding: '0.8rem 0.5rem', cursor: 'pointer', borderRadius: '0 8px 8px 0', backgroundColor: 'var(--Success)', color: 'var(--White)', font: 'var(--Body-Small-600)' }} />
             </Form>
-            <div className="d-flex">
+            <CartContainer className="d-flex">
                 <ButtonWishList type="button" className="d-flex">
                     <Heart size={30} absoluteStrokeWidth={true} style={{ color: 'var(--Gray-800)' }} />
                 </ButtonWishList>
@@ -115,7 +119,7 @@ const MiddleMenu = () => {
                         <TotalPrice>{moeda} 30.000 kz</TotalPrice>
                     </Info>
                 </ShoppingCard>
-            </div>
+            </CartContainer>
         </MiddleMenuContainer>
     );
 };
