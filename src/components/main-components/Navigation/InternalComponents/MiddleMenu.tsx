@@ -9,6 +9,8 @@ const MiddleMenuContainer = styled['div']`
     flex-wrap: wrap;
 `;
 const Form = styled['form']`
+    width: 35%;
+    min-width: 320px;
     gap: 0;
     border-radius: var(--border-radius);
     box-shadow: 0 0 0px 1px rgba(51, 51, 51, 0.1);
@@ -31,7 +33,7 @@ const ButtonWishList = styled['button']`
     }
 `;
 const Divider = styled(Line)`
-    width: 2px;
+    // width: 2px;
     height: 25px;
 `;
 
@@ -80,9 +82,6 @@ const Info = styled['div']`
 
 const MiddleMenu = () => {
     const moeda = 'AO';
-    const configs = {
-        padding: '0.7rem 0.5rem'
-    }
 
     return (
         <MiddleMenuContainer className="d-flex">
@@ -91,10 +90,11 @@ const MiddleMenu = () => {
                 <div className="d-flex" style={{ padding: '0 0 0 0.5rem' }} >
                     <Search absoluteStrokeWidth={true} />
                 </div>
-                <TextField type="search" name="search_bar" placeholder="Procure por algum produto ou fazenda" style={{
-                    height: 'clamp(25px, 100%, 60px)',
-                    font: '0.937rem "Poppins-regular"',
-                    ...configs
+                <TextField type="search" name="search_bar" placeholder="Procure por algum produto ou @fazenda" style={{
+                    font: 'var(--Body-Tiny-400)',
+                    flex: '1 1 200px',
+                    height: '47px',
+                    padding: '0.3rem',
                 }} />
                 <TextField type="submit" name="submit_search_bar" value="Pesquisar" style={{ padding: '0.8rem 0.5rem', cursor: 'pointer', borderRadius: '0 8px 8px 0', backgroundColor: 'var(--Success)', color: 'var(--White)', font: 'var(--Body-Small-600)' }} />
             </Form>
