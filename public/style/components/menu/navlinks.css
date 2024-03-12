@@ -1,0 +1,42 @@
+.menu-custom-navlinks>ul {
+    gap: 15px;
+}
+
+.menu-custom-navlinks>ul>li>a,
+.menu-custom-navlinks>ul>.item-menu>a>span {
+    color: var(--Gray-900);
+}
+
+.menu-custom-navlinks>ul>.item-menu>.dropdown-menu>ul>li {
+    width: 245px;
+}
+
+.menu-custom-navlinks>ul>.item-menu>.dropdown-menu>ul {
+    margin-top: 0.8rem;
+
+    background-color: var(--Gray-50);
+    border-radius: var(--border-radius);
+    /* box-shadow: var(--box-shadow-double-face); */
+}
+
+.menu-custom-navlinks>ul>.item-menu>.dropdown-menu>ul>li>.dropdown-submenu>ul {
+    margin-top: 0.8rem;
+    width: 245px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-double-face);
+    background-color: var(--Gray-50);
+}
+
+.menu-custom-navlinks>ul>.item-menu>.dropdown-menu>ul>li>.dropdown-submenu>ul>li {
+    background-color: transparent;
+}
+
+.menu-custom-navlinks>ul>.item-menu>.dropdown-menu {
+    box-shadow: none;
+}
+
+.links-container>.menu-toggle>.content>*,
+.links-container>button {
+    color: var(--White);
+    stroke: var(--White);
+}

@@ -1,7 +1,7 @@
-// import { MenuToggle } from "./components/main-components/MenuToggle/MenuToggle";
-import { MultiMenu } from "./components/main-components/MenuToggle/MenuToggle";
-// import Menu from "./components/main-components/Navigation/Menu";
-// import { IMediaCard } from "./components/main-components/TeamCard/interfaces/interface";
+import Menu from "./components/main-components/Navigation/Menu";
+
+// import { MenuCustom } from "./components/main-components/MenuToggle/MenuCustom";
+// import { IITemMenuCustom } from "./components/main-components/MenuToggle/interfaces/interfaces";
 
 const App = () => {
   // const social_medias: IMediaCard[] = [
@@ -23,9 +23,53 @@ const App = () => {
   //   },
   // ];
 
+  // const multiMenuList: IITemMenuCustom[] = [
+  //   {
+  //     title: 'Home',
+  //     url: 'https://google.com',
+  //   },
+  //   {
+  //     title: 'Recursos',
+  //     list: [
+  //       {
+  //         title: 'api',
+  //         url: 'angola',
+  //         list: [
+  //           {
+  //             title: 'agricolar',
+  //             url: 'agricolar',
+  //             list: [
+  //               {
+  //                 title: 'improve',
+  //                 url: 'done'
+  //               }
+  //             ]
+  //           }
+  //         ]
+  //       },
+  //       {
+  //         title: 'api',
+  //         url: 'angola',
+  //         list: [
+  //           {
+  //             title: 'agricolar',
+  //             url: 'agricolar',
+  //             list: [
+  //               {
+  //                 title: 'improve',
+  //                 url: 'done'
+  //               }
+  //             ]
+  //           }
+  //         ]
+  //       },
+  //     ]
+  //   }
+  // ]
+
   return (
     <>
-      <MultiMenu />
+      <Menu />
     </>
   );
 };

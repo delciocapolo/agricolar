@@ -116,7 +116,7 @@ const MiddleMenu = () => {
                     </Cart>
                     <Info className="d-flex">
                         <Title>shopping cart</Title>
-                        <TotalPrice>{moeda} 30.000 kz</TotalPrice>
+                        <TotalPrice>{moeda} 320.000 kz</TotalPrice>
                     </Info>
                 </ShoppingCard>
             </CartContainer>

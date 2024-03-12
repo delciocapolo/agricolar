@@ -8,6 +8,8 @@
 @import url("./components/main-components/team-card/team-card.css");
 @import url("./components/main-components/blog-card/blog-card.css");
 @import url("./components/main-components/containers/card.css");
+@import url("./components/menu/navlinks.css");
+
 
 .aux {
   width: 750px;

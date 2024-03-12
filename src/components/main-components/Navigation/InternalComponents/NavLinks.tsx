@@ -1,12 +1,13 @@
 import styled from "@emotion/styled";
-import { IItemMenu, MenuToggle } from "../../MenuToggle/MenuToggle";
-import { Phone } from "lucide-react";
+import { ChevronDown, Menu, Phone } from "lucide-react";
+import { MenuCustom } from "../../MenuToggle/MenuCustom";
+import { IITemMenuCustom } from "../../MenuToggle/interfaces/interfaces";
 
 const CallNow = styled['div']`
     width: 100%;
-    padding: 0.8rem 0.5rem;
+    padding-right: 0.5rem;
     justify-content: space-between;
-    background-color: var(--Gray-800);
+    background-color: var(--Gray-50);
     border-radius: var(--border-radius);
 
     & > div > .menu-toggle > .content > .title-menubar {
@@ -16,112 +17,93 @@ const CallNow = styled['div']`
 `;
 const LinkCallPhone = styled['a']`
     font: var(--Body-Small-500);
-    color: var(--White);
+    color: var(--Gray-900);
     line-height: 2;
 `;
 
 const NavLink = () => {
-
-    const AjudaItems: IItemMenu[] = [
+    const IListItemMenuCustom: IITemMenuCustom[] = [
         {
-            type: 'submenu',
-            text: 'Ajuda',
-            subitems: [
-                {
-                    type: 'link',
-                    text: 'Sobre nós',
-                    url: 'https://agricolar.com/fazendas'
-                },
-                {
-                    type: 'link',
-                    text: 'Entrar em contacto',
-                    url: 'https://agricolar.com/s'
-                },
-            ]
+            title: 'Home',
+            url: 'http://localhost:5173/'
         },
-    ];
-    const RecursosItems: IItemMenu[] = [
         {
-            type: 'submenu',
-            text: 'Recursos',
-            subitems: [
-                {
-                    type: 'link',
-                    text: 'Criar fazenda online',
-                    url: 'https://agricolar.com/fazendas'
-                },
-                {
-                    type: 'link',
-                    text: 'Obter proteção',
-                    url: 'https://agricolar.com/s'
-                },
-                {
-                    type: 'link',
-                    text: 'API',
-                    url: 'https://agricolar.com/vf'
-                },
-            ]
+            title: 'Fazendas',
+            url: 'http://localhost:5173/farms'
         },
-    ];
-    const FazendasItems: IItemMenu[] = [
         {
-            type: 'submenu',
-            text: 'Fazendas',
-            subitems: [
+            title: 'Recursos',
+            list: [
                 {
-                    type: 'link',
-                    text: 'Bovinas',
-                    url: 'https://agricolar.com/fazendas'
+                    title: 'Fazendas',
+                    list: [
+                        {
+                            title: 'criar fazenda online',
+                            url: 'http://localhost:5173/farm/createfarm'
+                        },
+                        {
+                            title: 'associar minha fazenda',
+                            url: 'http://localhost:5173/farm/connectionfarm'
+                        }
+                    ]
                 },
                 {
-                    type: 'link',
-                    text: 'Veganas',
-                    url: 'https://agricolar.com/s'
+                    title: 'Obter proteção agri-ocular',
+                    url: 'http://localhost:5173/farm/protection'
                 },
+                {
+                    title: 'API',
+                    url: 'http://localhost:5173/api'
+                }
             ]
         },
         {
-            type: 'submenu',
-            text: 'Fazendas',
-            subitems: [
+            title: 'Ajuda',
+            url: '',
+            list: [
                 {
-                    type: 'link',
-                    text: 'Leiteiras',
-                    url: 'https://agricolar.com/fazendas'
+                    title: 'Sobre nós',
+                    url: 'http://localhost:5173/aboutus'
                 },
                 {
-                    type: 'link',
-                    text: 'Fully',
-                    url: 'https://agricolar.com/s'
-                },
-            ]
-        },
-    ];
-    const HomeItems: IItemMenu[] = [
-        {
-            type: 'submenu',
-            text: 'Home',
-            subitems: [
-                {
-                    type: 'link',
-                    text: 'Home',
-                    url: 'https://agricolar.com/'
+                    title: 'Entrar em contacto',
+                    url: 'http://localhost:5173/#'
                 }
             ]
         }
     ];
 
+    const ButtonCategory = styled['button']`
+        grid-template-columns: repeat(3, 1fr);
+        height: 65px;
+        gap: 0;
+        width: 205px;
+        border-radius: var(--border-radius) 0 0 var(--border-radius);
+
+        & > * {
+            color: var(--White);
+        }
+
+        & > span {
+            font: var(--Body-Small-500);
+        }
+
+        background-color: var(--Success);
+    `;
+
     return (
         <CallNow className="d-flex">
             <div className="d-flex">
-                <MenuToggle title="Home" items={HomeItems} />
-                <MenuToggle title="Fazendas" items={FazendasItems} />
-                <MenuToggle title="Recursos" items={RecursosItems} />
-                <MenuToggle title="Ajuda" items={AjudaItems} />
+                <ButtonCategory type="button" className="btn-category d-grid">
+                    <Menu />
+                    <span>Categorias</span>
+                    <ChevronDown />
+                </ButtonCategory>
+                <MenuCustom items={IListItemMenuCustom} className="menu-custom-navlinks" />
             </div>
             <div className="d-flex">
-                <Phone size={20} style={{ color: 'var(--White)' }} />
-                <LinkCallPhone href="tel:+244993895962" className="d-flex">+244 993895962</LinkCallPhone>
+                <Phone size={20} style={{ color: 'var(--Gray-900)' }} />
+                <LinkCallPhone href="tel:+244993895962" className="d-flex">+244 (993) 895 962</LinkCallPhone>
             </div>
         </CallNow>
     );

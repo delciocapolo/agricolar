@@ -4,10 +4,12 @@ import { MapPin } from "lucide-react";
 // import CustomizedMenus from "./Internal_Components_SmallOne/InternalComponentsSmallOne";
 // import SelectOptions from "./Internal_Components_SmallOne/SelectOptions";
 import Line from "../../TopLevelComponent/Box/Line";
-import { MenuToggle } from "../../MenuToggle/MenuToggle";
+import { SelectCustom } from "../../MenuToggle/SelectCustom";
 
 const SmallOneContainer = styled(Box)`
+    background-color: var(--Success);
     justify-content: space-between;
+    border-radius: var(--border-radius);
     width: 100%;
     border-bottom: 0.5px solid rgba(51, 51, 51, 0.05)
 `;
@@ -17,11 +19,14 @@ const ContactContainer = styled(Box)`
 `;
 const TitleContact = styled['h1']`
     font: var(--Body-Tiny-400);
-    color: var(--Gray-600);
+    color: var(--White);
 `;
 
 const LineContainer = styled(Line)({
-    height: '18px'
+    height: '18px',
+    width: '0.3px',
+    padding: 0,
+    backgroundColor: 'rgba(255, 255, 255, 0.5)'
 });
 
 const LinksContainer = styled(Box)({
@@ -43,12 +48,12 @@ const SmallOne = () => {
     return (
         <SmallOneContainer>
             <ContactContainer>
-                <MapPin style={{ color: 'var(--Gray-600)' }} />
+                <MapPin style={{ color: 'var(--White)' }} />
                 <TitleContact>Store Location: Lincoln - 344, Illinois, Chicago, USA</TitleContact>
             </ContactContainer>
-            <LinksContainer>
-                <MenuToggle title="Idioma" items={[{ text: 'PT', url: 'http://localhost:5173/pt' }, { text: 'EN', url: 'http://localhost:5173/en' }]} />
-                <MenuToggle title="Moeda" items={[{ text: 'USD' }, { text: 'AO' }]} />
+            <LinksContainer className="links-container">
+                <SelectCustom title="Idioma" items={[{ text: 'PT', url: 'http://localhost:5173/pt' }, { text: 'EN', url: 'http://localhost:5173/en' }]} />
+                <SelectCustom title="Moeda" items={[{ text: 'USD' }, { text: 'AO' }]} />
                 <LineContainer />
                 <ButtonSignUpIn>entrar / criar conta</ButtonSignUpIn>
             </LinksContainer>
