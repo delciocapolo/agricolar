@@ -1446,6 +1446,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "agricolar@workspace:."
   dependencies:
+    "@emotion/babel-plugin": "npm:^11.11.0"
     "@emotion/react": "npm:^11.11.3"
     "@emotion/styled": "npm:^11.11.0"
     "@mui/icons-material": "npm:^5.15.10"

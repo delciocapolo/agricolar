@@ -129,3 +129,155 @@ export const MenuToggle: FC<IMenuToggle> = ({ title = 'Menu', items }) => {
         </MenuToggleContainer>
     )
 };
+
+export const MultiMenu = () => {
+    const MenuBar = styled['div']`
+        // background-color: #333;
+        width: fit-content;
+        // min-width: 65px;
+        // min-height: 35px;
+    `;
+    const List = styled['ul']`
+        list-style: none;
+    `;
+    const Item = styled['li']`
+        // padding: 10px 30px;
+        position: relative;
+
+        & > a {
+            padding: 0 0.3rem;
+            display: block;
+            line-height: 3;
+            color: #333;
+            text-decoration: none;
+        }
+
+        &:hover > .dropdown-menu {
+            display: block;
+        }
+
+        &:hover > .dropdown-menu > ul > li {
+            width: 150px;
+            padding: 0 0.5rem;
+        }
+        &:hover > .dropdown-menu > ul > li > a {
+            display: block;
+            line-height: 3;
+            padding: 0.1rem;
+        }
+    `;
+
+    const LinkItem = styled['a']`
+        font: var(--Body-Medium-400);
+    `;
+
+    const DropdownMenu = styled['div']`
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 100%;
+        border-radius: 3px;
+        box-shadow: var(--box-shadow-double-face);
+
+        & > ul {
+            display: block;
+        }
+        
+        & > ul > li > a {
+            color: var(--Gray-900);
+            font: var(--Body-Medium-400);
+        }
+
+        & > ul > li:hover > .dropdown-submenu {
+            display: block;
+        }
+    `;
+
+    const DropdownSubMenu = styled['div']`
+        display: none;
+        height: 100%;
+        position: absolute;
+        
+        // bottom: 0;
+        top: 0;
+        left: 100%;
+        border-radius: 0 var(--border-radius) var(--border-radius) 0;
+
+        & > ul {
+            // height: 100%;
+            min-width: 165px;
+            padding: 0.2rem;
+        }
+
+        & > ul > li > a {
+            width: 100%;
+            color: var(--Gray-900);
+            display: block;
+            line-height: 3;
+            font-size: 1rem;
+            padding: 0 0.5rem;
+        }
+    `;
+
+    const iconConfigs = {
+        size: 20
+    };
+    const SpanFlex = styled['span']`
+        justify-content: flex-start;
+        color: var(--Gray-900);
+    `;
+
+    return (
+        <MenuBar className="d-flex">
+            <List className="d-flex">
+                <Item className="item-menu">
+                    <LinkItem href="#">Home</LinkItem>
+                    <DropdownMenu className="dropdown-menu">
+                        <ul>
+                            <li><a href="#">Primeiro</a></li>
+                            <li><a href="#">Primeiro</a></li>
+                            <li>
+                                <a>
+                                    <SpanFlex className="d-flex">
+                                        Primeiro
+                                        <ChevronRight {...iconConfigs} />
+                                    </SpanFlex>
+                                </a>
+                                <DropdownSubMenu className="dropdown-submenu">
+                                    <ul>
+                                        <li><a href="#">Items</a></li>
+                                        <li><a href="#">Items</a></li>
+                                        <li><a href="#">Items</a></li>
+                                        <li><a href="#">Items</a></li>
+                                    </ul>
+                                </DropdownSubMenu>
+                            </li>
+                            <li>
+                                <a>Over</a>
+                                <DropdownSubMenu className="dropdown-submenu">
+                                    <ul>
+                                        <li><a href="#">items problems</a></li>
+                                        <li><a href="#">items problems</a></li>
+                                        <li><a href="#">items problems</a></li>
+                                        <li><a href="#">items problems</a></li>
+                                    </ul>
+                                </DropdownSubMenu>
+                            </li>
+                            <li>
+                                <a>Summer</a>
+                                <DropdownSubMenu className="dropdown-submenu">
+                                    <ul>
+                                        <li><a href="#">sale</a></li>
+                                        <li><a href="#">sale</a></li>
+                                        <li><a href="#">sale</a></li>
+                                        <li><a href="#">sale</a></li>
+                                    </ul>
+                                </DropdownSubMenu>
+                            </li>
+                        </ul>
+                    </DropdownMenu>
+                </Item>
+            </List>
+        </MenuBar>
+    )
+}

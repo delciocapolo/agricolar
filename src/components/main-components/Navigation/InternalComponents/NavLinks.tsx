@@ -86,12 +86,12 @@ const NavLink = () => {
             subitems: [
                 {
                     type: 'link',
-                    text: 'Bovinas',
+                    text: 'Leiteiras',
                     url: 'https://agricolar.com/fazendas'
                 },
                 {
                     type: 'link',
-                    text: 'Veganas',
+                    text: 'Fully',
                     url: 'https://agricolar.com/s'
                 },
             ]
