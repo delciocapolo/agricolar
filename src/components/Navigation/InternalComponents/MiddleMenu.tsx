@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import Logo from "../../../../assets/Logo";
+import Logo from "../../../assets/Logo";
 import { Heart, Search, ShoppingBasket } from "lucide-react";
-import Line from "../../TopLevelComponent/Box/Line";
+import Line from "../../main-components/TopLevelComponent/Box/Line";
 
 const MiddleMenuContainer = styled['div']`
     justify-content: space-between;

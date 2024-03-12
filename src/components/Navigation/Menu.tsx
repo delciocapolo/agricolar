@@ -1,11 +1,13 @@
 import styled from "@emotion/styled";
-import Box from "../TopLevelComponent/Box/Box";
 import SmallOne from "./InternalComponents/SmallOne";
 import MiddleMenu from "./InternalComponents/MiddleMenu";
 import NavLink from "./InternalComponents/NavLinks";
+import Box from "../main-components/TopLevelComponent/Box/Box";
 
 const MenuContainer = styled(Box)`
-    width: clamp(310px, 90%, 1440px);
+    width: 100%;
+    padding: 0;
+    // width: clamp(310px, 90%, 1440px);
     background-color: rgba(244, 244, 244, 0.1);
     
     gap: 0;

@@ -1,14 +1,14 @@
 import styled from "@emotion/styled";
 import { ChevronDown, Menu, Phone } from "lucide-react";
-import { MenuCustom } from "../../MenuToggle/MenuCustom";
-import { IITemMenuCustom } from "../../MenuToggle/interfaces/interfaces";
+import { MenuCustom } from "../../main-components/MenuToggle/MenuCustom";
+import { IITemMenuCustom } from "../../main-components/MenuToggle/interfaces/interfaces";
 
 const CallNow = styled['div']`
     width: 100%;
     padding-right: 0.5rem;
     justify-content: space-between;
     background-color: var(--Gray-50);
-    border-radius: var(--border-radius);
+    // border-radius: var(--border-radius);
 
     & > div > .menu-toggle > .content > .title-menubar {
         font: var(--Body-Small-400);
@@ -78,7 +78,7 @@ const NavLink = () => {
         height: 65px;
         gap: 0;
         width: 205px;
-        border-radius: var(--border-radius) 0 0 var(--border-radius);
+        // border-radius: var(--border-radius) 0 0 var(--border-radius);
 
         & > * {
             color: var(--White);

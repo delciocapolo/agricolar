@@ -1,4 +1,6 @@
-import Menu from "./components/main-components/Navigation/Menu";
+import { Fragment } from "react";
+import Menu from "./components/Navigation/Menu";
+import Skeleton from "./components/Body/Skeleton";
 
 // import { MenuCustom } from "./components/main-components/MenuToggle/MenuCustom";
 // import { IITemMenuCustom } from "./components/main-components/MenuToggle/interfaces/interfaces";
@@ -68,9 +70,10 @@ const App = () => {
   // ]
 
   return (
-    <>
+    <Fragment>
       <Menu />
-    </>
+      <Skeleton />
+    </Fragment>
   );
 };
 

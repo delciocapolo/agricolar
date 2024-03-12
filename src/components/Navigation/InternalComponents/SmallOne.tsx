@@ -1,15 +1,15 @@
 import styled from "@emotion/styled";
-import Box from "../../TopLevelComponent/Box/Box";
+import Box from "../../main-components/TopLevelComponent/Box/Box";
 import { MapPin } from "lucide-react";
 // import CustomizedMenus from "./Internal_Components_SmallOne/InternalComponentsSmallOne";
 // import SelectOptions from "./Internal_Components_SmallOne/SelectOptions";
-import Line from "../../TopLevelComponent/Box/Line";
-import { SelectCustom } from "../../MenuToggle/SelectCustom";
+import Line from "../../main-components/TopLevelComponent/Box/Line";
+import { SelectCustom } from "../../main-components/MenuToggle/SelectCustom";
 
 const SmallOneContainer = styled(Box)`
     background-color: var(--Success);
     justify-content: space-between;
-    border-radius: var(--border-radius);
+    // border-radius: var(--border-radius);
     width: 100%;
     border-bottom: 0.5px solid rgba(51, 51, 51, 0.05)
 `;
