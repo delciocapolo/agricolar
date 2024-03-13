@@ -24,7 +24,7 @@ const TitleContact = styled['h1']`
 
 const LineContainer = styled(Line)({
     height: '18px',
-    width: '0.3px',
+    width: '1.2px',
     padding: 0,
     backgroundColor: 'rgba(255, 255, 255, 0.5)'
 });

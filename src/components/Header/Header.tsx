@@ -1,12 +1,14 @@
 import styled from "@emotion/styled";
 import Box from "../main-components/TopLevelComponent/Box/Box";
-import CestoFrutas from '../../assets/products/Image.jpg';
+import cestoFrutas from '../../assets/products/Image.jpg';
+import fruta1 from '../../assets/products/Rectangle 5-1.jpg';
 import Information from "./Information/Information";
 import Tracker from "./Tracker/Tracker";
 import Arrow from "./Arrow/Arrow";
+import { MouseEvent, useState } from "react";
 
-const Header = () => {
-    const Header = styled(Box)`
+
+const HeaderContainer = styled(Box)`
         position: relative;
         width: 100%;
         // min-height: 700px;
@@ -16,13 +18,13 @@ const Header = () => {
         flex-direction: column;
     `;
 
-    const Image = styled['img']`
+const Image = styled['img']`
         width: 100%;
         height: 430px;
         object-fit: cover;
     `;
 
-    const OFF = styled['div']`
+const OFF = styled['div']`
         position: absolute;
         border-radius: 50%;
         width: 95px;
@@ -40,37 +42,86 @@ const Header = () => {
         }
     `;
 
-    const ImageOFFContainer = styled['div']`
+const ImageOFFContainer = styled['div']`
         width: 100%;
         gap: 0.9rem;
         justify-content: center;
     `;
 
-    const ImageContainer = styled['div']`
+const ImageContainer = styled['div']`
         position: relative;
         width: 50%;
-        background-color: purple;
+        background-color: transparent;
     `;
 
-    const PorcentText = styled['h1']`
+const PorcentText = styled['h1']`
         font: var(--Display05-600);
         font-size: 1.8rem;
         text-align: center;
         line-height: 1;
+        transition: 0.2s ease-in;
     `;
 
-    const OFFText = styled['span']`
+const OFFText = styled['span']`
         font: var(--Large-Caps-Lock);
         letter-spacing: 2px;
         text-transform: uppercase;
+        transition: 0.2s ease-in;
     `;
 
+interface IItemsArrow {
+    image: {
+        path: string;
+        describe?: string;
+    }
+}
+const items: IItemsArrow[] = [
+    {
+        image: {
+            path: cestoFrutas,
+            describe: 'Imagem de cesto de frutas'
+        }
+    },
+    {
+        image: {
+            path: fruta1,
+            describe: 'Imagem de frutas'
+        }
+    },
+]
+const Header = () => {
+    const [currentIndex, setCurrentIndex] = useState<number>(0);
+
+    const handleClickRight = (e: MouseEvent<HTMLButtonElement>) => {
+        console.log(currentIndex);
+        setCurrentIndex(prev => {
+            const next = prev + 1;
+
+            if (next >= items.length) return prev;
+
+            return next;
+
+        });
+        console.log(currentIndex);
+    }
+    const handleClickLeft = (e: MouseEvent<HTMLButtonElement>) => {
+        console.log(currentIndex);
+        setCurrentIndex(prev => {
+            const next = prev - 1;
+
+            if (next < 0) return prev;
+
+            return next;
+        });
+        console.log(currentIndex);
+    }
+
     return (
-        <Header className="d-flex">
-            <Arrow />
+        <HeaderContainer className="d-flex">
+            <Arrow onClickRight={handleClickRight} onClickLeft={handleClickLeft} />
             <ImageOFFContainer className="d-flex">
                 <ImageContainer className="d-flex">
-                    <Image src={CestoFrutas} alt="Imagem de cesto de frutas" />
+                    <Image src={items[currentIndex].image.path} alt={items[currentIndex].image.describe} />
                     <OFF className="d-flex">
                         <PorcentText className="">70%</PorcentText>
                         <OFFText>off</OFFText>
@@ -78,8 +129,8 @@ const Header = () => {
                 </ImageContainer>
                 <Information />
             </ImageOFFContainer>
-            <Tracker items={[0, 1, 2, 3]} index={2} />
-        </Header>
+            <Tracker items={items} index={currentIndex} />
+        </HeaderContainer>
     );
 };
 

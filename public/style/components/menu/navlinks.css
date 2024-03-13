@@ -2,11 +2,6 @@
     gap: 15px;
 }
 
-.menu-custom-navlinks>ul>li>a,
-.menu-custom-navlinks>ul>.item-menu>a>span {
-    color: var(--Gray-900);
-}
-
 .menu-custom-navlinks>ul>.item-menu>.dropdown-menu>ul>li {
     width: 245px;
 }
@@ -43,4 +38,22 @@
 .links-container>button {
     color: var(--White);
     stroke: var(--White);
+}
+
+
+/* //apagar esye codigo, caso decida destir de colorar o subemnu menu */
+.menu-custom-navlinks>ul>.item-menu>.dropdown-menu>ul>li>a,
+.menu-custom-navlinks>ul>.item-menu>.dropdown-menu>ul>li>a>span,
+.menu-custom-navlinks>ul>.item-menu>.dropdown-menu>ul>li>.dropdown-submenu>ul>li>a {
+    color: var(--Gray-500);
+}
+
+.menu-custom-navlinks>ul>li>a,
+.menu-custom-navlinks>ul>.item-menu>a>span {
+    color: var(--Gray-500);
+}
+
+.menu-custom-navlinks>ul>.item-menu:hover>a,
+.menu-custom-navlinks>ul>.item-menu:hover>a>span {
+    color: var(--Success);
 }
