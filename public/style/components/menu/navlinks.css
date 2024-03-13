@@ -11,6 +11,10 @@
     width: 245px;
 }
 
+.menu-custom-navlinks>ul>.item-menu>.dropdown-menu {
+    z-index: 999;
+}
+
 .menu-custom-navlinks>ul>.item-menu>.dropdown-menu>ul {
     margin-top: 0.8rem;
 

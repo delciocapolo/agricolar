@@ -7,6 +7,7 @@ const ArrowContainer = styled['div']`
 
     justify-content: space-between;
     padding: 0.2rem 0.5rem;
+    z-index: 1;
 `;
 const ButtonArrow = styled['button']`
     width: 50px;

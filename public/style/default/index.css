@@ -1,4 +1,10 @@
 @font-face {
+	font-family: 'Segoe-script';
+	font-style: normal;
+	src: url('../../fonts/Segoe-Script.ttf') format('truetype');
+}
+
+@font-face {
 	font-family: 'Poppins-light';
 	font-style: normal;
 	src: url('../../fonts/Poppins-Light.ttf') format('truetype');
