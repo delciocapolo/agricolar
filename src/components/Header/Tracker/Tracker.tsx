@@ -7,68 +7,62 @@ interface ITracker {
     index?: number;
 }
 
-const TrackerContainer = styled['div']`
+const TrackerContainer = styled.div`
     gap: 5px;
     // background-color: yellow;
     position: absolute;
-    bottom: 15px
+    bottom: 15px;
+    display: flex;
 `;
-const BoubleCircle = styled['div']`
+const BubbleCircle = styled['div']<{ active?: boolean }>`
     width: 8px;
     height: 8px;
     border-radius: 50px;
-    background-color: var(--Gray-200);
-    transition: 0.2s ease-in;
-    
+    background-color: ${props => props.className?.includes('active-circle') ? 'var(--Success)' : 'var(--Gray-200)'};
+    transition: width 0.2s ease-in, background-color 0.2s ease-in;
+
     &.active-circle {
-        width: 23px !important;
-        background-color: var(--Success) !important;
+        width: 23px;
     }
 `;
 
-
 const Tracker: FC<ITracker> = ({ items = [], index = 0 }) => {
-    const boubleCircleRef = useRef<Array<HTMLDivElement | null>>([]);
+    const bubbleCircleRefs = useRef<Array<HTMLDivElement | null>>([]);
     const [mounted, setMounted] = useState<boolean>(false);
-    const [pastValue, setPastValue] = useState<number>(index);
+    const [previousIndex, setPreviousIndex] = useState<number>(index);
 
     useEffect(() => {
         // Este código será executado após a montagem do componente
         if (mounted) {
             // O componente está sendo remontado
-            if (boubleCircleRef.current) {
-                if (boubleCircleRef.current[pastValue]) {
-                    boubleCircleRef.current[pastValue]?.classList.remove('active-circle');
-                }
+            if (bubbleCircleRefs.current[previousIndex]) {
+                bubbleCircleRefs.current[previousIndex]?.classList.remove('active-circle');
             }
-
-            /* */ setPastValue(index);
-
-            if (boubleCircleRef.current) {
-                if (boubleCircleRef.current[pastValue]) {
-                    boubleCircleRef.current[pastValue]?.classList.add('active-circle');
-                }
+            if (bubbleCircleRefs.current[index]) {
+                bubbleCircleRefs.current[index]?.classList.add('active-circle');
             }
-
+            setPreviousIndex(index);
         } else {
             // O componente está sendo montado pela primeira vez
-            if (boubleCircleRef.current) {
-                if (boubleCircleRef.current[pastValue]) {
-                    boubleCircleRef.current[pastValue]?.classList.add('active-circle');
-                }
+            if (bubbleCircleRefs.current[index]) {
+                bubbleCircleRefs.current[index]?.classList.add('active-circle');
             }
             setMounted(true);
         }
-    }, [mounted]);
+    }, [index, mounted, previousIndex]);
 
     return (
-        <TrackerContainer className="d-flex">
-            {
-                items.map((_, index) => (<BoubleCircle ref={(element) => boubleCircleRef.current[index] = element} data-index={`${index}`} className="bouble-circle" key={uuid()} />))
-            }
+        <TrackerContainer>
+            {items.map((_, i) => (
+                <BubbleCircle
+                    key={uuid()}
+                    ref={el => bubbleCircleRefs.current[i] = el}
+                    data-index={i}
+                    className={i === index ? "active-circle" : ""}
+                />
+            ))}
         </TrackerContainer>
-    )
+    );
 };
-
 
 export default Tracker;
