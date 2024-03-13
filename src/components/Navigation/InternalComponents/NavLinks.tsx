@@ -2,10 +2,15 @@ import styled from "@emotion/styled";
 import { ChevronDown, Menu, Phone } from "lucide-react";
 import { MenuCustom } from "../../main-components/MenuToggle/MenuCustom";
 import { IITemMenuCustom } from "../../main-components/MenuToggle/interfaces/interfaces";
+import { useContext } from "react";
+import { PaddingContext } from "../../contexts/padding";
 
-const CallNow = styled['div']`
+const NavLink = () => {
+    const { padding } = useContext(PaddingContext);
+
+    const CallNow = styled['div']`
     width: 100%;
-    padding-right: 0.5rem;
+    padding: ${padding};
     justify-content: space-between;
     background-color: var(--Gray-50);
     // border-radius: var(--border-radius);
@@ -15,13 +20,30 @@ const CallNow = styled['div']`
         color: var(--Gray-50);
     }
 `;
-const LinkCallPhone = styled['a']`
+    const LinkCallPhone = styled['a']`
     font: var(--Body-Small-500);
     color: var(--Gray-900);
     line-height: 2;
 `;
 
-const NavLink = () => {
+    const ButtonCategory = styled['button']`
+        grid-template-columns: repeat(3, 1fr);
+        height: 65px;
+        gap: 0;
+        width: 205px;
+        // border-radius: var(--border-radius) 0 0 var(--border-radius);
+
+        & > * {
+            color: var(--White);
+        }
+
+        & > span {
+            font: var(--Body-Small-500);
+        }
+
+        background-color: var(--Success);
+    `;
+
     const IListItemMenuCustom: IITemMenuCustom[] = [
         {
             title: 'Home',
@@ -72,24 +94,6 @@ const NavLink = () => {
             ]
         }
     ];
-
-    const ButtonCategory = styled['button']`
-        grid-template-columns: repeat(3, 1fr);
-        height: 65px;
-        gap: 0;
-        width: 205px;
-        // border-radius: var(--border-radius) 0 0 var(--border-radius);
-
-        & > * {
-            color: var(--White);
-        }
-
-        & > span {
-            font: var(--Body-Small-500);
-        }
-
-        background-color: var(--Success);
-    `;
 
     return (
         <CallNow className="d-flex">

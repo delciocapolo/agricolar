@@ -3,6 +3,7 @@ import SmallOne from "./InternalComponents/SmallOne";
 import MiddleMenu from "./InternalComponents/MiddleMenu";
 import NavLink from "./InternalComponents/NavLinks";
 import Box from "../main-components/TopLevelComponent/Box/Box";
+import { PaddingProvider } from "../contexts/padding";
 
 const MenuContainer = styled(Box)`
     width: 100%;
@@ -20,11 +21,13 @@ const MenuContainer = styled(Box)`
 
 const Menu = () => {
     return (
-        <MenuContainer>
-            <SmallOne />
-            <MiddleMenu />
-            <NavLink />
-        </MenuContainer>
+        <PaddingProvider>
+            <MenuContainer>
+                <SmallOne />
+                <MiddleMenu />
+                <NavLink />
+            </MenuContainer>
+        </PaddingProvider>
     );
 };
 

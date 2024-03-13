@@ -5,46 +5,54 @@ import { MapPin } from "lucide-react";
 // import SelectOptions from "./Internal_Components_SmallOne/SelectOptions";
 import Line from "../../main-components/TopLevelComponent/Box/Line";
 import { SelectCustom } from "../../main-components/MenuToggle/SelectCustom";
+import { useContext } from "react";
+import { PaddingContext } from "../../contexts/padding";
 
-const SmallOneContainer = styled(Box)`
+const SmallOne = () => {
+    const { padding } = useContext(PaddingContext);
+    const prevPadding = String(padding).split(' ')[1];
+
+    const SmallOneContainer = styled(Box)`
+    width: 100%;
+    padding: 0.3rem ${prevPadding};
     background-color: var(--Success);
     justify-content: space-between;
     // border-radius: var(--border-radius);
-    width: 100%;
     border-bottom: 0.5px solid rgba(51, 51, 51, 0.05)
 `;
-const ContactContainer = styled(Box)`
-    gap: 5px;
-    justify-content: flex-start;
+    const ContactContainer = styled(Box)`
+        gap: 5px;
+        justify-content: flex-start;
+        padding: 0;
 `;
-const TitleContact = styled['h1']`
+    const TitleContact = styled['h1']`
     font: var(--Body-Tiny-400);
     color: var(--White);
 `;
 
-const LineContainer = styled(Line)({
-    height: '18px',
-    width: '1.2px',
-    padding: 0,
-    backgroundColor: 'rgba(255, 255, 255, 0.5)'
-});
+    const LineContainer = styled(Line)({
+        height: '18px',
+        width: '1.2px',
+        padding: 0,
+        backgroundColor: 'rgba(255, 255, 255, 0.5)'
+    });
 
-const LinksContainer = styled(Box)({
-    gap: '10px',
-    justifyContent: 'flex-end'
-});
+    const LinksContainer = styled(Box)({
+        gap: '10px',
+        justifyContent: 'flex-end',
+        padding: 0
+    });
 
-const ButtonSignUpIn = styled['button']`
+    const ButtonSignUpIn = styled['button']`
     text-align: right;
     text-transform: capitalize;
     font: var(--Body-Tiny-400);
     color: var(--Gray-600);
     height: fit-content;
-    padding: 0.4rem 0.7rem;
+    padding: 0.4rem 0 0.4rem 0.7rem;
     background-color: transparent;
 `;
 
-const SmallOne = () => {
     return (
         <SmallOneContainer>
             <ContactContainer>
