@@ -40,6 +40,7 @@ const Divider = styled(Line)`
 
 const ShoppingCard = styled['div']`
     width: fit-content;
+    padding-right: 0.5rem;
 `;
 const Cart = styled['div']`
     width: 45px;
