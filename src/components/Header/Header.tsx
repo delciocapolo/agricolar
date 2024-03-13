@@ -6,7 +6,7 @@ import Information from "./Information/Information";
 import Tracker from "./Tracker/Tracker";
 import Arrow from "./Arrow/Arrow";
 import { MouseEvent, useContext, useState } from "react";
-import { PaddingContext, PaddingProvider } from "../contexts/padding";
+import { PaddingContext } from "../contexts/padding";
 
 interface IItemsArrow {
     image: {
@@ -123,22 +123,20 @@ const Header = () => {
     }
 
     return (
-        <PaddingProvider>
-            <HeaderContainer className="d-flex">
-                <Arrow onClickRight={handleClickRight} onClickLeft={handleClickLeft} />
-                <ImageOFFContainer className="d-flex">
-                    <ImageContainer className="d-flex">
-                        <Image src={items[currentIndex].image.path} alt={items[currentIndex].image.describe} />
-                        <OFF className="d-flex">
-                            <PorcentText className="">70%</PorcentText>
-                            <OFFText>off</OFFText>
-                        </OFF>
-                    </ImageContainer>
-                    <Information />
-                </ImageOFFContainer>
-                <Tracker items={items} index={currentIndex} />
-            </HeaderContainer>
-        </PaddingProvider>
+        <HeaderContainer className="d-flex">
+            <Arrow onClickRight={handleClickRight} onClickLeft={handleClickLeft} />
+            <ImageOFFContainer className="d-flex">
+                <ImageContainer className="d-flex">
+                    <Image src={items[currentIndex].image.path} alt={items[currentIndex].image.describe} />
+                    <OFF className="d-flex">
+                        <PorcentText className="">70%</PorcentText>
+                        <OFFText>off</OFFText>
+                    </OFF>
+                </ImageContainer>
+                <Information />
+            </ImageOFFContainer>
+            <Tracker items={items} index={currentIndex} />
+        </HeaderContainer>
     );
 };
 

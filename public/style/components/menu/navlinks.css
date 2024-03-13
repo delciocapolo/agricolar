@@ -19,7 +19,6 @@
 }
 
 .menu-custom-navlinks>ul>.item-menu>.dropdown-menu>ul>li>.dropdown-submenu>ul {
-    margin-top: 0.8rem;
     width: 245px;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow-double-face);
@@ -40,17 +39,30 @@
     stroke: var(--White);
 }
 
+/* Padding para baixar os menus dropdowns */
+.menu-custom-navlinks>ul>.item-menu>.dropdown-menu>ul>li>.dropdown-submenu {
+    padding-top: 25px;
+}
+
+
+.menu-custom-navlinks>ul>.item-menu>.dropdown-menu {
+    padding-top: 10px;
+}
 
 /* //apagar esye codigo, caso decida destir de colorar o subemnu menu */
 .menu-custom-navlinks>ul>.item-menu>.dropdown-menu>ul>li>a,
 .menu-custom-navlinks>ul>.item-menu>.dropdown-menu>ul>li>a>span,
 .menu-custom-navlinks>ul>.item-menu>.dropdown-menu>ul>li>.dropdown-submenu>ul>li>a {
     color: var(--Gray-500);
+    font: var(--Body-Small-500);
+    line-height: 3;
+    /* font-size: 0.825rem; */
 }
 
 .menu-custom-navlinks>ul>li>a,
 .menu-custom-navlinks>ul>.item-menu>a>span {
     color: var(--Gray-500);
+    font: var(--Body-Small-500);
 }
 
 .menu-custom-navlinks>ul>.item-menu:hover>a,

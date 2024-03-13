@@ -75,7 +75,7 @@ const MiddleMenu = () => {
         padding: 0.12rem 0;
     `;
     const TotalPrice = styled['h2']`
-        font: 0.875rem 'Poppins-medium';
+        font: 0.775rem 'Poppins-medium';
         padding: 0.1rem 0;
         color: var(--Gray-900);
     `;
