@@ -6,6 +6,7 @@ import Featured from "../main-components/Featured/Featured";
 import Box from "../main-components/TopLevelComponent/Box/Box";
 import Line from "../main-components/TopLevelComponent/Box/Line";
 import Normal from "../main-components/Product5n/Normal";
+import { Container } from "../Container/Container";
 
 const BG = () => {
     const { padding } = useContext(PaddingContext);
@@ -75,14 +76,11 @@ const BG = () => {
     `;
     const NameCategory = styled['span']``;
 
-    const Products = styled['div']`
-        width: 100%;
-        max-width: 1211px;
-        min-height: 654px;
+    const Products = styled(Container)`
         flex-direction: column;
         gap: 0;
-        // background-color: yellow;
         padding: 40px 0;
+        // background-color: yellow;
     `;
     const ProductItemContainer = styled['nav']`
         width: 100%;

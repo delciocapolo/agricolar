@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import Header from "../Header/Header";
 import BG from "../BG/BG";
 import { PaddingProvider } from "../contexts/padding";
+import Banners from "../Banners/Banners";
 
 const SkeletonContainer = styled['main']``;
 
@@ -11,6 +12,7 @@ const Skeleton = () => {
             <SkeletonContainer>
                 <Header />
                 <BG />
+                <Banners />
             </SkeletonContainer>
         </PaddingProvider>
     )
