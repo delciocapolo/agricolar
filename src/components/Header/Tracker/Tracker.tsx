@@ -10,7 +10,7 @@ interface ITracker {
 const TrackerContainer = styled.div`
     gap: 5px;
     // background-color: yellow;
-    position: absolute;
+    // position: absolute;
     bottom: 15px;
     display: flex;
 `;

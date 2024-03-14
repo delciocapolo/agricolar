@@ -81,7 +81,6 @@ const NavLink = () => {
         },
         {
             title: 'Ajuda',
-            url: '',
             list: [
                 {
                     title: 'Sobre nós',

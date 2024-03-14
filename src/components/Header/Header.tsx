@@ -37,7 +37,7 @@ const Header = () => {
             position: relative;
             width: 100%;
             // min-height: 700px;
-            height: calc(100vh - 214px);
+            min-height: calc(100vh - 214px);
             padding: ${padding};
             background-color: var(--White);
             flex-direction: column;
@@ -45,7 +45,7 @@ const Header = () => {
 
     const Image = styled['img']`
             width: 100%;
-            height: 430px;
+            height: 100%;
             object-fit: cover;
         `;
 
@@ -76,8 +76,9 @@ const Header = () => {
         `;
 
     const ImageContainer = styled['div']`
-            position: relative;
             width: 50%;
+            height: 430px;
+            position: relative;
             background-color: transparent;
         `;
 

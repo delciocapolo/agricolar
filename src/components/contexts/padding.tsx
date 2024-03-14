@@ -8,7 +8,7 @@ export const PaddingContext = createContext<IPadding>({} as IPadding);
 
 export const PaddingProvider: FC<{ children: ReactNode }> = ({ children }) => {
     const [padding, _] = useState<IPadding>({
-        padding: '0 3.5rem'
+        padding: '0 4.5rem'
     });
 
     return (

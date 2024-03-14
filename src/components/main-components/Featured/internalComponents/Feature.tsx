@@ -25,15 +25,25 @@ const Feature: FC<IFeature> = ({ icon, text, title }) => {
         width: fit-content;
         gap: 1px;
         flex-wrap: nowrap;
+        
         & > div {
             width: fit-content;
         }
     `;
 
+    const IconSubContainer = styled(Box)`
+        padding: 0;
+        width: auto;
+        margin: 0;
+        gap: 0;
+    `;
+
     return (
         <Feature className="feature">
             <Box>
-                {icon}
+                <IconSubContainer className="icon-subcontainer">
+                    {icon}
+                </IconSubContainer>
             </Box>
             <Content>
                 <Title>{title}</Title>
