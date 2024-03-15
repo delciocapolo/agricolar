@@ -59,7 +59,7 @@ const Information = () => {
         <InformationContainer className="d-flex">
             <Heading className="d-flex">
                 <HeadingWelcome>seja-bem vindo ao agricolar</HeadingWelcome>
-                <HeadingContent>alimentos organicos & saudáveis</HeadingContent>
+                <HeadingContent>alimentos orgânicos & saudáveis</HeadingContent>
             </Heading>
 
             <InfoText>Frete grátis em todos os pedidos. Entregamos, com prazer</InfoText>

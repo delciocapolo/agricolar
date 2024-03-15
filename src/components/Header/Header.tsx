@@ -1,3 +1,4 @@
+import { MouseEvent, useContext, useState } from "react";
 import styled from "@emotion/styled";
 import Box from "../main-components/TopLevelComponent/Box/Box";
 import cestoFrutas from '../../assets/products/Image.jpg';
@@ -5,7 +6,6 @@ import fruta1 from '../../assets/products/Rectangle 5-1.jpg';
 import Information from "./Information/Information";
 import Tracker from "./Tracker/Tracker";
 import Arrow from "./Arrow/Arrow";
-import { MouseEvent, useContext, useState } from "react";
 import { PaddingContext } from "../contexts/padding";
 
 interface IItemsArrow {
@@ -99,7 +99,7 @@ const Header = () => {
 
     const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-    const handleClickRight = (_: MouseEvent<HTMLButtonElement>) => {
+    const handleClickRight = (_?: MouseEvent<HTMLButtonElement>) => {
         console.log(currentIndex);
         setCurrentIndex(prev => {
             const next = prev + 1;
@@ -111,7 +111,7 @@ const Header = () => {
         });
         console.log(currentIndex);
     }
-    const handleClickLeft = (_: MouseEvent<HTMLButtonElement>) => {
+    const handleClickLeft = (_?: MouseEvent<HTMLButtonElement>) => {
         console.log(currentIndex);
         setCurrentIndex(prev => {
             const next = prev - 1;

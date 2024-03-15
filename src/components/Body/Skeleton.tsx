@@ -3,6 +3,7 @@ import Header from "../Header/Header";
 import BG from "../BG/BG";
 import { PaddingProvider } from "../contexts/padding";
 import Banners from "../main-components/Banners/Banners";
+import FeaturedProducts from "../FeaturedProducts/FeaturedProducts";
 
 const SkeletonContainer = styled['main']``;
 
@@ -13,6 +14,7 @@ const Skeleton = () => {
                 <Header />
                 <BG />
                 <Banners />
+                <FeaturedProducts />
             </SkeletonContainer>
         </PaddingProvider>
     )

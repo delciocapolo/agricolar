@@ -39,6 +39,7 @@ const BG = () => {
         width: 100%;
         // background-color: red;
         margin-top: 13.5%;
+        padding-bottom: 3.3rem;
         flex-direction: column;
 
         // & > * {
