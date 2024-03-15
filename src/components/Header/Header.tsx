@@ -1,4 +1,4 @@
-import { MouseEvent, useContext, useEffect, useState } from "react";
+import { MouseEvent, useContext, useState } from "react";
 import styled from "@emotion/styled";
 import Box from "../main-components/TopLevelComponent/Box/Box";
 import cestoFrutas from '../../assets/products/Image.jpg';
@@ -32,7 +32,6 @@ const items: IItemsArrow[] = [
 
 const Header = () => {
     const { padding } = useContext(PaddingContext);
-    const [y, setY] = useState(0);
 
     const HeaderContainer = styled(Box)`
             position: relative;
@@ -123,35 +122,6 @@ const Header = () => {
         });
         console.log(currentIndex);
     }
-
-    useEffect(() => {
-        const onScroll = (_: Event) => {
-
-            setY((_) => {
-                return window.scrollY;
-            });
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowLeft') {
-                    handleClickLeft();
-                    console.log('Fui clicado esquerdo', y);
-                    return;
-                }
-
-                if (e.key === 'ArrowRight') {
-                    handleClickRight();
-                    console.log('Fui clicado esquerdo', y);
-                    return;
-                }
-            });
-        }
-
-        window.addEventListener('scroll', onScroll);
-
-        return () => {
-            window.removeEventListener('scroll', onScroll);
-        }
-    }, [window.scrollY]);
 
     return (
         <HeaderContainer className="d-flex">
