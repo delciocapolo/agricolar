@@ -1,29 +1,30 @@
 import styled from "@emotion/styled";
-import cocktail from '../../assets/banners/banner2.jpg';
+import milk from '../../assets/banners/banner2.jpg';
+import refri from '../../assets/banners/banner1.jpg';
+import organico from '../../assets/banners/banner3.jpg';
 import { Container as DivContainer } from "../Container/Container";
-import Banner from "./InternalComponents/Banner";
+import { BannerDrink, BannerMilk, BannerOrganic } from "./InternalComponents/Banner";
 
 
 const Banners = () => {
     const BannersContainer = styled['div']`
         width: 100%;
-        // height: 55px;
-        background-color: red;
+        background-color: var(--White);
+        padding: 5rem 0;
     `;
     const Container = styled(DivContainer)`
         min-height: 250px;
         margin: auto;
-        padding: 0;
-        background-color: yellow;
+        // background-color: yellow;
     `;
 
 
     return (
         <BannersContainer>
             <Container className="d-flex">
-                <Banner image={{ path: cocktail }} />
-                <Banner image={{ path: cocktail }} />
-                <Banner image={{ path: cocktail }} />
+                <BannerMilk image={{ path: milk }} />
+                <BannerDrink image={{ path: refri }} />
+                <BannerOrganic image={{ path: organico }} />
             </Container>
         </BannersContainer>
     )

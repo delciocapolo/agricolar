@@ -89,7 +89,7 @@ const BG = () => {
         & > div {
             border-radius: 0;
             flex: 1 1 264px;
-            box-shadow: inset 0 0 0 1px rgba(51, 51, 51, 0.1);
+            box-shadow: inset 0 0 0 1px rgba(51, 51, 51, 0.1), 0 0 1px 1px rgba(51, 51, 51, 0.03);
 
             & > .container-product-info {
                 & > .container-info {
