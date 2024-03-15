@@ -1,10 +1,9 @@
 import styled from "@emotion/styled";
-import milk from '../../assets/banners/banner2.jpg';
-import refri from '../../assets/banners/banner1.jpg';
-import organico from '../../assets/banners/banner3.jpg';
-import { Container as DivContainer } from "../Container/Container";
+import milk from '../../../assets/banners/banner2.jpg';
+import refri from '../../../assets/banners/banner1.jpg';
+import organico from '../../../assets/banners/banner3.jpg';
+import { Container as DivContainer } from "../../Container/Container";
 import { BannerDrink, BannerMilk, BannerOrganic } from "./InternalComponents/Banner";
-
 
 const Banners = () => {
     const BannersContainer = styled['div']`
