@@ -71,8 +71,8 @@ const Header = () => {
 
     const ImageOFFContainer = styled['div']`
             width: 100%;
-            gap: 0.9rem;
-            justify-content: center;
+            gap: 0.5rem;
+            justify-content: space-between;
         `;
 
     const ImageContainer = styled['div']`

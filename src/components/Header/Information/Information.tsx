@@ -2,12 +2,12 @@ import styled from "@emotion/styled";
 import { MoveRight } from "lucide-react";
 
 const InformationContainer = styled['div']`
-    width: 42%;
+    width: 46%;
     flex-direction: column;
     align-items: flex-start;
     gap: 1.2rem;
     // background-color: green;
-    padding: 0.5rem;
+    // padding: 0.5rem;
 `;
 
 const Heading = styled['div']`

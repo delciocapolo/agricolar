@@ -4,7 +4,7 @@ import { FC, MouseEvent } from "react";
 
 const ArrowContainer = styled['div']`
     position: absolute;
-    width: 100%;
+    width: 99%;
 
     justify-content: space-between;
     padding: 0.2rem 0.5rem;
