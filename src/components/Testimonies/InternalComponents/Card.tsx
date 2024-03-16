@@ -1,71 +1,85 @@
-import { Global, css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { FC } from "react";
+import { ICard } from "./@types/ICard";
+import { minHeightBase } from "../Testimonies";
 import { QuoteIcon } from "lucide-react";
+import imageCostumer from "../../../assets/products/Rectangle 5-1.jpg";
 
-const Card = () => {
-    const CardContainer = styled['div']`
-        width: 320px;
-        min-height: 310px;
+const text = '“Aenean et nisl eget eros consectetur vestibulum vel id erat. Aliquam commodo lorem laoreet. Aliquam Aliquam Aliquam.”';
 
-        & > div {
-            display: block;
-            width: 100%;
-            min-height: 20px;
-            // background-color: purple;
+const Card: FC<ICard> = ({ textComment = text }) => {
+    const Card = styled['div']`
+        min-height: calc((${minHeightBase} - 100px) / 2);
+        flex-direction: column;
+        justify-content: space-between;
+    `;
+    const Quote = styled['div']`
+        width: 100%;
+        flex-direction: column;
+        padding: 0.5rem 2rem;
+        background-color: var(--White);
+        border-radius: var(--border-radius);
+        position: relative;
 
-            &:first-child {
-                margin-bottom: 9.13px;
-            }
+
+        &::before {
+            content: '';
+            position: absolute;
+            background-color: var(--White);
+            width: 15px;
+            height: 15px;
+            bottom: -8px;
+            transform: rotate(45deg);
+        }
+
+        & > .icon-quote-svg {
+            fill: var(--Success);
+            stroke: none;
         }
     `;
-
-    const Quote = styled['div']`
-        position: relative;
-        padding: 1.5rem 3rem;
-        // background-color: pink;
-    `;
-    const CommentCostumerText = styled['p']`
+    const TextComment = styled['p']`
         font: var(--Body-Medium-400);
         color: var(--Green-600);
-        text-align: justify;
-    `;
-    const Customer = styled['div']`
-    `;
-    const ContainerIcon = styled['div']`
         width: 100%;
-        padding: 0.3rem 0;
-        // background-color: brown;
+        text-align: justify;
+        line-height: 1.4;
     `;
-    const ImageCostumerContainer = styled['div']`
-        
+    const CostumerContainer = styled['div']`
+        flex-direction: column;
+        gap: 0;
     `;
     const ImageCostumer = styled['img']`
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
     `;
+    const Content = styled['div']`
+        flex-direction: column;
+        gap: 0;
+    `;
+    const NameCostumer = styled['h1']`
+        font: var(--Body-Medium-500);
+        color: var(--Green-900);
+    `;
+    const TypeCostumer = styled['span']`
+        font: var(--Body-Small-400);
+        color: var(--Green-500);
+    `;
+
     return (
-        <CardContainer>
-            <Global styles={css`
-                .quote-icon {
-                    fill: var(--Success);
-                    stroke: transparent;
-                }
-            `} />
-            <Quote>
-                <ContainerIcon className="d-flex">
-                    <QuoteIcon className="quote-icon" size={30} />
-                </ContainerIcon>
-                <CommentCostumerText>
-                    “Proin sed neque nec tellus malesuada ultrices eget a justo.
-                    Nullam a nibh faucibus, semper risus ac, ultricies est.
-                    Maecenas eget purus in enim imperdiet dapibus in ac mi.
-                    Fusce faucibus lacus felis”
-                </CommentCostumerText>
+        <Card className="d-flex">
+            <Quote className="d-flex">
+                <QuoteIcon className="icon-quote-svg" size={30} />
+                <TextComment>{textComment}</TextComment>
             </Quote>
-            <Customer>
-                <ImageCostumerContainer>
-                    <ImageCostumer />
-                </ImageCostumerContainer>
-            </Customer>
-        </CardContainer>
+            <CostumerContainer className="d-flex">
+                <ImageCostumer src={imageCostumer} />
+                <Content className="d-flex">
+                    <NameCostumer>Delcio Capolo</NameCostumer>
+                    <TypeCostumer>costumer</TypeCostumer>
+                </Content>
+            </CostumerContainer>
+        </Card>
     )
 };
 
