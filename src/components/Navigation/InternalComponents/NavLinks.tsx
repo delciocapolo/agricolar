@@ -4,27 +4,34 @@ import { MenuCustom } from "../../main-components/MenuToggle/MenuCustom";
 import { IITemMenuCustom } from "../../main-components/MenuToggle/interfaces/interfaces";
 import { useContext } from "react";
 import { PaddingContext } from "../../contexts/padding";
+import { Container as ContainerBase } from "../../Container/Container";
 
 const NavLink = () => {
     const { padding } = useContext(PaddingContext);
 
-    const CallNow = styled['div']`
-    width: 100%;
-    padding: ${padding};
-    justify-content: space-between;
-    background-color: var(--Gray-50);
-    // border-radius: var(--border-radius);
+    const Container = styled(ContainerBase)`
+        min-height: 0;
+        padding: 0;
+        margin: auto;
+        justify-content: space-between;
 
-    & > div > .menu-toggle > .content > .title-menubar {
-        font: var(--Body-Small-400);
-        color: var(--Gray-50);
-    }
-`;
+        & > div > .menu-toggle > .content > .title-menubar {
+            font: var(--Body-Small-400);
+            color: var(--Gray-50);
+        }
+    `;
+    const CallNow = styled['div']`
+        width: 100%;
+        // padding: ${padding};
+        background-color: var(--Gray-50);
+        // border-radius: var(--border-radius);
+
+    `;
     const LinkCallPhone = styled['a']`
-    font: var(--Body-Small-500);
-    color: var(--Gray-900);
-    line-height: 2;
-`;
+        font: var(--Body-Small-500);
+        color: var(--Gray-900);
+        line-height: 2;
+    `;
 
     const ButtonCategory = styled['button']`
         grid-template-columns: repeat(3, 1fr);
@@ -96,18 +103,20 @@ const NavLink = () => {
 
     return (
         <CallNow className="d-flex">
-            <div className="d-flex">
-                <ButtonCategory type="button" className="btn-category d-grid">
-                    <Menu />
-                    <span>Categorias</span>
-                    <ChevronDown />
-                </ButtonCategory>
-                <MenuCustom items={IListItemMenuCustom} className="menu-custom-navlinks" />
-            </div>
-            <div className="d-flex">
-                <Phone size={20} style={{ color: 'var(--Gray-900)' }} />
-                <LinkCallPhone href="tel:+244993895962" className="d-flex">+244 (993) 895 962</LinkCallPhone>
-            </div>
+            <Container className="d-flex">
+                <div className="d-flex">
+                    <ButtonCategory type="button" className="btn-category d-grid">
+                        <Menu />
+                        <span>Categorias</span>
+                        <ChevronDown />
+                    </ButtonCategory>
+                    <MenuCustom items={IListItemMenuCustom} className="menu-custom-navlinks" />
+                </div>
+                <div className="d-flex">
+                    <Phone size={20} style={{ color: 'var(--Gray-900)' }} />
+                    <LinkCallPhone href="tel:+244993895962" className="d-flex">+244 (993) 895 962</LinkCallPhone>
+                </div>
+            </Container>
         </CallNow>
     );
 };
