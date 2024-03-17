@@ -41,12 +41,14 @@
 
 /* Padding para baixar os menus dropdowns */
 .menu-custom-navlinks>ul>.item-menu>.dropdown-menu>ul>li>.dropdown-submenu {
-    padding-top: 25px;
+    padding-top: 15px;
 }
 
 
 .menu-custom-navlinks>ul>.item-menu>.dropdown-menu {
-    padding-top: 10px;
+    /* se mudar o line-height do [.menu-custom-navlinks>ul>li>a,
+    .menu-custom-navlinks>ul>.item-menu>a>span] mude este padding-top, para 10 ou mais/menos(conforme a necessidade) */
+    padding-top: 0;
 }
 
 /* //apagar esye codigo, caso decida destir de colorar o subemnu menu */
@@ -63,6 +65,8 @@
 .menu-custom-navlinks>ul>.item-menu>a>span {
     color: var(--Gray-500);
     font: var(--Body-Small-500);
+    /* background-color: red; */
+    line-height: 3;
 }
 
 .menu-custom-navlinks>ul>.item-menu:hover>a,

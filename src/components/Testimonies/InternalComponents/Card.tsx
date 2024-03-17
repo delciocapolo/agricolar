@@ -3,20 +3,20 @@ import { FC } from "react";
 import { ICard } from "./@types/ICard";
 import { minHeightBase } from "../Testimonies";
 import { QuoteIcon } from "lucide-react";
-import imageCostumer from "../../../assets/products/Rectangle 5-1.jpg";
 
-const text = '“Aenean et nisl eget eros consectetur vestibulum vel id erat. Aliquam commodo lorem laoreet. Aliquam Aliquam Aliquam.”';
+const text = '“Aenean et nisl eget eros consectetur vestibulum vel id erat. Aliquam commodo lorem laoreet. Aliquam Aliquam Aliquam. Aliquam commodo lorem laoreet. Aliquam Aliquam Aliquam.”';
 
-const Card: FC<ICard> = ({ textComment = text }) => {
+const Card: FC<ICard> = ({ textComment = text, image }) => {
     const Card = styled['div']`
         min-height: calc((${minHeightBase} - 100px) / 2);
         flex-direction: column;
         justify-content: space-between;
+        gap: 20px;
     `;
     const Quote = styled['div']`
         width: 100%;
         flex-direction: column;
-        padding: 0.5rem 2rem;
+        padding: 1.5rem 2rem 0.5rem 2rem;
         background-color: var(--White);
         border-radius: var(--border-radius);
         position: relative;
@@ -43,6 +43,7 @@ const Card: FC<ICard> = ({ textComment = text }) => {
         width: 100%;
         text-align: justify;
         line-height: 1.4;
+        padding: 1rem 0;
     `;
     const CostumerContainer = styled['div']`
         flex-direction: column;
@@ -73,7 +74,7 @@ const Card: FC<ICard> = ({ textComment = text }) => {
                 <TextComment>{textComment}</TextComment>
             </Quote>
             <CostumerContainer className="d-flex">
-                <ImageCostumer src={imageCostumer} />
+                <ImageCostumer src={image?.path} />
                 <Content className="d-flex">
                     <NameCostumer>Delcio Capolo</NameCostumer>
                     <TypeCostumer>costumer</TypeCostumer>

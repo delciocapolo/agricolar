@@ -9,9 +9,10 @@
 @import url("./components/main-components/containers/card.css");
 @import url("./components/main-components/feature/index.css");
 @import url("./components/main-components/InputField/index.css");
-@import url("./components/main-components/product5n/normal.css");
 @import url("./components/main-components/ProgressTrackerPoint/progressTrackerPoint.css");
+/* Mover o [product5n/normal.css] para cima, para ver o cinzento mudar para preto */
 @import url("./components/main-components/shopping-cart-popup/shoppingCartPopup.css");
+@import url("./components/main-components/product5n/normal.css");
 @import url("./components/main-components/Tag/tag.css");
 @import url("./components/main-components/Tag/healthy/healthy.css");
 @import url("./components/main-components/team-card/team-card.css");
