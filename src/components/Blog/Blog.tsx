@@ -58,7 +58,7 @@ const Blog = () => {
             <Container>
                 <ContentBase></ContentBase>
                 <Content>
-                    <Title>últimas  notícias</Title>
+                    <Title>últimas  novidades</Title>
                     <BlogCardContainer className="d-flex">
                         <BlogCard image={{ path: card1 }} />
                         <BlogCard image={{ path: card2 }} />
