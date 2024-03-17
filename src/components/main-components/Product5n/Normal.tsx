@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { ShoppingBasket } from "lucide-react";
+import { ShoppingBag, ShoppingBasket } from "lucide-react";
 import laranja from "../../../assets/products/Rectangle 5.jpg";
 import maca from "../../../assets/products/Rectangle 5-1.jpg";
 import ImageSection from "./internalComponents/imageSection";
@@ -52,7 +52,8 @@ const Normal: FC<INormal> = ({ ratingNumber = 1, saleStatus = [], saleValue = un
         </div>
         <div className="container-add-to-cart">
           <button type="button" className="btn-add-to-cart d-flex" title="Adicionar ao carrinho">
-            <ShoppingBasket absoluteStrokeWidth={true} size={size} className="svg-cart" />
+            {/* <ShoppingBasket absoluteStrokeWidth={true} size={size} className="svg-cart" /> */}
+            <ShoppingBag size={size} absoluteStrokeWidth={true} className="svg-cart" />
           </button>
         </div>
       </div>

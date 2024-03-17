@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import Logo from "../../../assets/Logo";
-import { Heart, Search, ShoppingBasket } from "lucide-react";
+import { Heart, Search, ShoppingBag, ShoppingBasket } from "lucide-react";
 import Line from "../../main-components/TopLevelComponent/Box/Line";
 import { PaddingContext } from "../../contexts/padding";
 import { useContext } from "react";
@@ -123,7 +123,8 @@ const MiddleMenu = () => {
                     <ShoppingCard className="d-flex">
                         <Cart className="d-flex">
                             <ButtonWishList type="button" className="d-flex">
-                                <ShoppingBasket size={30} absoluteStrokeWidth={true} color="var(--Gray-800)" />
+                                {/* <ShoppingBasket size={30} absoluteStrokeWidth={true} color="var(--Gray-800)" /> */}
+                                <ShoppingBag size={30} absoluteStrokeWidth={true} color="var(--Gray-800)" />
                             </ButtonWishList>
                             <Span className="d-flex">10</Span>
                         </Cart>

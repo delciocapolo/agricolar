@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import Logo from "../../../assets/Logo";
-import { MouseEvent } from "react";
+import { ChangeEvent, MouseEvent, useState } from "react";
 
 const Newsletter = () => {
     const NewsletterContainer = styled['div']`
@@ -61,9 +61,12 @@ const Newsletter = () => {
         e.preventDefault();
 
     };
-    const handleInputEmail = () => {
 
+    const [inputText, setInputText] = useState("");
+    const handleInputEmail = (e: ChangeEvent<HTMLInputElement>) => {
+        setInputText(e.target.value);
     }
+
 
     return (
         <NewsletterContainer className="d-flex">
@@ -76,7 +79,7 @@ const Newsletter = () => {
             </ContainerBase>
             <ContainerBase className="d-flex">
                 <TextFieldContainer className="d-flex" method="post" action="/subscribe/newsletter">
-                    <TextField type="email" placeholder="seu endereço de email" />
+                    <TextField type="email" placeholder="seu endereço de email" value={inputText} onChange={handleInputEmail} />
                     <ButtonSubscribe type="submit" onClick={handleClickSubscribe}>Subscrever</ButtonSubscribe>
                 </TextFieldContainer>
             </ContainerBase>
