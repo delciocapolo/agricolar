@@ -11,7 +11,7 @@ const Card: FC<ICard> = ({ textComment = text, image }) => {
         min-height: calc((${minHeightBase} - 100px) / 2);
         flex-direction: column;
         justify-content: space-between;
-        gap: 20px;
+        gap: 25px;
     `;
     const Quote = styled['div']`
         width: 100%;
@@ -20,7 +20,8 @@ const Card: FC<ICard> = ({ textComment = text, image }) => {
         background-color: var(--White);
         border-radius: var(--border-radius);
         position: relative;
-        box-shadow: var(--box-shadow-general);
+        // box-shadow: var(--box-shadow-general);
+        gap: 2px;
 
 
         &::before {

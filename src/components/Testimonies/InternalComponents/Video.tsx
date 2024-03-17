@@ -16,7 +16,7 @@ const VideoContainer = styled['video']`
 const Video: FC<IVideo> = ({ forwarededRef }) => {
 
     return (
-        <VideoContainer preload="none" poster={thumbnailVideo} role="button" ref={forwarededRef}>
+        <VideoContainer preload="auto" poster={thumbnailVideo} role="button" ref={forwarededRef}>
             <source src={video} />
             Desculpa, o seu navegador não suporta vídeos incorporados, mas você pode
             <a href={video}>baixá-lo</a>

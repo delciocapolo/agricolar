@@ -5,6 +5,7 @@ import { PaddingProvider } from "../contexts/padding";
 import Banners from "../main-components/Banners/Banners";
 import FeaturedProducts from "../FeaturedProducts/FeaturedProducts";
 import Testimonies from "../Testimonies/Testimonies";
+import Blog from "../Blog/Blog";
 
 const SkeletonContainer = styled['main']``;
 
@@ -17,6 +18,7 @@ const Skeleton = () => {
                 <Banners />
                 <FeaturedProducts />
                 <Testimonies />
+                <Blog />
             </SkeletonContainer>
         </PaddingProvider>
     )
