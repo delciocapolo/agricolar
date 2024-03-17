@@ -20,6 +20,7 @@ const Card: FC<ICard> = ({ textComment = text, image }) => {
         background-color: var(--White);
         border-radius: var(--border-radius);
         position: relative;
+        box-shadow: var(--box-shadow-general);
 
 
         &::before {

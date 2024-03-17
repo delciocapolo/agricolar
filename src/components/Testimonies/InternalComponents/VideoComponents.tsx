@@ -21,6 +21,7 @@ export const SubTitleVideoDescribe = styled['span']`
 export const TitleVideoDescribe = styled['h1']`
     font: var(--Heading04-400);
     font-size: 2rem;
+    line-height: 1.2;
 `;
 export const ButtonPlayPause = styled['button']`
     width: 65px;

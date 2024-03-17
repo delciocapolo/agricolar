@@ -30,7 +30,7 @@ const BG = () => {
         
 
         & > .big {
-            top: 23%;
+            top: 27%;
             position: absolute;
         }
     `;
