@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import Menu from "./components/Navigation/Menu";
 import Skeleton from "./components/Body/Skeleton";
 import imageExample from "./assets/products/Image.jpg"
+import Footer from "./components/Footer/Footer";
 // import { MenuCustom } from "./components/main-components/MenuToggle/MenuCustom";
 // import { IITemMenuCustom } from "./components/main-components/MenuToggle/interfaces/interfaces";
 
@@ -73,6 +74,7 @@ const App = () => {
     <Fragment>
       <Menu />
       <Skeleton />
+      <Footer />
     </Fragment>
   );
 };

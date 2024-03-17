@@ -21,7 +21,7 @@ const BlogCard: FC<IBlogCard> = ({ image }) => {
         transition: 0.1s ease-in;
 
         &:hover {
-            box-shadow: var(--box-shadow-double-face);
+            box-shadow: var(--box-shadow-general);
         }
     `;
     const ImageContainer = styled['div']`
