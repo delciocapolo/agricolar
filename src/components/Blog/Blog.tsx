@@ -56,10 +56,11 @@ const Blog = () => {
     return (
         <BlogContainer>
             <Container>
+                {/* Componente usado para preencher o espaco vazio, criado no componente video */}
                 <ContentBase></ContentBase>
                 <Content>
                     <Title>últimas  novidades</Title>
-                    <BlogCardContainer className="d-flex">
+                    <BlogCardContainer className="blog-card-container d-flex">
                         <BlogCard image={{ path: card1 }} />
                         <BlogCard image={{ path: card2 }} />
                         <BlogCard image={{ path: card3 }} />

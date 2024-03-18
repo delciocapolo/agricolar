@@ -1,14 +1,19 @@
 import styled from "@emotion/styled";
 import Logo from "../../../assets/Logo";
 import { ChangeEvent, MouseEvent, useState } from "react";
+import { Container as ContainerCentalized } from "../../Container/Container";
 
 const Newsletter = () => {
     const NewsletterContainer = styled['div']`
         width: 100%;
-        padding: 0.5rem 0;
         // background-color: brown;
         
+        `;
+    const Container = styled(ContainerCentalized)`
+        margin: auto;
+        padding: 2.5rem 0;
         justify-content: space-between;
+        min-height: 0;
     `;
     const ContainerBase = styled['div']`
         align-items: flex-start;
@@ -69,20 +74,22 @@ const Newsletter = () => {
 
 
     return (
-        <NewsletterContainer className="d-flex">
-            <ContainerBase>
-                <Logo />
-            </ContainerBase>
-            <ContainerBase className="d-flex">
-                <Title>Subscreva à nossa newsletter</Title>
-                <Text>para se manter informando sobre as fazendas e os insignhs no mercado.</Text>
-            </ContainerBase>
-            <ContainerBase className="d-flex">
-                <TextFieldContainer className="d-flex" method="post" action="/subscribe/newsletter">
-                    <TextField type="email" placeholder="seu endereço de email" value={inputText} onChange={handleInputEmail} />
-                    <ButtonSubscribe type="submit" onClick={handleClickSubscribe}>Subscrever</ButtonSubscribe>
-                </TextFieldContainer>
-            </ContainerBase>
+        <NewsletterContainer>
+            <Container className="d-flex">
+                <ContainerBase className="d-flex">
+                    <Logo />
+                </ContainerBase>
+                <ContainerBase className="d-flex">
+                    <Title>Subscreva à nossa newsletter</Title>
+                    <Text>para se manter informando sobre as fazendas e os insignhs no mercado.</Text>
+                </ContainerBase>
+                <ContainerBase className="d-flex">
+                    <TextFieldContainer className="d-flex" method="post" action="/subscribe/newsletter">
+                        <TextField type="email" placeholder="seu endereço de email" value={inputText} onChange={handleInputEmail} />
+                        <ButtonSubscribe type="submit" onClick={handleClickSubscribe}>Subscrever</ButtonSubscribe>
+                    </TextFieldContainer>
+                </ContainerBase>
+            </Container>
         </NewsletterContainer>
     );
 };

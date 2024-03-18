@@ -10,7 +10,7 @@ interface IBlogCard {
 
 const BlogCard: FC<IBlogCard> = ({ image }) => {
     const BlogCardContainer = styled['div']`
-        height: 460px;
+        min-height: 460px;
         padding: 1.1rem 1.3rem;
         border-radius: var(--border-radius);
         background-color: var(--White);
@@ -41,8 +41,8 @@ const BlogCard: FC<IBlogCard> = ({ image }) => {
     `;
     const ContainerDate = styled['div']`
         position:absolute;
-        bottom: 20px;
-        left: 20px;
+        bottom: 7.5%;
+        left: 7.5%;
         background-color: rgba(255, 255, 255, 0.7);
         backdrop-filter: blur(14px);
         border-radius: var(--border-radius);

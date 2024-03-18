@@ -161,7 +161,7 @@ const BG = () => {
             </CustomDiv>
             <ProductsContainer className="d-flex">
                 <TitleContainer>
-                    <Title>Introduzingo nossos produtos</Title>
+                    <Title>Introduzindo nossos produtos</Title>
                     <MenuContainer className="d-flex">
                         <ButtonMenuCategory className="btn-menu-category d-flex">
                             <NameCategory>todos</NameCategory>
