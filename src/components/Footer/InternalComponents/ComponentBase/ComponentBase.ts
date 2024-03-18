@@ -124,6 +124,9 @@ export const CircleSocialMediaContainer = styled['a']`
         &:hover {
             background-color: var(--Success);
         }
+        &:hover > .icon-copyright-svg {
+            color: var(--White);
+        }
         & > .icon-copyright-svg {
             color: var(--Green-300);
         }
@@ -132,11 +135,6 @@ export const CircleSocialMediaContainer = styled['a']`
         & > .icon-copyright-svg.twitter-icon {
             fill: var(--Green-300);
             stroke: none;
-        }
-
-        & > .icon-copyright-svg:hover > .facebook-icon,
-        & > .icon-copyright-svg:hover > .twitter-icon {
-            fill: var(--White);
         }
     `;
 export const TextCopyright = styled['span']`

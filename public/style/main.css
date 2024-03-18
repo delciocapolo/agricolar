@@ -32,3 +32,13 @@
     gap: 2px !important;
   }
 }
+
+@media screen and (max-width: 1177px) {
+  .container-image-newsletterpopup {
+    display: none;
+  }
+
+  .container-message-newsLetterpopup {
+    width: 100% !important;
+  }
+}

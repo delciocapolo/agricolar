@@ -8,6 +8,7 @@ import FeaturedProducts from "../FeaturedProducts/FeaturedProducts";
 import Testimonies from "../Testimonies/Testimonies";
 import Blog from "../Blog/Blog";
 import FillVoidSpace from "../main-components/FillVoidSpaceContainer/FillVoidSpaceContainer";
+import NewsletterPopup from "../NewsletterPopup/NewsletterPopup";
 
 const SkeletonContainer = styled['main']``;
 
@@ -22,6 +23,8 @@ const Skeleton = () => {
                 <Testimonies />
                 <Blog />
                 <FillVoidSpace />
+                // Newsletter popup
+                <NewsletterPopup />
             </SkeletonContainer>
         </PaddingProvider>
     )

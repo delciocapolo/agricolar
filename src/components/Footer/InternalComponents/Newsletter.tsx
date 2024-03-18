@@ -1,45 +1,46 @@
 import styled from "@emotion/styled";
 import Logo from "../../../assets/Logo";
-import { ChangeEvent, MouseEvent, useState } from "react";
+import { ChangeEvent, FC, MouseEvent, useState } from "react";
 import { Container as ContainerCentalized } from "../../Container/Container";
 
-const Newsletter = () => {
-    const NewsletterContainer = styled['div']`
+// Component Style
+const NewsletterContainer = styled['div']`
         width: 100%;
         // background-color: brown;
         
         `;
-    const Container = styled(ContainerCentalized)`
+const Container = styled(ContainerCentalized)`
         margin: auto;
         padding: 2.5rem 0;
         justify-content: space-between;
         min-height: 0;
     `;
-    const ContainerBase = styled['div']`
+const ContainerBase = styled['div']`
         align-items: flex-start;
         flex-direction: column;
         gap: 2px;
         // background-color: purple;
     `;
-    const Title = styled['h1']`
+const Title = styled['h1']`
         font: var(--Body-XXL-500);
         color: var(--Green-900);
         font-size: 1.2rem;
     `;
-    const Text = styled['span']`
+const Text = styled['span']`
         font: var(--Body-Small-400);
         color: var(--Green-400);
         font-size: 0.725rem;
     `;
-    const TextFieldContainer = styled['form']`
+const TextFieldContainer = styled['form']`
         width: 435px;
         gap: 0;
         justify-content: space-between;
         border-radius: 50px;
         background-color: var(--White);
+        flex-wrap: nowrap;
     `;
 
-    const TextField = styled['input']`
+const TextField = styled['input']`
         width: 64%;
         line-height: 3;
         padding: 0 1.5rem;
@@ -52,7 +53,7 @@ const Newsletter = () => {
             font: var(--Body-Medium-400);
         }
     `;
-    const ButtonSubscribe = styled['button']`
+const ButtonSubscribe = styled['button']`
         background-color: var(--Success);
         color: var(--White);
         font: 1rem 'Poppins-semi-bold';
@@ -62,6 +63,9 @@ const Newsletter = () => {
         min-width: 124px;
     `;
 
+// Component External
+
+export const EmailNewsletterComponent: FC<{ className?: string }> = ({ className }) => {
     const handleClickSubscribe = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
@@ -72,6 +76,18 @@ const Newsletter = () => {
         setInputText(e.target.value);
     }
 
+    return (
+        <ContainerBase className={`${className} d-flex`}>
+            <TextFieldContainer className="d-flex" method="post" action="/subscribe/newsletter">
+                <TextField type="email" placeholder="seu endereço de email" value={inputText} onChange={handleInputEmail} />
+                <ButtonSubscribe type="submit" onClick={handleClickSubscribe}>Subscrever</ButtonSubscribe>
+            </TextFieldContainer>
+        </ContainerBase>
+    );
+};
+
+
+const Newsletter = () => {
 
     return (
         <NewsletterContainer>
@@ -79,16 +95,13 @@ const Newsletter = () => {
                 <ContainerBase className="d-flex">
                     <Logo />
                 </ContainerBase>
+
                 <ContainerBase className="d-flex">
                     <Title>Subscreva à nossa newsletter</Title>
                     <Text>para se manter informando sobre as fazendas e os insignhs no mercado.</Text>
                 </ContainerBase>
-                <ContainerBase className="d-flex">
-                    <TextFieldContainer className="d-flex" method="post" action="/subscribe/newsletter">
-                        <TextField type="email" placeholder="seu endereço de email" value={inputText} onChange={handleInputEmail} />
-                        <ButtonSubscribe type="submit" onClick={handleClickSubscribe}>Subscrever</ButtonSubscribe>
-                    </TextFieldContainer>
-                </ContainerBase>
+
+                <EmailNewsletterComponent />
             </Container>
         </NewsletterContainer>
     );
