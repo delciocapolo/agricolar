@@ -1,9 +1,34 @@
 import styled from "@emotion/styled";
+import { Container } from "../../Container/Container";
+
+const heightGeneral = 'calc(100vh - 350px)';
+
+export const ImageOFFContainer = styled(Container)`
+    min-height: 0;
+    height: ${heightGeneral};
+    padding: 0;
+    margin: auto;
+    background-color: red;
+    gap: 0;
+
+    background-color: brown;
+
+    justify-content: space-between;
+`;
+
+export const ImageContainer = styled['div']`
+    width: 50%;
+    height: ${heightGeneral};
+    padding: 0;
+    position: relative;
+    background-color: yellow;
+`;
 
 export const Image = styled['img']`
     width: 100%;
+    min-height: 275px;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 `;
 
 export const OFF = styled['div']`
@@ -14,8 +39,8 @@ export const OFF = styled['div']`
     background-color: var(--Warning);
 
     right: 30px;
-    top: 10%;
-    transform: rotate(20deg);
+    top: 18%;
+    // transform: rotate(20deg);
     padding-top: 0.7rem;
 
     gap: 0;
@@ -24,19 +49,6 @@ export const OFF = styled['div']`
     & > * {
         color: var(--White);
     }
-`;
-
-export const ImageOFFContainer = styled['div']`
-    width: 100%;
-    gap: 0.5rem;
-    justify-content: space-between;
-`;
-
-export const ImageContainer = styled['div']`
-    width: 50%;
-    height: 430px;
-    position: relative;
-    background-color: transparent;
 `;
 
 export const PorcentText = styled['h1']`

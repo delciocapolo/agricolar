@@ -18,15 +18,15 @@ import {
 const Header = () => {
     const { padding } = useContext(PaddingContext);
 
-    const HeaderContainer = styled(Box)`
-            position: relative;
-            width: 100%;
-            // min-height: 700px;
-            min-height: calc(100vh - 214px);
-            padding: ${padding};
-            background-color: var(--White);
-            flex-direction: column;
-        `;
+    const HeaderContainer = styled['div']`
+        width: 100%;
+        min-height: calc(100vh - 620px);
+
+        position: relative;
+        // background-color: var(--White);
+        background-color: purple;
+        flex-direction: column;
+    `;
 
     const [currentIndex, setCurrentIndex] = useState<number>(0);
 
@@ -66,6 +66,7 @@ const Header = () => {
                         <OFFText>off</OFFText>
                     </OFF>
                 </ImageContainer>
+
                 <Information />
             </ImageOFFContainer>
 

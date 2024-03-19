@@ -1,20 +1,26 @@
 import styled from "@emotion/styled";
 import { MoveRight } from "lucide-react";
 
+const heightGeneral = 'calc(100vh - 350px)';
+
 const InformationContainer = styled['div']`
-    width: 46%;
+    width: 50%;
+    height: ${heightGeneral};
+
     flex-direction: column;
     align-items: flex-start;
     gap: 1.2rem;
-    // background-color: green;
+
+    background-color: green;
     // padding: 0.5rem;
 `;
 
 const Heading = styled['div']`
     flex-direction: column;
-    // justify-content: flex-start;
     align-items: flex-start;
     gap: 0;
+
+    background-color: brown;
 `;
 
 const HeadingWelcome = styled['h1']`

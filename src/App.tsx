@@ -3,6 +3,7 @@ import Menu from "./components/Navigation/Menu";
 import Skeleton from "./components/Body/Skeleton";
 import imageExample from "./assets/products/Image.jpg"
 import Footer from "./components/Footer/Footer";
+import Header from "./components/Header/Header";
 // import { MenuCustom } from "./components/main-components/MenuToggle/MenuCustom";
 // import { IITemMenuCustom } from "./components/main-components/MenuToggle/interfaces/interfaces";
 
@@ -73,6 +74,7 @@ const App = () => {
   return (
     <Fragment>
       <Menu />
+      <Header />
       <Skeleton />
       <Footer />
     </Fragment>
