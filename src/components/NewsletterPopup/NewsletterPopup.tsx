@@ -1,98 +1,52 @@
-import styled from "@emotion/styled"
 import { Global, css } from "@emotion/react";
 import imagePopup from "../../assets/newsletterpopup/newsletterpopup.jpg";
-import { EmailNewsletterComponent as EmailNewsletterComponentBase } from "../Footer/InternalComponents/Newsletter";
 import { X } from "lucide-react";
-import { MouseEvent } from "react";
+import { useRef, useLayoutEffect, ChangeEvent } from "react";
+
+import {
+    NewsletterPopupContainer,
+    ButtonCloseNewsletterPopup,
+    ContainerButtonCloseNewsletterPopup,
+    ContainerImageNewsletterPopup,
+    ContainerMessageNewsLetterPopup,
+    ContentNewsletterPopup,
+    EmailNewsletterComponent,
+    ImageNewsletterPopup,
+    SubContainerMessageNewsLetterPopup,
+    TextNewsletterPopup,
+    TitleNewsletterPopup
+} from "./ComponentBase/ComponentBase";
 
 const NewsletterPopup = () => {
-    const NewsletterPopupContainer = styled['div']`
-        position: fixed;
-        width: 100%;
-        height: 100%;
+    const NewsletterPopupContainerRef = useRef<HTMLDivElement>({} as HTMLDivElement);
 
-        background-color: rgba(51, 51, 51, 0.4);
-        backdrop-filter: blur(14px);
-
-        top: 0;
-        z-index: 500;
-    `;
-    const ContentNewsletterPopup = styled['div']`
-        width: 55%;
-        min-width: 265px;
-        min-height: 320px;
-        gap: 10px;
-        background-color: var(--White);
-        border-radius: var(--border-radius);
-        padding: 10px;
-
-        justify-content: space-between;
-    `;
-    const ContainerImageNewsletterPopup = styled['div']`
-        width: 35%;
-        height: 100%;
-    `;
-    const ImageNewsletterPopup = styled['img']`
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: var(--border-radius);
-    `;
-    const ContainerMessageNewsLetterPopup = styled['div']`
-        width: 63%;
-        height: 100%;
-        // background-color: red;
-    `;
-    const SubContainerMessageNewsLetterPopup = styled['div']`
-        text-align: center;
-        gap: 7px;
-    `;
-    const TitleNewsletterPopup = styled['h1']`
-        line-height: 1.2;
-        text-transform: none;
-
-        font: 1.8rem 'Poppins-semi-bold';
-        width: 65%;
-        // background-color: red;
-        margin: auto;
-    `;
-    const TextNewsletterPopup = styled['p']`
-        font: var(--Body-Small-400);
-        color: var(--Gray-300);
-        text-transform: none;
-        width: 75%;
-        margin: auto;
-
-        & > span {
-            font-weight: 600;
-            color: var(--Warning);
-            text-transform: none;
+    const handleCLickButtonDontShowAgain = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.checked) {
+            const dateExpires = new Date();
+            dateExpires.setTime(dateExpires.getTime() + (60 * 60 * 24 * 365));
+            document.cookie = `newsletterpopup: false; Secure; path=/; SameSite=lax; expires=${dateExpires.toUTCString()}`;
         }
-    `;
-    const EmailNewsletterComponent = styled(EmailNewsletterComponentBase)`
-        & > form {
-            box-shadow: var(--box-shadow-double-face);
-        }
-    `;
-    const ContainerButtonCloseNewsletterPopup = styled['div']`
-        width: 100%;
-        justify-content: flex-end;  
-    `;
-    const ButtonCloseNewsletterPopup = styled['button']`
-        padding: 8px;
-        background-color: transparent;
-
-        border-radius: var(--border-radius);
-        & > .icon-x-buttonclose-svg {
-            color: var(--Gray-800);
-        }
-    `;
-    const handleClickButtonCloseNewsletterPopup = (e: MouseEvent<HTMLButtonElement>) => {
-        document.cookie = '{newsletterpopup: false}; Secure; path=/; SameSite=lax; expires=60*60*24*365'
     }
 
+    const handleClickButtonCloseNewsletterPopup = () => {
+        if (NewsletterPopupContainerRef.current) {
+            NewsletterPopupContainerRef.current.classList.add('d-none');
+        }
+    };
+
+    useLayoutEffect(() => {
+        const cookies = document.cookie.split('; ');
+        const data = cookies.find((cookie) => cookie.startsWith('newsletterpopup'));
+
+        if (data) {
+            if (NewsletterPopupContainerRef.current) {
+                NewsletterPopupContainerRef.current.classList.add('d-none');
+            }
+        }
+    }, []);
+
     return (
-        <NewsletterPopupContainer className="d-flex">
+        <NewsletterPopupContainer className="d-flex" ref={NewsletterPopupContainerRef}>
             <Global styles={css`
                 .email-newsletter-component {
                     padding: 1.5rem 0;
@@ -157,7 +111,7 @@ const NewsletterPopup = () => {
 
                     <div className="check-box-group">
                         <label className="custom-checkbox d-flex" tab-index="0" aria-label="Another Label">
-                            <input type="checkbox" onChange={() => { console.log('Mudado o btn dont show again') }} />
+                            <input type="checkbox" onChange={handleCLickButtonDontShowAgain} />
                             <span className="checkmark"></span>
                             <span className="label">Não mostrar novamente</span>
                         </label>

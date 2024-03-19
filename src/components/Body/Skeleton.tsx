@@ -23,7 +23,7 @@ const Skeleton = () => {
                 <Testimonies />
                 <Blog />
                 <FillVoidSpace />
-                // Newsletter popup
+                {/* Newsletter popup */}
                 <NewsletterPopup />
             </SkeletonContainer>
         </PaddingProvider>
