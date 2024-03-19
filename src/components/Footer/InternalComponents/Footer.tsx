@@ -34,7 +34,7 @@ import {
     TextAbout,
     TextCopyright,
     TitleTopList
-} from "./ComponentBase/ComponentBase";
+} from "./ComponentBase/ComponentBaseFooter";
 
 const FooterMain = () => {
     const sizePaymentIcon = 25;

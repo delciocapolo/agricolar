@@ -26,11 +26,29 @@
   margin: 20px auto;
 }
 
-@media screen and (max-width: 636px) {
+@media screen and (max-width: 750px) {
   .blog-card-container {
     position: initial !important;
-    gap: 2px !important;
+    gap: 5px !important;
   }
+}
+
+@media screen and (max-width: 1082px) {
+  .container-logo-agricolar-newsletter {
+    display: none;
+  }
+
+  /* 870 */
+  .container-newsletter-footer {
+    gap: 20px;
+  }
+
+  .container-newsletter-footer>div {
+    width: 100%;
+    align-items: center;
+  }
+
+  /* .container-text-agricolar-newsletter {} */
 }
 
 @media screen and (max-width: 1177px) {
