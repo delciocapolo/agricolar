@@ -63,6 +63,7 @@ export const ImageHeader = styled['img']`
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
 `;
 
 export const ContainerMenuButtonCategory = styled['ul']`

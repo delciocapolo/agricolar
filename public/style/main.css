@@ -31,6 +31,10 @@
     position: initial !important;
     gap: 5px !important;
   }
+
+  .fill-void-space.blog-card>div {
+    min-height: 0;
+  }
 }
 
 @media screen and (max-width: 1082px) {

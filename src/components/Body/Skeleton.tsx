@@ -20,7 +20,7 @@ const Skeleton = () => {
             <FeaturedProducts />
             <Testimonies />
             <Blog />
-            <FillVoidSpace />
+            <FillVoidSpace className="blog-card" />
             {/* Newsletter popup */}
             <NewsletterPopup />
         </SkeletonContainer>
