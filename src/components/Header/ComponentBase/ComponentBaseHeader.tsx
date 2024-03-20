@@ -10,10 +10,45 @@ export const ContainerCategoryAndImage = styled(ContainerBase)`
 
     gap: 0;
     justify-content: space-between;
+
+    &.actived 
+    > .container-menu-button-category {
+        width: 220px;
+        max-width: 220px;
+        height: 99.5%;
+        box-shadow: 0 0 0 1px rgba(51, 51, 51, 0.2);
+
+        & > li {
+            display: block;
+            margin-bottom: 5px;
+
+            &:last-child {
+                box-shadow: 0 0 0 1px rgba(51, 51, 51, 0.2);
+            }
+
+            & > a {
+                padding: 0 1.7rem;
+
+                & > span {
+                    font: var(--Body-Small-400);
+                    color: var(--Gray-900);
+                    line-height: 5;
+                }
+
+                & > .icon-buttoncategory-svg {
+                    color: var(--Gray-400);
+                }
+            }
+        }
+    }
+
+    &.actived > .container-image-header {
+        width: calc(100% - 230px);
+    }
 `;
 
 export const ContainerImage = styled['div']`
-    width: calc(100% - 230px);
+    width: 100%;
     height: 100%;
 
     position: relative;
@@ -26,10 +61,10 @@ export const ImageHeader = styled['img']`
 
 export const ContainerMenuButtonCategory = styled['ul']`
     background-color: var(--White);
-    width: 220px;
-    max-width: 220px;
-    height: 99.5%;
-    box-shadow: var(--box-shadow-double-face);
+    width: 0;
+    max-width: 0;
+    height: 0;
+    box-shadow: none;
 `;
 
 export const ContainerTitle = styled['div']`
@@ -89,24 +124,20 @@ export const ContainerTextImageHeader = styled['div']`
 `;
 
 export const ItemButtonCategory = styled['li']`
-    display: block;
-    margin-bottom: 5px;
-
-    &:last-child {
-        box-shadow: 0 0 0 1px rgba(51, 51, 51, 0.2);
-    }
+    display: initial;
+    margin-bottom: 0;
 `;
 export const LinkButtonCategory = styled['a']`
     justify-content: flex-start;
-    padding: 0 1.7rem;
+    padding: 0;
     
     & > span {
-        font: var(--Body-Small-400);
-        color: var(--Gray-900);
-        line-height: 5;
+        font-size: 0;
+        color: transparent;
+        line-height: 0;
     }
 
     & > .icon-buttoncategory-svg {
-        color: var(--Gray-400);
+        color: transparent;
     }
 `;

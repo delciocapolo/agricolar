@@ -1,4 +1,4 @@
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useContext, useState } from "react";
 import styled from "@emotion/styled";
 import Tracker from "./Tracker/Tracker";
 import Arrow from "./Arrow/Arrow";
@@ -9,6 +9,7 @@ import { Apple, Coffee, CookingPot, Drumstick, Fish, MoveRight, Plus, Salad } fr
 import imageHeaderPhoto from "../../assets/header/HeaderPhoto2.jpg";
 
 const Header = () => {
+
     const HeaderContainer = styled['div']`
         width: 100%;
         height: calc(100vh - 190px);
@@ -19,7 +20,6 @@ const Header = () => {
         gap: 0;
         padding: 0;
     `;
-
     const [currentIndex, setCurrentIndex] = useState<number>(0);
 
     const handleClickRight = (_?: MouseEvent<HTMLButtonElement>) => {
@@ -50,8 +50,8 @@ const Header = () => {
         <HeaderContainer className="d-flex">
             <Arrow onClickRight={handleClickRight} onClickLeft={handleClickLeft} />
 
-            <ContainerCategoryAndImage className="d-flex">
-                <ContainerMenuButtonCategory>
+            <ContainerCategoryAndImage className={`d-flex actived`}>
+                <ContainerMenuButtonCategory className="container-menu-button-category">
                     <ItemButtonCategory>
                         <LinkButtonCategory className="d-flex" href="#">
                             <Apple className="icon-buttoncategory-svg" />
@@ -101,7 +101,7 @@ const Header = () => {
                     </ItemButtonCategory>
                 </ContainerMenuButtonCategory>
 
-                <ContainerImage>
+                <ContainerImage className="container-image-header">
                     <ImageHeader src={imageHeaderPhoto} alt="Imagem de amostragem" />
                     <ContainerTextImageHeader className="d-flex">
                         <ContainerTitle className="d-flex">

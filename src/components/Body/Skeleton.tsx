@@ -1,7 +1,6 @@
 
 import styled from "@emotion/styled";
 import BG from "../BG/BG";
-import { PaddingProvider } from "../contexts/padding";
 import Banners from "../main-components/Banners/Banners";
 import FeaturedProducts from "../FeaturedProducts/FeaturedProducts";
 import Testimonies from "../Testimonies/Testimonies";
@@ -15,18 +14,16 @@ const SkeletonContainer = styled['main']`
 
 const Skeleton = () => {
     return (
-        <PaddingProvider>
-            <SkeletonContainer>
-                <BG />
-                <Banners />
-                <FeaturedProducts />
-                <Testimonies />
-                <Blog />
-                <FillVoidSpace />
-                {/* Newsletter popup */}
-                <NewsletterPopup />
-            </SkeletonContainer>
-        </PaddingProvider>
+        <SkeletonContainer>
+            <BG />
+            <Banners />
+            <FeaturedProducts />
+            <Testimonies />
+            <Blog />
+            <FillVoidSpace />
+            {/* Newsletter popup */}
+            <NewsletterPopup />
+        </SkeletonContainer>
     )
 };
 

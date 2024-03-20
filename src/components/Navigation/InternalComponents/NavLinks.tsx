@@ -3,12 +3,11 @@ import { ChevronDown, Menu, Phone } from "lucide-react";
 import { MenuCustom } from "../../main-components/MenuToggle/MenuCustom";
 import { IITemMenuCustom } from "../../main-components/MenuToggle/interfaces/interfaces";
 import { useContext } from "react";
-import { PaddingContext } from "../../contexts/padding";
 import { Container as ContainerBase } from "../../Container/Container";
+import { UserContext } from "../../contexts/HeaderContext";
 
 const NavLink = () => {
-    const { padding } = useContext(PaddingContext);
-
+    const userContext = useContext(UserContext);
     const Container = styled(ContainerBase)`
         min-height: 0;
         padding: 0;
@@ -22,7 +21,6 @@ const NavLink = () => {
     `;
     const CallNow = styled['div']`
         width: 100%;
-        // padding: ${padding};
         background-color: var(--Gray-50);
         // border-radius: var(--border-radius);
 
@@ -38,7 +36,6 @@ const NavLink = () => {
         width: 220px;
         height: 65px;
         gap: 0;
-        // border-radius: var(--border-radius) 0 0 var(--border-radius);
 
         & > * {
             color: var(--White);
@@ -101,11 +98,13 @@ const NavLink = () => {
         }
     ];
 
+    const handleClickBtnCategory = () => { };
+
     return (
         <CallNow className="d-flex">
             <Container className="d-flex">
                 <div className="d-flex">
-                    <ButtonCategory type="button" className="btn-category d-grid">
+                    <ButtonCategory type="button" className="btn-category d-grid" onClick={handleClickBtnCategory}>
                         <Menu />
                         <span>Categorias</span>
                         <ChevronDown />
