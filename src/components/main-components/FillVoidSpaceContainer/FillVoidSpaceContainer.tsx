@@ -12,7 +12,7 @@ const FillVoidSpace = () => {
     `;
 
     return (
-        <FillVoidSpaceContainer>
+        <FillVoidSpaceContainer className="fill-void-space">
             <Container />
         </FillVoidSpaceContainer>
     )

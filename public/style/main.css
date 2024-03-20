@@ -51,7 +51,7 @@
   /* .container-text-agricolar-newsletter {} */
 }
 
-@media screen and (max-width: 1177px) {
+@media (max-width: 1177px) {
   .container-image-newsletterpopup {
     display: none;
   }

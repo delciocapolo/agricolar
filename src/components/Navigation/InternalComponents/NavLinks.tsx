@@ -35,9 +35,9 @@ const NavLink = () => {
 
     const ButtonCategory = styled['button']`
         grid-template-columns: repeat(3, 1fr);
+        width: 220px;
         height: 65px;
         gap: 0;
-        width: 205px;
         // border-radius: var(--border-radius) 0 0 var(--border-radius);
 
         & > * {

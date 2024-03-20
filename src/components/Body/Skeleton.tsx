@@ -9,7 +9,9 @@ import Blog from "../Blog/Blog";
 import FillVoidSpace from "../main-components/FillVoidSpaceContainer/FillVoidSpaceContainer";
 import NewsletterPopup from "../NewsletterPopup/NewsletterPopup";
 
-const SkeletonContainer = styled['main']``;
+const SkeletonContainer = styled['main']`
+    width: 100%;
+`;
 
 const Skeleton = () => {
     return (

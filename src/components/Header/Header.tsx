@@ -1,31 +1,23 @@
-import { MouseEvent, useContext, useState } from "react";
+import { MouseEvent, useState } from "react";
 import styled from "@emotion/styled";
-import Box from "../main-components/TopLevelComponent/Box/Box";
-import Information from "./Information/Information";
 import Tracker from "./Tracker/Tracker";
 import Arrow from "./Arrow/Arrow";
-import { PaddingContext } from "../contexts/padding";
 import { items } from "./datas/datas";
-import {
-    ImageOFFContainer,
-    Image,
-    ImageContainer,
-    OFF,
-    OFFText,
-    PorcentText
-} from "./ComponentBase/ComponentBaseHeader";
+import { ButtonShop, ContainerCategoryAndImage, ContainerImage, ContainerMenuButtonCategory, ContainerTextImageHeader, ContainerTitle, ImageHeader, ItemButtonCategory, LinkButtonCategory, SubTitle, Title } from "./ComponentBase/ComponentBaseHeader";
+import { Apple, Coffee, CookingPot, Drumstick, Fish, MoveRight, Plus, Salad } from "lucide-react";
+
+import imageHeaderPhoto from "../../assets/header/HeaderPhoto2.jpg";
 
 const Header = () => {
-    const { padding } = useContext(PaddingContext);
-
     const HeaderContainer = styled['div']`
         width: 100%;
-        min-height: calc(100vh - 620px);
+        height: calc(100vh - 190px);
 
         position: relative;
-        // background-color: var(--White);
-        background-color: purple;
+        background-color: var(--White);
         flex-direction: column;
+        gap: 0;
+        padding: 0;
     `;
 
     const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -58,19 +50,72 @@ const Header = () => {
         <HeaderContainer className="d-flex">
             <Arrow onClickRight={handleClickRight} onClickLeft={handleClickLeft} />
 
-            <ImageOFFContainer className="d-flex">
-                <ImageContainer className="d-flex">
-                    <Image src={items[currentIndex].image.path} alt={items[currentIndex].image.describe} />
-                    <OFF className="d-flex">
-                        <PorcentText className="">70%</PorcentText>
-                        <OFFText>off</OFFText>
-                    </OFF>
-                </ImageContainer>
+            <ContainerCategoryAndImage className="d-flex">
+                <ContainerMenuButtonCategory>
+                    <ItemButtonCategory>
+                        <LinkButtonCategory className="d-flex" href="#">
+                            <Apple className="icon-buttoncategory-svg" />
+                            <span>frutas</span>
+                        </LinkButtonCategory>
+                    </ItemButtonCategory>
+                    <ItemButtonCategory>
+                        <LinkButtonCategory className="d-flex" href="#">
+                            <Salad className="icon-buttoncategory-svg" />
+                            <span>vegetais</span>
+                        </LinkButtonCategory>
+                    </ItemButtonCategory>
 
-                <Information />
-            </ImageOFFContainer>
+                    <ItemButtonCategory>
+                        <LinkButtonCategory className="d-flex" href="#">
+                            <Fish className="icon-buttoncategory-svg" />
+                            <span>frutos do mar</span>
+                        </LinkButtonCategory>
+                    </ItemButtonCategory>
 
-            <Tracker items={items} index={currentIndex} />
+                    <ItemButtonCategory>
+                        <LinkButtonCategory className="d-flex" href="#">
+                            <Drumstick className="icon-buttoncategory-svg" />
+                            <span>carne</span>
+                        </LinkButtonCategory>
+                    </ItemButtonCategory>
+
+                    <ItemButtonCategory>
+                        <LinkButtonCategory className="d-flex" href="#">
+                            <Coffee className="icon-buttoncategory-svg" />
+                            <span>drinks e bebidas</span>
+                        </LinkButtonCategory>
+                    </ItemButtonCategory>
+
+                    <ItemButtonCategory>
+                        <LinkButtonCategory className="d-flex" href="#">
+                            <CookingPot className="icon-buttoncategory-svg" />
+                            <span>cozinha</span>
+                        </LinkButtonCategory>
+                    </ItemButtonCategory>
+
+                    <ItemButtonCategory>
+                        <LinkButtonCategory className="d-flex" href="#">
+                            <Plus className="icon-buttoncategory-svg" />
+                            <span>todas categorias</span>
+                        </LinkButtonCategory>
+                    </ItemButtonCategory>
+                </ContainerMenuButtonCategory>
+
+                <ContainerImage>
+                    <ImageHeader src={imageHeaderPhoto} alt="Imagem de amostragem" />
+                    <ContainerTextImageHeader className="d-flex">
+                        <ContainerTitle className="d-flex">
+                            <Title>alimentos orgânicos & saudáveis</Title>
+                            <SubTitle>salve até <span>48%</span> de desconto</SubTitle>
+                            <ButtonShop className="d-flex">
+                                <span>Compre agora</span>
+                                <MoveRight />
+                            </ButtonShop>
+                        </ContainerTitle>
+                        <Tracker items={items} index={currentIndex} />
+                    </ContainerTextImageHeader>
+                </ContainerImage>
+            </ContainerCategoryAndImage>
         </HeaderContainer>
     );
 };
