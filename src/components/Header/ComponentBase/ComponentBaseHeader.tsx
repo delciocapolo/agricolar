@@ -13,6 +13,7 @@ export const ContainerCategoryAndImage = styled(ContainerBase)`
 
     &.actived 
     > .container-menu-button-category {
+        transition: 0.5s ease-in-out;
         width: 220px;
         max-width: 220px;
         height: 99.5%;
@@ -44,6 +45,11 @@ export const ContainerCategoryAndImage = styled(ContainerBase)`
 
     &.actived > .container-image-header {
         width: calc(100% - 230px);
+
+        & > .container-text-image-header {
+            padding: 2.5rem;
+            width: 50%;
+        }
     }
 `;
 

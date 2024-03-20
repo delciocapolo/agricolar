@@ -2,51 +2,48 @@ import styled from "@emotion/styled";
 import { ChevronDown, Menu, Phone } from "lucide-react";
 import { MenuCustom } from "../../main-components/MenuToggle/MenuCustom";
 import { IITemMenuCustom } from "../../main-components/MenuToggle/interfaces/interfaces";
-import { useContext } from "react";
 import { Container as ContainerBase } from "../../Container/Container";
-import { UserContext } from "../../contexts/HeaderContext";
+import { useHeaderContext } from "../../contexts/HeaderContext";
 
 const NavLink = () => {
-    const userContext = useContext(UserContext);
     const Container = styled(ContainerBase)`
-        min-height: 0;
-        padding: 0;
-        margin: auto;
-        justify-content: space-between;
+    min-height: 0;
+    padding: 0;
+    margin: auto;
+    justify-content: space-between;
 
-        & > div > .menu-toggle > .content > .title-menubar {
-            font: var(--Body-Small-400);
-            color: var(--Gray-50);
-        }
-    `;
+    & > div > .menu-toggle > .content > .title-menubar {
+      font: var(--Body-Small-400);
+      color: var(--Gray-50);
+    }
+  `;
     const CallNow = styled['div']`
-        width: 100%;
-        background-color: var(--Gray-50);
-        // border-radius: var(--border-radius);
-
-    `;
+    width: 100%;
+    background-color: var(--Gray-50);
+    // border-radius: var(--border-radius);
+  `;
     const LinkCallPhone = styled['a']`
-        font: var(--Body-Small-500);
-        color: var(--Gray-900);
-        line-height: 2;
-    `;
+    font: var(--Body-Small-500);
+    color: var(--Gray-900);
+    line-height: 2;
+  `;
 
     const ButtonCategory = styled['button']`
-        grid-template-columns: repeat(3, 1fr);
-        width: 220px;
-        height: 65px;
-        gap: 0;
+    grid-template-columns: repeat(3, 1fr);
+    width: 220px;
+    height: 65px;
+    gap: 0;
 
-        & > * {
-            color: var(--White);
-        }
+    & > * {
+      color: var(--White);
+    }
 
-        & > span {
-            font: var(--Body-Small-500);
-        }
+    & > span {
+      font: var(--Body-Small-500);
+    }
 
-        background-color: var(--Success);
-    `;
+    background-color: var(--Success);
+  `;
 
     const IListItemMenuCustom: IITemMenuCustom[] = [
         {
@@ -98,13 +95,17 @@ const NavLink = () => {
         }
     ];
 
-    const handleClickBtnCategory = () => { };
+    const { setActived, actived } = useHeaderContext();
+
+    const handleClick = () => {
+        setActived(prev => !prev);
+    }
 
     return (
         <CallNow className="d-flex">
             <Container className="d-flex">
                 <div className="d-flex">
-                    <ButtonCategory type="button" className="btn-category d-grid" onClick={handleClickBtnCategory}>
+                    <ButtonCategory type="button" className="btn-category d-grid" onClick={handleClick}>
                         <Menu />
                         <span>Categorias</span>
                         <ChevronDown />

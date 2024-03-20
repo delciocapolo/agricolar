@@ -4,6 +4,7 @@ import Skeleton from "./components/Body/Skeleton";
 import imageExample from "./assets/products/Image.jpg"
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
+import { HeaderContextProvider } from "./components/contexts/HeaderContext";
 // import { MenuCustom } from "./components/main-components/MenuToggle/MenuCustom";
 // import { IITemMenuCustom } from "./components/main-components/MenuToggle/interfaces/interfaces";
 
@@ -73,10 +74,12 @@ const App = () => {
 
   return (
     <Fragment>
-      <Menu />
-      <Header />
-      <Skeleton />
-      <Footer />
+      <HeaderContextProvider>
+        <Menu />
+        <Header />
+        <Skeleton />
+        <Footer />
+      </HeaderContextProvider>
     </Fragment>
   );
 };

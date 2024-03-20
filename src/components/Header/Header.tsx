@@ -1,4 +1,4 @@
-import { MouseEvent, useContext, useState } from "react";
+import { MouseEvent, useState } from "react";
 import styled from "@emotion/styled";
 import Tracker from "./Tracker/Tracker";
 import Arrow from "./Arrow/Arrow";
@@ -7,6 +7,7 @@ import { ButtonShop, ContainerCategoryAndImage, ContainerImage, ContainerMenuBut
 import { Apple, Coffee, CookingPot, Drumstick, Fish, MoveRight, Plus, Salad } from "lucide-react";
 
 import imageHeaderPhoto from "../../assets/header/HeaderPhoto2.jpg";
+import { useHeaderContext } from "../contexts/HeaderContext";
 
 const Header = () => {
 
@@ -44,13 +45,15 @@ const Header = () => {
             return next;
         });
         console.log(currentIndex);
-    }
+    };
+
+    const { actived } = useHeaderContext();
 
     return (
         <HeaderContainer className="d-flex">
             <Arrow onClickRight={handleClickRight} onClickLeft={handleClickLeft} />
 
-            <ContainerCategoryAndImage className={`d-flex actived`}>
+            <ContainerCategoryAndImage className={`d-flex ${actived === true && 'actived'}`}>
                 <ContainerMenuButtonCategory className="container-menu-button-category">
                     <ItemButtonCategory>
                         <LinkButtonCategory className="d-flex" href="#">
@@ -103,7 +106,7 @@ const Header = () => {
 
                 <ContainerImage className="container-image-header">
                     <ImageHeader src={imageHeaderPhoto} alt="Imagem de amostragem" />
-                    <ContainerTextImageHeader className="d-flex">
+                    <ContainerTextImageHeader className="d-flex container-text-image-header">
                         <ContainerTitle className="d-flex">
                             <Title>alimentos orgânicos & saudáveis</Title>
                             <SubTitle>salve até <span>48%</span> de desconto</SubTitle>

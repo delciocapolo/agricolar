@@ -1,27 +1,27 @@
-import { Dispatch, FC, ReactNode, SetStateAction, createContext, useState } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from 'react';
 
-export type AuthUser = {
-    name: string;
-    email: string;
-}
-
-type UserContextType = {
-    user: AuthUser | null;
-    setUser: Dispatch<SetStateAction<AuthUser | null>>;
+type HeaderContextType = {
+    actived: boolean;
+    setActived: Dispatch<SetStateAction<boolean>>;
 };
 
-type UserContextProviderProps = {
-    children: ReactNode;
-};
+export const HeaderContext = createContext<HeaderContextType | null>(null);
 
-export const UserContext = createContext<UserContextType | null>(null);
-
-export const UserContextProvider: FC<UserContextProviderProps> = ({ children }) => {
-    const [user, setUser] = useState<AuthUser | null>(null);
+export const HeaderContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+    const [actived, setActived] = useState(false);
 
     return (
-        <UserContext.Provider value={{ user, setUser }}>
+        <HeaderContext.Provider value={{ actived, setActived }}>
             {children}
-        </UserContext.Provider>
-    )
+        </HeaderContext.Provider>
+    );
+};
+
+export const useHeaderContext = () => {
+    const context = useContext(HeaderContext);
+
+    if (!context) {
+        throw new Error('useHeaderContext must be used within a HeaderContextProvider');
+    }
+    return context;
 };
