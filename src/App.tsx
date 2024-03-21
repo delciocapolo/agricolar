@@ -1,86 +1,61 @@
-import { Fragment } from "react";
-import Menu from "./components/Navigation/Menu";
-import Skeleton from "./components/Body/Skeleton";
-import imageExample from "./assets/products/Image.jpg"
-import Footer from "./components/Footer/Footer";
-import Header from "./components/Header/Header";
+import { useEffect, useState, lazy, Suspense } from "react";
 import { HeaderContextProvider } from "./components/contexts/HeaderContext";
-// import { MenuCustom } from "./components/main-components/MenuToggle/MenuCustom";
-// import { IITemMenuCustom } from "./components/main-components/MenuToggle/interfaces/interfaces";
+
+import i4 from './assets/blogcard/card1.jpg';
+import i5 from './assets/blogcard/card2.jpg';
+import i6 from './assets/blogcard/card3.jpg';
+import i10 from './assets/header/HeaderPhoto2.jpg';
+import i11 from './assets/instagram/i1.jpg';
+import i12 from './assets/instagram/i2.jpg';
+import i13 from './assets/instagram/i3.jpg';
+import i14 from './assets/instagram/i4.jpg';
+import i15 from './assets/instagram/i5.jpg';
+import i16 from './assets/instagram/i6.jpg';
+import i17 from './assets/instagram/i7.jpg';
+import i18 from './assets/instagram/i8.jpg';
+import i19 from './assets/newsletterpopup/newsletterpopup.jpg';
+import i20 from './assets/products/Image.jpg';
+import { cacheImages } from "./components/utils/CacheImages";
+import Spinner from "./components/main-components/Spinner/Spinner";
+
+const Menu = lazy(() => import("./components/Navigation/Menu"));
+const Skeleton = lazy(() => import("./components/Body/Skeleton"));
+const Footer = lazy(() => import("./components/Footer/Footer"));
+const Header = lazy(() => import("./components/Header/Header"));
 
 const App = () => {
-  // const social_medias: IMediaCard[] = [
-  //   {
-  //     media: "facebook",
-  //     url: "https://m.facebook.com/delciocapolo",
-  //   },
-  //   {
-  //     media: "instagram",
-  //     url: "https://m.facebook.com/delciocapolo",
-  //   },
-  //   {
-  //     media: "linkedin",
-  //     url: "https://m.facebook.com/delciocapolo",
-  //   },
-  //   {
-  //     media: "twitter",
-  //     url: "https://m.facebook.com/delciocapolo",
-  //   },
-  // ];
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  // const multiMenuList: IITemMenuCustom[] = [
-  //   {
-  //     title: 'Home',
-  //     url: 'https://google.com',
-  //   },
-  //   {
-  //     title: 'Recursos',
-  //     list: [
-  //       {
-  //         title: 'api',
-  //         url: 'angola',
-  //         list: [
-  //           {
-  //             title: 'agricolar',
-  //             url: 'agricolar',
-  //             list: [
-  //               {
-  //                 title: 'improve',
-  //                 url: 'done'
-  //               }
-  //             ]
-  //           }
-  //         ]
-  //       },
-  //       {
-  //         title: 'api',
-  //         url: 'angola',
-  //         list: [
-  //           {
-  //             title: 'agricolar',
-  //             url: 'agricolar',
-  //             list: [
-  //               {
-  //                 title: 'improve',
-  //                 url: 'done'
-  //               }
-  //             ]
-  //           }
-  //         ]
-  //       },
-  //     ]
-  //   }
-  // ]
+  useEffect(() => {
+    const imgs = [
+      i4,
+      i5,
+      i6,
+      i10,
+      i11,
+      i12,
+      i13,
+      i14,
+      i15,
+      i16,
+      i17,
+      i18,
+      i19,
+      i20,
+    ];
+
+    cacheImages(imgs, setIsLoading);
+  }, []);
 
   return (
-    <Fragment>
-      <HeaderContextProvider>
+    <HeaderContextProvider>
+      <Suspense fallback={<Spinner loading={isLoading} />}>
         <Menu />
         <Header />
         <Skeleton />
         <Footer />
-      </HeaderContextProvider>
-    </Fragment>
+      </Suspense>
+    </HeaderContextProvider>
   );
 };
 
