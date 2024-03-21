@@ -33,7 +33,7 @@ export const ContainerCategoryAndImage = styled(ContainerBase)`
                 & > span {
                     font: var(--Body-Small-400);
                     color: var(--Gray-900);
-                    line-height: 5;
+                    line-height: 4;
                 }
 
                 & > .icon-buttoncategory-svg {
