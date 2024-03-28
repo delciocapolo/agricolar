@@ -27,22 +27,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const imgs = [
-      i4,
-      i5,
-      i6,
-      i10,
-      i11,
-      i12,
-      i13,
-      i14,
-      i15,
-      i16,
-      i17,
-      i18,
-      i19,
-      i20,
-    ];
+    const imgs = [i4, i5, i6, i10, i11, i12, i13, i14, i15, i16, i17, i18, i19, i20];
 
     cacheImages(imgs, setIsLoading);
   }, []);

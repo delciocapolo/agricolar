@@ -8,7 +8,6 @@ export const cacheImages = (srcArray: string[], fnChangeState: React.Dispatch<Re
             img.src = src;
             img.onload = () => resolve();
             img.onerror = () => reject();
-            console.log('Passou pela promise');
         });
     });
 
