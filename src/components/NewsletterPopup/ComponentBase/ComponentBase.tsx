@@ -22,6 +22,7 @@ export const ContentNewsletterPopup = styled['div']`
         padding: 10px;
 
         justify-content: space-between;
+        position: relative;
     `;
 export const ContainerImageNewsletterPopup = styled['div']`
         width: 35%;
@@ -70,8 +71,11 @@ export const EmailNewsletterComponent = styled(EmailNewsletterComponentBase)`
         }
     `;
 export const ContainerButtonCloseNewsletterPopup = styled['div']`
-        width: 100%;
-        justify-content: flex-end;  
+        width: fit-content;
+        justify-content: flex-end;
+        position: absolute;
+        right: 0;
+        top: 0;
     `;
 export const ButtonCloseNewsletterPopup = styled['button']`
         padding: 8px;

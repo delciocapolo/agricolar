@@ -69,7 +69,7 @@ const SmallOne = () => {
             <Container className="d-flex">
                 <ContactContainer className="d-flex">
                     <MapPin style={{ color: 'var(--White)' }} />
-                    <TitleContact>Store Location: Lincoln - 344, Illinois, Chicago, USA</TitleContact>
+                    <TitleContact>Localização do escritório: Cassequel - 61B, Luanda, Angola</TitleContact>
                 </ContactContainer>
                 <LinksContainer className="links-container d-flex">
                     <SelectCustom title="Idioma" items={[{ text: 'PT', url: 'http://localhost:5173/pt' }, { text: 'EN', url: 'http://localhost:5173/en' }]} />
