@@ -1,7 +1,7 @@
 import { Global, css } from "@emotion/react";
 import imagePopup from "../../assets/newsletterpopup/newsletterpopup.jpg";
 import { X } from "lucide-react";
-import { useRef, useLayoutEffect, ChangeEvent } from "react";
+import { useRef, useLayoutEffect, ChangeEvent, MouseEvent } from "react";
 
 import {
     NewsletterPopupContainer,
@@ -28,7 +28,8 @@ const NewsletterPopup = () => {
         }
     }
 
-    const handleClickButtonCloseNewsletterPopup = () => {
+    const handleClickButtonCloseNewsletterPopup = (e: any) => {
+        e.stopPropagation();
         if (NewsletterPopupContainerRef.current) {
             NewsletterPopupContainerRef.current.classList.add('d-none');
         }
@@ -46,7 +47,7 @@ const NewsletterPopup = () => {
     }, []);
 
     return (
-        <NewsletterPopupContainer className="d-flex" ref={NewsletterPopupContainerRef}>
+        <NewsletterPopupContainer className="d-flex" ref={NewsletterPopupContainerRef} onClick={handleClickButtonCloseNewsletterPopup}>
             <Global styles={css`
                 .email-newsletter-component {
                     padding: 1.5rem 0;
@@ -89,7 +90,9 @@ const NewsletterPopup = () => {
                 }
             `} />
 
-            <ContentNewsletterPopup className="d-flex">
+            <ContentNewsletterPopup className="d-flex" onClick={(e) => {
+                e.stopPropagation();
+            }}>
 
                 <ContainerImageNewsletterPopup className="d-flex container-image-newsletterpopup">
                     <ImageNewsletterPopup src={imagePopup} alt="" />
