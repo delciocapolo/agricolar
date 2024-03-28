@@ -17,6 +17,7 @@ import i19 from './assets/newsletterpopup/newsletterpopup.jpg';
 import i20 from './assets/products/Image.jpg';
 import { cacheImages } from "./components/utils/CacheImages";
 import Spinner from "./components/main-components/Spinner/Spinner";
+import SignComponent from "./components/Sign/Sign";
 
 const Menu = lazy(() => import("./components/Navigation/Menu"));
 const Skeleton = lazy(() => import("./components/Body/Skeleton"));
@@ -35,6 +36,7 @@ const App = () => {
   return (
     <HeaderContextProvider>
       <Suspense fallback={<Spinner loading={isLoading} />}>
+        <SignComponent />
         <Menu />
         <Header />
         <Skeleton />
