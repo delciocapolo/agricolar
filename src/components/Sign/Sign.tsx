@@ -64,7 +64,7 @@ const SignComponent = () => {
                                 }
                             </ContainerInput>
                             <ButtonSubmitUserInputs type="submit" className="d-flex">continuar</ButtonSubmitUserInputs>
-                            <ButtonShowHelp>Problemas ao acessar a conta?</ButtonShowHelp>
+                            <ButtonShowHelp type="button">Problemas ao acessar a conta?</ButtonShowHelp>
                         </ContainerUserInputs>
                         <ContainerAccountsLinks className="d-flex">
                             <ContainerMessageEasyAccess className="d-flex">

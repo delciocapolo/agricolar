@@ -27,7 +27,7 @@ const MiddleMenu = () => {
         min-width: 320px;
         gap: 0;
         border-radius: var(--border-radius);
-        box-shadow: 0 0 0px 1px rgba(51, 51, 51, 0.1);
+        box-shadow: var(--box-shadow-outline);
     `;
     const TextField = styled['input']`
         outline: none;

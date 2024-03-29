@@ -71,7 +71,7 @@ export const ContainerAccounts = styled(ContentBase)`
     // overflow: auto;
 `;
 
-export const ContainerUserInputs = styled['div']`
+export const ContainerUserInputs = styled['form']`
     min-height: 142px;
     // background-color: brown;
     flex-direction: column;
