@@ -1,38 +1,61 @@
-import { Facebook, X } from "lucide-react";
+import { ChevronDown, ChevronLeft, Facebook, X } from "lucide-react";
 import {
-    ButtonClearTextField,
     ButtonClose,
     ButtonShowHelp,
     ButtonSubmitUserInputs,
     Container,
     ContainerAccounts,
     ContainerAccountsLinks,
+    ContainerButton,
     ContainerInput,
     ContainerLine,
     ContainerLinkAccount,
     ContainerMessageEasyAccess,
     ContainerUserInputs,
+    ContainerUserTypeList,
     ContentLinkAccount,
     ContentTitle,
+    ItemUserType,
     LinkAccount,
     MessageEasyAccess,
     PainelSign, SubContentLinkAccount,
     TextField,
-    Title
+    Title,
+    TitleUserType
 } from "./ComponentBase/ComponentBase"
 import React, { ChangeEvent, MouseEvent, useRef, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
+import ButtonClearTextFieldSignForm from "./ComponentBase/TextFieldSignForm";
+
+interface IBaseFormKeys {
+    name: string;
+    email: string;
+    password: string;
+    phone: string;
+    gender: 'male' | 'female';
+    born: Date | string;
+    pathImage: string;
+    location: string;
+
+    typeUser: 'costumer' | 'farmer';
+}
 
 const SignComponent = () => {
     const [controllStep, _] = useState<number>(0);
     const [contentTextfiled, setContentTextField] = useState<string>('');
+    const [contentTextfiledNIF, setContentTextfiledNIF] = useState<string>('');
+    const [formValues, setFormValues] = useState<IBaseFormKeys>({} as IBaseFormKeys);
+
+    // todas referencias neste componente
     const ContainerSignComponent = useRef<HTMLDivElement | null>({} as HTMLDivElement);
+    const ContainerUserTypeListRef = useRef<HTMLUListElement | null>({} as HTMLUListElement);
+    const TitleUserTypeRef = useRef<HTMLHeadingElement | null>({} as HTMLHeadingElement);
 
     const handleContentTextField = (e: ChangeEvent<HTMLInputElement>) => {
         setContentTextField(e.target.value);
     }
-    const handleButtonCleartextField = () => {
-        setContentTextField('');
+    const handleContentTextFieldNIF = (e: ChangeEvent<HTMLInputElement>) => {
+        setContentTextfiledNIF(e.target.value);
     }
     const handleCloseContainerSignComponent = (e: MouseEvent<HTMLElement>) => {
         e.stopPropagation();
@@ -41,12 +64,51 @@ const SignComponent = () => {
         }
     }
 
+    const handleButtonSubmitUserInputs = async (e: MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
+        // pensando em sanitizar, verificar e enviar os dados pro servidor
+
+        // if (formValues.typeUser === 'farmer') {
+        //     const datas = await fetch('', {
+
+        //     })
+        // }
+    }
+
+    // 
+    const handleItemUserType = (e: MouseEvent<HTMLLIElement>) => {
+        const userType = e.currentTarget.dataset['type'];
+        const textUserType = e.currentTarget.textContent;
+        const UserTypeChoise = userType as 'costumer' | 'farmer';
+
+        if (TitleUserTypeRef.current) {
+            TitleUserTypeRef.current.textContent = textUserType;
+            setFormValues({ ...formValues, typeUser: UserTypeChoise });
+        }
+    }
+
     const handleStepContainerAccount = (step: number) => {
         switch (step) {
             case 0:
                 return (
                     <React.Fragment>
-                        <ContainerUserInputs className="d-flex">
+                        <ContainerUserInputs className="d-flex" method="post" action="/createuser">
+                            <ContainerInput className="d-flex" onClick={(e) => {
+                                e.stopPropagation();
+                                if (ContainerUserTypeListRef.current) {
+                                    ContainerUserTypeListRef.current.classList.toggle('actived');
+                                }
+                            }}>
+                                <TitleUserType className="d-flex" ref={TitleUserTypeRef}>
+                                    escolha o que te representa
+                                    <ChevronDown />
+                                </TitleUserType>
+                                <ContainerUserTypeList className="user-type-list" ref={ContainerUserTypeListRef}>
+                                    <ItemUserType data-type="costumer" onClick={handleItemUserType}>Consumidor</ItemUserType>
+                                    <ItemUserType data-type="farmer" onClick={handleItemUserType}>Fazendeiro</ItemUserType>
+                                </ContainerUserTypeList>
+                            </ContainerInput>
                             <ContainerInput className="d-flex">
                                 <TextField
                                     name="email"
@@ -57,13 +119,29 @@ const SignComponent = () => {
                                 />
                                 {
                                     contentTextfiled && (
-                                        <ButtonClearTextField className="d-flex" onClick={handleButtonCleartextField}>
-                                            <X className="btnclose-svg-icon" size={12} />
-                                        </ButtonClearTextField>
+                                        <ButtonClearTextFieldSignForm dispatch={setContentTextField} />
                                     )
                                 }
                             </ContainerInput>
-                            <ButtonSubmitUserInputs type="submit" className="d-flex">continuar</ButtonSubmitUserInputs>
+                            {
+                                formValues.typeUser === 'farmer' ? (
+                                    <ContainerInput className="d-flex">
+                                        <TextField
+                                            name="nif"
+                                            type="text"
+                                            placeholder="NIF"
+                                            onChange={handleContentTextFieldNIF}
+                                            value={contentTextfiledNIF}
+                                        />
+                                        {
+                                            contentTextfiledNIF && (
+                                                <ButtonClearTextFieldSignForm dispatch={setContentTextfiledNIF} />
+                                            )
+                                        }
+                                    </ContainerInput>
+                                ) : null
+                            }
+                            <ButtonSubmitUserInputs type="submit" className="d-flex" onClick={handleButtonSubmitUserInputs}>continuar</ButtonSubmitUserInputs>
                             <ButtonShowHelp type="button">Problemas ao acessar a conta?</ButtonShowHelp>
                         </ContainerUserInputs>
                         <ContainerAccountsLinks className="d-flex">
@@ -106,11 +184,20 @@ const SignComponent = () => {
             <PainelSign onClick={(e) => {
                 e.stopPropagation();
             }}>
-                <ButtonClose className="d-flex" onClick={handleCloseContainerSignComponent}>
-                    <X className="btnclose-svg-icon" size={21} />
-                </ButtonClose>
+                <ContainerButton className="d-flex">
+                    {
+                        controllStep > 0 ? (
+                            <ButtonClose data-name="button-come-back-sign-process" className="d-flex" onClick={undefined}>
+                                <ChevronLeft className="btnclose-svg-icon" size={15} />
+                            </ButtonClose>
+                        ) : null
+                    }
+                    <ButtonClose data-name="button-close-sign" className="d-flex" onClick={handleCloseContainerSignComponent}>
+                        <X className="btnclose-svg-icon" size={15} />
+                    </ButtonClose>
+                </ContainerButton>
                 <ContentTitle className="d-flex">
-                    <Title>Cadastre-se/Entre</Title>
+                    <Title>Cadastre-se | Entre</Title>
                 </ContentTitle>
                 <ContainerAccounts>
                     {

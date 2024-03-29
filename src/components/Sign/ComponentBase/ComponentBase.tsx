@@ -1,4 +1,27 @@
+import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
+
+const bounce = keyframes`
+  from, 20%, 53%, 80%, to {
+    transform: translate3d(0,0,0);
+    opacity: 1;
+  }
+
+  40%, 43% {
+    transform: translate3d(0, -30px, 0);
+    opacity: 0.4;
+  }
+
+  70% {
+    transform: translate3d(0, -15px, 0);
+    opacity: 0.7;
+  }
+
+  90% {
+    transform: translate3d(0,-4px,0);
+    opacity: 0.9;
+  }
+`
 
 export const Container = styled['div']`
     width: 100%;
@@ -50,15 +73,24 @@ export const Title = styled['h1']`
     line-height: 1;
     text-transform: none;
 `;
-
-export const ButtonClose = styled['button']`
+export const ContainerButton = styled['div']`
+    width: 100%;
+    height: 42px;
     position: absolute;
-    right: 15px;
-    width: 35px;
-    height: 35px;
+    z-index: 3;
+    left: 0;
+    justify-content: flex-end;
+    padding: 0 0.7rem;
+    
+    &:has(button[data-name="button-come-back-sign-process"]) {
+        justify-content: space-between;
+    }
+`;
+export const ButtonClose = styled['button']`
+    width: 30px;
+    height: 30px;
     background-color: var(--Gray-50);
     border-radius: 50px;
-    z-index: 3;
 
     & > .btnclose-svg-icon {
         color: var(--Green-900);
@@ -67,8 +99,11 @@ export const ButtonClose = styled['button']`
 // For the accounts
 export const ContainerAccounts = styled(ContentBase)`
     min-height: calc(100% - 42px);
-    padding: 1rem 0;
-    // overflow: auto;
+    padding: 1rem 1px;
+    max-height: 447px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--Green-100) transparent;
 `;
 
 export const ContainerUserInputs = styled['form']`
@@ -84,10 +119,19 @@ export const ContainerInput = styled['div']`
     height: 55px;
     background-color: var(--White);
     border-radius: var(--border-radius);
-    justify-content: space-between;
     gap: 0;
-    padding-right: 10px;
     box-shadow: var(--box-shadow-outline);
+    
+    &:has(input) {
+        padding-right: 10px;
+        justify-content: space-between;
+    }
+    &:has(ul.user-type-list) {
+        position: relative;
+        cursor: pointer;
+        justify-content: flex-start;
+        padding: 0 0.5rem;
+    }
 `;
 
 export const TextField = styled['input']`
@@ -190,4 +234,55 @@ export const SubContentLinkAccount = styled['div']`
         fill: var(--Green-900);
         stroke: none;
     }
+`;
+
+// List User Type
+export const ContainerUserTypeList = styled['ul']`
+    background-color: var(--White);
+    position: absolute;
+    width: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    height: fit-content;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-outline);
+
+    & > li {
+        font-size: 0;
+        line-height: 3;
+    }
+
+    &.actived {
+        width: 100%;
+        padding: 5px;
+        top: calc(100% + 5px);
+        animation: ${bounce} 0.6s ease;
+        opacity: 1;
+        
+        & > li {
+            font-size: 1rem;
+            line-height: 3;
+        }
+    }
+`;
+
+export const ItemUserType = styled['li']`
+    display: block;
+    width: 100%;
+    font: var(--Body-Medium-500);
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--Gray-800);
+
+    &:first-of-type {
+        margin: 0 0 7px 0;
+    }
+`;
+
+export const TitleUserType = styled['h2']`
+    width: 100%;
+    font: var(--Body-Small-400);
+    justify-content: space-between;
 `;
