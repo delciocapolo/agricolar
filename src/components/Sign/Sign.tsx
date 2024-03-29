@@ -1,6 +1,7 @@
-import { X } from "lucide-react";
-import { ButtonClearTextField, ButtonClose, ButtonShowHelp, ButtonSubmitUserInputs, Container, ContainerAccounts, ContainerAccountsLinks, ContainerInput, ContainerLine, ContainerMessageEasyAccess, ContainerUserInputs, ContentTitle, MessageEasyAccess, PainelSign, TextField, Title } from "./ComponentBase/ComponentBase"
+import { Facebook, X } from "lucide-react";
+import { ButtonClearTextField, ButtonClose, ButtonShowHelp, ButtonSubmitUserInputs, Container, ContainerAccounts, ContainerAccountsLinks, ContainerInput, ContainerLine, ContainerLinkAccount, ContainerMessageEasyAccess, ContainerUserInputs, ContentLinkAccount, ContentTitle, LinkAccount, MessageEasyAccess, PainelSign, SubContentLinkAccount, TextField, Title } from "./ComponentBase/ComponentBase"
 import { ChangeEvent, MouseEvent, useState } from "react";
+import { FaGoogle } from "react-icons/fa";
 
 const SignComponent = () => {
     const [controllStep, setControllStep] = useState<number>(0);
@@ -51,6 +52,26 @@ const SignComponent = () => {
                                     <MessageEasyAccess>acesso rápido com</MessageEasyAccess>
                                     <ContainerLine />
                                 </ContainerMessageEasyAccess>
+                                <ContainerLinkAccount>
+                                    <LinkAccount className="d-flex" href="#">
+                                        <SubContentLinkAccount className="d-flex">
+                                            <FaGoogle className="linkaccount-icon-svg" />
+                                        </SubContentLinkAccount>
+                                        <ContentLinkAccount>google</ContentLinkAccount>
+                                    </LinkAccount>
+                                    <LinkAccount className="d-flex" href="#">
+                                        <SubContentLinkAccount className="d-flex">
+                                            <Facebook className="linkaccount-icon-svg" />
+                                        </SubContentLinkAccount>
+                                        <ContentLinkAccount>Facebook</ContentLinkAccount>
+                                    </LinkAccount>
+                                    <LinkAccount className="d-flex" href="#">
+                                        <SubContentLinkAccount className="d-flex">
+                                            <Facebook className="linkaccount-icon-svg" />
+                                        </SubContentLinkAccount>
+                                        <ContentLinkAccount>Facebook</ContentLinkAccount>
+                                    </LinkAccount>
+                                </ContainerLinkAccount>
                             </ContainerAccountsLinks>
                         ) : null
                     }

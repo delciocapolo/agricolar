@@ -7,13 +7,14 @@ export const Container = styled['div']`
     top: 0;
     z-index: 600;
     
-    background-color: rgba(51, 51, 51, 0.4);
-    backdrop-filter: blur(14px);
+    background-color: rgba(51, 51, 51, 0.3);
+    backdrop-filter: blur(10px);
 `;
 
 export const PainelSign = styled['div']`
+    width: 35%;
     min-width: 320px;
-    width: 37%;
+    max-width: 527px;
     height: 505px;
     background-color: var(--White);
     border-radius: var(--border-radius);
@@ -52,8 +53,8 @@ export const Title = styled['h1']`
 export const ButtonClose = styled['button']`
     position: absolute;
     right: 15px;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     background-color: var(--Gray-50);
     border-radius: 50px;
     z-index: 3;
@@ -64,7 +65,8 @@ export const ButtonClose = styled['button']`
 `;
 // For the accounts
 export const ContainerAccounts = styled(ContentBase)`
-    height: calc(100% - 42px);
+    min-height: calc(100% - 42px);
+    padding: 1rem 0;
     // overflow: auto;
 `;
 
@@ -84,7 +86,7 @@ export const ContainerInput = styled['div']`
     justify-content: space-between;
     gap: 0;
     padding-right: 10px;
-    box-shadow: var(--box-shadow-double-face);
+    box-shadow: var(--box-shadow-outline);
 `;
 
 export const TextField = styled['input']`
@@ -113,6 +115,7 @@ export const ButtonClearTextField = styled['button']`
 
 export const ButtonSubmitUserInputs = styled['button']`
     width: 100%;
+    min-height: 47px;
     color: var(--White);
     background-color: var(--Success);
     padding: 0.7rem 0;
@@ -130,13 +133,59 @@ export const ButtonShowHelp = styled['button']`
 
 export const ContainerAccountsLinks = styled['div']`
     height: calc(100% - 144px);
-    background-color: yellow;
+    padding: 1.5rem 0;
+    // background-color: yellow;
+    flex-direction: column;
+    justify-content: flex-start;
 `;
 export const ContainerMessageEasyAccess = styled['div']`
-
+    width: 100%;
+    min-height: 25px;
+    gap: 0;
+    justify-content: space-between;
+    // background-color: brown;
 `;
 export const ContainerLine = styled['div']`
-
+    background-color: var(--Gray-200);
+    width: 30%;
+    height: 1px;
 `;
 export const MessageEasyAccess = styled['h1']`
+    font: var(--Body-Small-500);
+    // background-color: green;
+`;
+
+// Container dos links das contas
+export const ContainerLinkAccount = styled['nav']`
+    width: 100%;
+`;
+
+export const LinkAccount = styled['a']`
+    width: 100%;
+    min-height: 47px;
+    text-align: center;
+    background-color: transparent;
+    position: relative;
+    border-radius: 50px;
+    margin: 0 0 15px 0;
+    box-shadow: var(--box-shadow-outline);
+`;
+
+export const ContentLinkAccount = styled['span']`
+    font: var(--Body-Medium-500);
+    color: var(--Green-900);
+`;
+
+export const SubContentLinkAccount = styled['div']`
+    position: absolute;
+    left: 10px;
+    width: 37px;
+    height: 37px;
+    // background-color: purple;
+    border-radius: 50px;
+
+    & > .linkaccount-icon-svg {
+        fill: var(--Green-900);
+        stroke: none;
+    }
 `;
