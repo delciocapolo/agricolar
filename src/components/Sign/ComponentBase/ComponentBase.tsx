@@ -48,6 +48,7 @@ export const Title = styled['h1']`
     font: var(--Body-XL-500);
     color: var(--Green-900);
     line-height: 1;
+    text-transform: none;
 `;
 
 export const ButtonClose = styled['button']`
@@ -90,7 +91,7 @@ export const ContainerInput = styled['div']`
 `;
 
 export const TextField = styled['input']`
-    width: calc(100% - 50px);
+    width: calc(100% - 25px);
     height: 55px;
     padding: 0 0.7rem;
     border-radius: var(--border-radius);
@@ -104,8 +105,9 @@ export const TextField = styled['input']`
 `;
 
 export const ButtonClearTextField = styled['button']`
+    width: 20px;
+    height: 20px;
     background-color: rgba(237, 242, 238, 0.5);
-    padding: 0.3rem;
     border-radius: 50%;
 
     & > .btnclose-svg-icon {

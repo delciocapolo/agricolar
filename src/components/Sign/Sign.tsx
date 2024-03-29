@@ -1,11 +1,12 @@
 import { Facebook, X } from "lucide-react";
 import { ButtonClearTextField, ButtonClose, ButtonShowHelp, ButtonSubmitUserInputs, Container, ContainerAccounts, ContainerAccountsLinks, ContainerInput, ContainerLine, ContainerLinkAccount, ContainerMessageEasyAccess, ContainerUserInputs, ContentLinkAccount, ContentTitle, LinkAccount, MessageEasyAccess, PainelSign, SubContentLinkAccount, TextField, Title } from "./ComponentBase/ComponentBase"
-import { ChangeEvent, MouseEvent, useState } from "react";
+import { ChangeEvent, MouseEvent, useRef, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 
 const SignComponent = () => {
-    const [controllStep, setControllStep] = useState<number>(0);
+    const [controllStep, _] = useState<number>(0);
     const [contentTextfiled, setContentTextField] = useState<string>('');
+    const ContainerSignComponent = useRef<HTMLDivElement | null>({} as HTMLDivElement);
 
     const handleContentTextField = (e: ChangeEvent<HTMLInputElement>) => {
         setContentTextField(e.target.value);
@@ -13,15 +14,23 @@ const SignComponent = () => {
     const handleButtonCleartextField = () => {
         setContentTextField('');
     }
+    const handleCloseContainerSignComponent = (e: MouseEvent<HTMLElement>) => {
+        e.stopPropagation();
+        if (ContainerSignComponent.current) {
+            ContainerSignComponent.current.classList.add('d-none');
+        }
+    }
 
     return (
-        <Container className="d-flex">
-            <PainelSign>
-                <ButtonClose className="d-flex">
+        <Container className="d-flex" ref={ContainerSignComponent} onClick={handleCloseContainerSignComponent}>
+            <PainelSign onClick={(e) => {
+                e.stopPropagation();
+            }}>
+                <ButtonClose className="d-flex" onClick={handleCloseContainerSignComponent}>
                     <X className="btnclose-svg-icon" size={21} />
                 </ButtonClose>
                 <ContentTitle className="d-flex">
-                    <Title>cadastre-se/entre</Title>
+                    <Title>Cadastre-se/Entre</Title>
                 </ContentTitle>
                 <ContainerAccounts>
                     <ContainerUserInputs className="d-flex">
@@ -36,7 +45,7 @@ const SignComponent = () => {
                             {
                                 contentTextfiled && (
                                     <ButtonClearTextField className="d-flex" onClick={handleButtonCleartextField}>
-                                        <X className="btnclose-svg-icon" size={21} />
+                                        <X className="btnclose-svg-icon" size={12} />
                                     </ButtonClearTextField>
                                 )
                             }

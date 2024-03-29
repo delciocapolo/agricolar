@@ -1,7 +1,7 @@
 import { Global, css } from "@emotion/react";
 import imagePopup from "../../assets/newsletterpopup/newsletterpopup.jpg";
 import { X } from "lucide-react";
-import { useRef, useLayoutEffect, ChangeEvent, MouseEvent } from "react";
+import { useRef, useLayoutEffect, ChangeEvent } from "react";
 
 import {
     NewsletterPopupContainer,
