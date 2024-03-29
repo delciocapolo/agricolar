@@ -1,6 +1,26 @@
 import { Facebook, X } from "lucide-react";
-import { ButtonClearTextField, ButtonClose, ButtonShowHelp, ButtonSubmitUserInputs, Container, ContainerAccounts, ContainerAccountsLinks, ContainerInput, ContainerLine, ContainerLinkAccount, ContainerMessageEasyAccess, ContainerUserInputs, ContentLinkAccount, ContentTitle, LinkAccount, MessageEasyAccess, PainelSign, SubContentLinkAccount, TextField, Title } from "./ComponentBase/ComponentBase"
-import { ChangeEvent, MouseEvent, useRef, useState } from "react";
+import {
+    ButtonClearTextField,
+    ButtonClose,
+    ButtonShowHelp,
+    ButtonSubmitUserInputs,
+    Container,
+    ContainerAccounts,
+    ContainerAccountsLinks,
+    ContainerInput,
+    ContainerLine,
+    ContainerLinkAccount,
+    ContainerMessageEasyAccess,
+    ContainerUserInputs,
+    ContentLinkAccount,
+    ContentTitle,
+    LinkAccount,
+    MessageEasyAccess,
+    PainelSign, SubContentLinkAccount,
+    TextField,
+    Title
+} from "./ComponentBase/ComponentBase"
+import React, { ChangeEvent, MouseEvent, useRef, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 
 const SignComponent = () => {
@@ -21,8 +41,68 @@ const SignComponent = () => {
         }
     }
 
+    const handleStepContainerAccount = (step: number) => {
+        switch (step) {
+            case 0:
+                return (
+                    <React.Fragment>
+                        <ContainerUserInputs className="d-flex">
+                            <ContainerInput className="d-flex">
+                                <TextField
+                                    name="email"
+                                    type="email"
+                                    placeholder="email"
+                                    onChange={handleContentTextField}
+                                    value={contentTextfiled}
+                                />
+                                {
+                                    contentTextfiled && (
+                                        <ButtonClearTextField className="d-flex" onClick={handleButtonCleartextField}>
+                                            <X className="btnclose-svg-icon" size={12} />
+                                        </ButtonClearTextField>
+                                    )
+                                }
+                            </ContainerInput>
+                            <ButtonSubmitUserInputs type="submit" className="d-flex">continuar</ButtonSubmitUserInputs>
+                            <ButtonShowHelp>Problemas ao acessar a conta?</ButtonShowHelp>
+                        </ContainerUserInputs>
+                        <ContainerAccountsLinks className="d-flex">
+                            <ContainerMessageEasyAccess className="d-flex">
+                                <ContainerLine />
+                                <MessageEasyAccess>acesso rápido com</MessageEasyAccess>
+                                <ContainerLine />
+                            </ContainerMessageEasyAccess>
+                            <ContainerLinkAccount>
+                                <LinkAccount className="d-flex" href="#">
+                                    <SubContentLinkAccount className="d-flex">
+                                        <FaGoogle className="linkaccount-icon-svg" />
+                                    </SubContentLinkAccount>
+                                    <ContentLinkAccount>google</ContentLinkAccount>
+                                </LinkAccount>
+                                <LinkAccount className="d-flex" href="#">
+                                    <SubContentLinkAccount className="d-flex">
+                                        <Facebook className="linkaccount-icon-svg" />
+                                    </SubContentLinkAccount>
+                                    <ContentLinkAccount>Facebook</ContentLinkAccount>
+                                </LinkAccount>
+                                <LinkAccount className="d-flex" href="#">
+                                    <SubContentLinkAccount className="d-flex">
+                                        <Facebook className="linkaccount-icon-svg" />
+                                    </SubContentLinkAccount>
+                                    <ContentLinkAccount>Facebook</ContentLinkAccount>
+                                </LinkAccount>
+                            </ContainerLinkAccount>
+                        </ContainerAccountsLinks>
+                    </React.Fragment>
+                );
+
+            default:
+                return <></>;
+        }
+    }
+
     return (
-        <Container className="d-flex" ref={ContainerSignComponent} onClick={handleCloseContainerSignComponent}>
+        <Container className="d-flex d-none" id="sign-container" ref={ContainerSignComponent} onClick={handleCloseContainerSignComponent}>
             <PainelSign onClick={(e) => {
                 e.stopPropagation();
             }}>
@@ -33,56 +113,8 @@ const SignComponent = () => {
                     <Title>Cadastre-se/Entre</Title>
                 </ContentTitle>
                 <ContainerAccounts>
-                    <ContainerUserInputs className="d-flex">
-                        <ContainerInput className="d-flex">
-                            <TextField
-                                name="email"
-                                type="email"
-                                placeholder="email"
-                                onChange={handleContentTextField}
-                                value={contentTextfiled}
-                            />
-                            {
-                                contentTextfiled && (
-                                    <ButtonClearTextField className="d-flex" onClick={handleButtonCleartextField}>
-                                        <X className="btnclose-svg-icon" size={12} />
-                                    </ButtonClearTextField>
-                                )
-                            }
-                        </ContainerInput>
-                        <ButtonSubmitUserInputs type="submit" className="d-flex">continuar</ButtonSubmitUserInputs>
-                        <ButtonShowHelp>Problemas ao acessar a conta?</ButtonShowHelp>
-                    </ContainerUserInputs>
                     {
-                        controllStep === 0 ? (
-                            <ContainerAccountsLinks className="d-flex">
-                                <ContainerMessageEasyAccess className="d-flex">
-                                    <ContainerLine />
-                                    <MessageEasyAccess>acesso rápido com</MessageEasyAccess>
-                                    <ContainerLine />
-                                </ContainerMessageEasyAccess>
-                                <ContainerLinkAccount>
-                                    <LinkAccount className="d-flex" href="#">
-                                        <SubContentLinkAccount className="d-flex">
-                                            <FaGoogle className="linkaccount-icon-svg" />
-                                        </SubContentLinkAccount>
-                                        <ContentLinkAccount>google</ContentLinkAccount>
-                                    </LinkAccount>
-                                    <LinkAccount className="d-flex" href="#">
-                                        <SubContentLinkAccount className="d-flex">
-                                            <Facebook className="linkaccount-icon-svg" />
-                                        </SubContentLinkAccount>
-                                        <ContentLinkAccount>Facebook</ContentLinkAccount>
-                                    </LinkAccount>
-                                    <LinkAccount className="d-flex" href="#">
-                                        <SubContentLinkAccount className="d-flex">
-                                            <Facebook className="linkaccount-icon-svg" />
-                                        </SubContentLinkAccount>
-                                        <ContentLinkAccount>Facebook</ContentLinkAccount>
-                                    </LinkAccount>
-                                </ContainerLinkAccount>
-                            </ContainerAccountsLinks>
-                        ) : null
+                        handleStepContainerAccount(controllStep)
                     }
                 </ContainerAccounts>
             </PainelSign>

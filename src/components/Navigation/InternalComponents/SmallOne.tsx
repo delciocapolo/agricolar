@@ -4,14 +4,9 @@ import { MapPin } from "lucide-react";
 // import SelectOptions from "./Internal_Components_SmallOne/SelectOptions";
 import Line from "../../main-components/TopLevelComponent/Box/Line";
 import { SelectCustom } from "../../main-components/MenuToggle/SelectCustom";
-import { useContext } from "react";
-import { PaddingContext } from "../../contexts/padding";
 import { Container as ContainerBase } from "../../Container/Container";
 
 const SmallOne = () => {
-    const { padding } = useContext(PaddingContext);
-    const prevPadding = String(padding).split(' ')[1];
-
     const Container = styled(ContainerBase)`
         min-height: 0;
         justify-content: space-between;
@@ -55,15 +50,23 @@ const SmallOne = () => {
     });
 
     const ButtonSignUpIn = styled['button']`
-    text-align: right;
-    text-transform: capitalize;
-    font: var(--Body-Tiny-400);
-    color: var(--Gray-600);
-    height: fit-content;
-    padding: 0.4rem 0 0.4rem 0.7rem;
-    background-color: transparent;
-`;
+        text-align: right;
+        text-transform: capitalize;
+        font: var(--Body-Tiny-400);
+        color: var(--Gray-600);
+        height: fit-content;
+        padding: 0.4rem 0 0.4rem 0.7rem;
+        background-color: transparent;
+    `;
 
+    const handleButtonSignUpIn = () => {
+        const SignContainer = document.getElementById('sign-container');
+        if (SignContainer) {
+            if (SignContainer.classList.contains('d-none')) {
+                SignContainer.classList.remove('d-none');
+            }
+        }
+    }
     return (
         <SmallOneContainer>
             <Container className="d-flex">
@@ -75,7 +78,7 @@ const SmallOne = () => {
                     <SelectCustom title="Idioma" items={[{ text: 'PT', url: 'http://localhost:5173/pt' }, { text: 'EN', url: 'http://localhost:5173/en' }]} />
                     <SelectCustom title="Moeda" items={[{ text: 'USD' }, { text: 'AO' }]} />
                     <LineContainer />
-                    <ButtonSignUpIn>entrar / criar conta</ButtonSignUpIn>
+                    <ButtonSignUpIn onClick={handleButtonSignUpIn}>criar conta | entrar</ButtonSignUpIn>
                 </LinksContainer>
             </Container>
         </SmallOneContainer>
