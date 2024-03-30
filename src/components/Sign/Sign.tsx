@@ -26,6 +26,7 @@ import {
 import React, { ChangeEvent, MouseEvent, useRef, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import ButtonClearTextFieldSignForm from "./ComponentBase/TextFieldSignForm";
+import axios from "axios";
 
 interface IBaseFormKeys {
     name: string;
@@ -69,11 +70,12 @@ const SignComponent = () => {
         e.stopPropagation();
         // pensando em sanitizar, verificar e enviar os dados pro servidor
 
-        // if (formValues.typeUser === 'farmer') {
-        //     const datas = await fetch('', {
-
-        //     })
-        // }
+        // bi: https://digital.ao/ao/actions/bi.ajcall.php?bi=xxxxxxxxxxxx
+        // nif: https://digital.ao/ao/actions/nif.ajcall.php?nif=xxxxxxxxxxxx
+        if (formValues.typeUser === 'farmer') {
+            const { data } = await axios.get('http://localhost:4001/bi/010278995LA047');
+            console.log(data);
+        }
     }
 
     // 
