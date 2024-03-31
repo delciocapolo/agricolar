@@ -27,24 +27,16 @@ import React, { ChangeEvent, MouseEvent, useRef, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import ButtonClearTextFieldSignForm from "./ComponentBase/TextFieldSignForm";
 import axios from "axios";
+import { z } from "zod";
+import { validateSchema } from "./utils/validateSchema";
+// import { GenderEnum, IBIOrNIF } from "./@types/IBIOrNIF";
 
-interface IBaseFormKeys {
-    name: string;
-    email: string;
-    password: string;
-    phone: string;
-    gender: 'male' | 'female';
-    born: Date | string;
-    pathImage: string;
-    location: string;
-
-    typeUser: 'costumer' | 'farmer';
-}
+type IBaseFormKeys = z.infer<typeof validateSchema>;
 
 const SignComponent = () => {
     const [controllStep, _] = useState<number>(0);
-    const [contentTextfiled, setContentTextField] = useState<string>('');
-    const [contentTextfiledNIF, setContentTextfiledNIF] = useState<string>('');
+    const [contentTextFieldEmail, setContentTextField] = useState<string>('');
+    const [contentTextFieldNIF, setContentTextFieldNIF] = useState<string>('');
     const [formValues, setFormValues] = useState<IBaseFormKeys>({} as IBaseFormKeys);
 
     // todas referencias neste componente
@@ -52,11 +44,11 @@ const SignComponent = () => {
     const ContainerUserTypeListRef = useRef<HTMLUListElement | null>({} as HTMLUListElement);
     const TitleUserTypeRef = useRef<HTMLHeadingElement | null>({} as HTMLHeadingElement);
 
-    const handleContentTextField = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleContentTextFieldEmail = (e: ChangeEvent<HTMLInputElement>) => {
         setContentTextField(e.target.value);
     }
     const handleContentTextFieldNIF = (e: ChangeEvent<HTMLInputElement>) => {
-        setContentTextfiledNIF(e.target.value);
+        setContentTextFieldNIF(e.target.value);
     }
     const handleCloseContainerSignComponent = (e: MouseEvent<HTMLElement>) => {
         e.stopPropagation();
@@ -68,13 +60,70 @@ const SignComponent = () => {
     const handleButtonSubmitUserInputs = async (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         e.stopPropagation();
-        // pensando em sanitizar, verificar e enviar os dados pro servidor
 
         // bi: https://digital.ao/ao/actions/bi.ajcall.php?bi=xxxxxxxxxxxx
         // nif: https://digital.ao/ao/actions/nif.ajcall.php?nif=xxxxxxxxxxxx
+        // IP: https://api.ipgeolocation.io/getip
         if (formValues.typeUser === 'farmer') {
-            const { data } = await axios.get('http://localhost:4001/bi/010278995LA047');
-            console.log(data);
+            Promise.all([
+                fetch(`http://localhost:4001/bi/${contentTextFieldNIF}`),
+                fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${import.meta.env.VITE_APIKEY_IPGEOLOCATION}`)
+            ]).then(async (response) => {
+                const [BIDataFetch, LocationDataFetch] = response.map((data) => data.json());
+                const { data } = await BIDataFetch;
+
+                if (data) {
+                    const { state_prov, city } = await LocationDataFetch;
+
+                    const {
+                        nome,
+                        naturalidade,
+                        genero,
+                        data_nasc,
+                        estado_civil,
+                        nif,
+                        numero,
+                    } = data;
+
+                    console.log("OS DADOS DO FAZENDEIRO: ");
+                    console.log(data);
+
+                    console.log("OS DADOS DA LOCATION: ");
+                    console.log(state_prov, city);
+
+                    setFormValues(prev => ({
+                        ...prev,
+                        name: nome,
+                        born: data_nasc,
+                        email: contentTextFieldEmail,
+                        gender: genero,
+                        civilRule: estado_civil,
+                        birthplace: naturalidade,
+                        biSingleNumber: numero,
+                        nif,
+                        typeUser: 'farmer',
+                        password: 'angola',
+                        confirmPassword: 'angola',
+                        location: {
+                            state_prov,
+                            city
+                        },
+                        phone: 993895962,
+                        pathImage: 'angola',
+                    }));
+
+                    console.log(formValues);
+
+                    if (!validateSchema.safeParse(formValues).success) {
+                        console.error('Error to match datas from the datas with schema validate!');
+                        return;
+                    }
+
+                    setFormValues(prev => {
+                        return Object.values(prev).map((value) => value = '') as {} as IBaseFormKeys;
+                    });
+                }
+            })
         }
     }
 
@@ -116,11 +165,11 @@ const SignComponent = () => {
                                     name="email"
                                     type="email"
                                     placeholder="email"
-                                    onChange={handleContentTextField}
-                                    value={contentTextfiled}
+                                    onChange={handleContentTextFieldEmail}
+                                    value={contentTextFieldEmail}
                                 />
                                 {
-                                    contentTextfiled && (
+                                    contentTextFieldEmail && (
                                         <ButtonClearTextFieldSignForm dispatch={setContentTextField} />
                                     )
                                 }
@@ -133,11 +182,11 @@ const SignComponent = () => {
                                             type="text"
                                             placeholder="NIF"
                                             onChange={handleContentTextFieldNIF}
-                                            value={contentTextfiledNIF}
+                                            value={contentTextFieldNIF}
                                         />
                                         {
-                                            contentTextfiledNIF && (
-                                                <ButtonClearTextFieldSignForm dispatch={setContentTextfiledNIF} />
+                                            contentTextFieldNIF && (
+                                                <ButtonClearTextFieldSignForm dispatch={setContentTextFieldNIF} />
                                             )
                                         }
                                     </ContainerInput>
