@@ -23,12 +23,13 @@ import {
     Title,
     TitleUserType
 } from "./ComponentBase/ComponentBase"
-import React, { ChangeEvent, MouseEvent, useRef, useState } from "react";
+import React, { ChangeEvent, Dispatch, MouseEvent, SetStateAction, useRef, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import ButtonClearTextFieldSignForm from "./ComponentBase/TextFieldSignForm";
 import axios from "axios";
 import { z } from "zod";
 import { validateSchema } from "./utils/validateSchema";
+import TextFieldFarmerOnly from "./ComponentBase/TextFieldFarmerOnly";
 // import { GenderEnum, IBIOrNIF } from "./@types/IBIOrNIF";
 
 type IBaseFormKeys = z.infer<typeof validateSchema>;
@@ -44,11 +45,8 @@ const SignComponent = () => {
     const ContainerUserTypeListRef = useRef<HTMLUListElement | null>({} as HTMLUListElement);
     const TitleUserTypeRef = useRef<HTMLHeadingElement | null>({} as HTMLHeadingElement);
 
-    const handleContentTextFieldEmail = (e: ChangeEvent<HTMLInputElement>) => {
-        setContentTextField(e.target.value);
-    }
-    const handleContentTextFieldNIF = (e: ChangeEvent<HTMLInputElement>) => {
-        setContentTextFieldNIF(e.target.value);
+    const handleContentChangeInput = (e: ChangeEvent<HTMLInputElement>, callback: Dispatch<SetStateAction<any>>) => {
+        callback(e.target.value);
     }
     const handleCloseContainerSignComponent = (e: MouseEvent<HTMLElement>) => {
         e.stopPropagation();
@@ -165,7 +163,7 @@ const SignComponent = () => {
                                     name="email"
                                     type="email"
                                     placeholder="email"
-                                    onChange={handleContentTextFieldEmail}
+                                    onChange={(e) => handleContentChangeInput(e, setContentTextField)}
                                     value={contentTextFieldEmail}
                                 />
                                 {
@@ -174,57 +172,85 @@ const SignComponent = () => {
                                     )
                                 }
                             </ContainerInput>
-                            {
-                                formValues.typeUser === 'farmer' ? (
-                                    <ContainerInput className="d-flex">
-                                        <TextField
-                                            name="nif"
-                                            type="text"
-                                            placeholder="NIF"
-                                            onChange={handleContentTextFieldNIF}
-                                            value={contentTextFieldNIF}
-                                        />
-                                        {
-                                            contentTextFieldNIF && (
-                                                <ButtonClearTextFieldSignForm dispatch={setContentTextFieldNIF} />
-                                            )
-                                        }
-                                    </ContainerInput>
-                                ) : null
-                            }
+
+                            <TextFieldFarmerOnly
+                                content={contentTextFieldNIF}
+                                handleContentFn={handleContentChangeInput}
+                                onChange={(e) => handleContentChangeInput(e, setContentTextFieldNIF)}
+                                setContent={setContentTextFieldNIF}
+                                typeUser={formValues.typeUser}
+                                name="nif"
+                                type="text"
+                                placeholder="NIF"
+                            />
+
+                            {/* <TextFieldFarmerOnly 
+                                content={contentTextFieldNIF} 
+                                setContent={setContentTextFieldNIF}
+                                handleContentFn={handleContentTextFieldNIF} 
+                                typeUser={formValues.typeUser}
+                                name="phone"
+                                type="tel"
+                                placeholder="Número de telefone"
+                            />
+                            
+                            <TextFieldFarmerOnly 
+                                content={contentTextFieldNIF} 
+                                setContent={setContentTextFieldNIF}
+                                handleContentFn={handleContentTextFieldNIF} 
+                                typeUser={formValues.typeUser}
+                                name="password"
+                                type="password"
+                                placeholder="Palavra-passe"
+                            />
+
+                            <TextFieldFarmerOnly 
+                                content={contentTextFieldNIF} 
+                                setContent={setContentTextFieldNIF}
+                                handleContentFn={handleContentTextFieldNIF} 
+                                typeUser={formValues.typeUser}
+                                name="reconfirm-password"
+                                type="password"
+                                placeholder="Confirmar palavra-passe"
+                            /> */}
                             <ButtonSubmitUserInputs type="submit" className="d-flex" onClick={handleButtonSubmitUserInputs}>continuar</ButtonSubmitUserInputs>
                             <ButtonShowHelp type="button">Problemas ao acessar a conta?</ButtonShowHelp>
                         </ContainerUserInputs>
-                        <ContainerAccountsLinks className="d-flex">
-                            <ContainerMessageEasyAccess className="d-flex">
-                                <ContainerLine />
-                                <MessageEasyAccess>acesso rápido com</MessageEasyAccess>
-                                <ContainerLine />
-                            </ContainerMessageEasyAccess>
-                            <ContainerLinkAccount>
-                                <LinkAccount className="d-flex" href="#">
-                                    <SubContentLinkAccount className="d-flex">
-                                        <FaGoogle className="linkaccount-icon-svg" />
-                                    </SubContentLinkAccount>
-                                    <ContentLinkAccount>google</ContentLinkAccount>
-                                </LinkAccount>
-                                <LinkAccount className="d-flex" href="#">
-                                    <SubContentLinkAccount className="d-flex">
-                                        <Facebook className="linkaccount-icon-svg" />
-                                    </SubContentLinkAccount>
-                                    <ContentLinkAccount>Facebook</ContentLinkAccount>
-                                </LinkAccount>
-                                <LinkAccount className="d-flex" href="#">
-                                    <SubContentLinkAccount className="d-flex">
-                                        <Facebook className="linkaccount-icon-svg" />
-                                    </SubContentLinkAccount>
-                                    <ContentLinkAccount>Facebook</ContentLinkAccount>
-                                </LinkAccount>
-                            </ContainerLinkAccount>
-                        </ContainerAccountsLinks>
+                        {
+                            formValues.typeUser !== 'farmer' && handleStepContainerAccount(1)
+                        }
                     </React.Fragment>
                 );
-
+            case 1:
+                return (
+                    <ContainerAccountsLinks className="d-flex">
+                        <ContainerMessageEasyAccess className="d-flex">
+                            <ContainerLine />
+                            <MessageEasyAccess>acesso rápido com</MessageEasyAccess>
+                            <ContainerLine />
+                        </ContainerMessageEasyAccess>
+                        <ContainerLinkAccount>
+                            <LinkAccount className="d-flex" href="#">
+                                <SubContentLinkAccount className="d-flex">
+                                    <FaGoogle className="linkaccount-icon-svg" />
+                                </SubContentLinkAccount>
+                                <ContentLinkAccount>google</ContentLinkAccount>
+                            </LinkAccount>
+                            <LinkAccount className="d-flex" href="#">
+                                <SubContentLinkAccount className="d-flex">
+                                    <Facebook className="linkaccount-icon-svg" />
+                                </SubContentLinkAccount>
+                                <ContentLinkAccount>Facebook</ContentLinkAccount>
+                            </LinkAccount>
+                            <LinkAccount className="d-flex" href="#">
+                                <SubContentLinkAccount className="d-flex">
+                                    <Facebook className="linkaccount-icon-svg" />
+                                </SubContentLinkAccount>
+                                <ContentLinkAccount>Facebook</ContentLinkAccount>
+                            </LinkAccount>
+                        </ContainerLinkAccount>
+                    </ContainerAccountsLinks>
+                );
             default:
                 return <></>;
         }
