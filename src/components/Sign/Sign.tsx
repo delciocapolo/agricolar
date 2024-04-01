@@ -26,19 +26,21 @@ import {
 import React, { ChangeEvent, Dispatch, MouseEvent, SetStateAction, useRef, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import ButtonClearTextFieldSignForm from "./ComponentBase/TextFieldSignForm";
-import axios from "axios";
 import { z } from "zod";
 import { validateSchema } from "./utils/validateSchema";
 import TextFieldFarmerOnly from "./ComponentBase/TextFieldFarmerOnly";
-// import { GenderEnum, IBIOrNIF } from "./@types/IBIOrNIF";
 
 type IBaseFormKeys = z.infer<typeof validateSchema>;
+const BASE_URL = 'http://localhost:3401';
 
 const SignComponent = () => {
     const [controllStep, _] = useState<number>(0);
     const [contentTextFieldEmail, setContentTextField] = useState<string>('');
     const [contentTextFieldNIF, setContentTextFieldNIF] = useState<string>('');
-    const [formValues, setFormValues] = useState<IBaseFormKeys>({} as IBaseFormKeys);
+    const [contentTextFieldPhone, setContentTextFieldPhone] = useState<string>('');
+    const [contentTextFieldPassword, setContentTextFieldPassword] = useState<string>('');
+    const [contentTextFieldConfirmPassword, setContentTextFieldConfirmPassword] = useState<string>('');
+    const [typeUser, setTypeUser] = useState<"farmer" | "costumer" | null>(null);
 
     // todas referencias neste componente
     const ContainerSignComponent = useRef<HTMLDivElement | null>({} as HTMLDivElement);
@@ -62,78 +64,52 @@ const SignComponent = () => {
         // bi: https://digital.ao/ao/actions/bi.ajcall.php?bi=xxxxxxxxxxxx
         // nif: https://digital.ao/ao/actions/nif.ajcall.php?nif=xxxxxxxxxxxx
         // IP: https://api.ipgeolocation.io/getip
-        if (formValues.typeUser === 'farmer') {
-            Promise.all([
+
+        if (typeUser === 'farmer') {
+            const [BIDataFech, IPDataFetch] = await Promise.all([
                 fetch(`http://localhost:4001/bi/${contentTextFieldNIF}`),
-                fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${import.meta.env.VITE_APIKEY_IPGEOLOCATION}`)
-            ]).then(async (response) => {
-                const [BIDataFetch, LocationDataFetch] = response.map((data) => data.json());
-                const { data } = await BIDataFetch;
+                fetch('https://api.ipgeolocation.io/getip'),
+            ]).then((res) => res.map((data) => data.json()))
 
-                if (data) {
-                    const { state_prov, city } = await LocationDataFetch;
+            const { data } = await BIDataFech;
+            const { ip } = await IPDataFetch;
 
-                    const {
-                        nome,
-                        naturalidade,
-                        genero,
-                        data_nasc,
-                        estado_civil,
-                        nif,
-                        numero,
-                    } = data;
+            if (data) {
+                const updatedFormValues: IBaseFormKeys = {
+                    email: contentTextFieldEmail,
+                    phone: parseInt(contentTextFieldPhone),
+                    nif: contentTextFieldNIF,
+                    password: contentTextFieldPassword,
+                    confirmPassword: contentTextFieldConfirmPassword,
+                    ip
+                };
 
-                    console.log("OS DADOS DO FAZENDEIRO: ");
-                    console.log(data);
-
-                    console.log("OS DADOS DA LOCATION: ");
-                    console.log(state_prov, city);
-
-                    setFormValues(prev => ({
-                        ...prev,
-                        name: nome,
-                        born: data_nasc,
-                        email: contentTextFieldEmail,
-                        gender: genero,
-                        civilRule: estado_civil,
-                        birthplace: naturalidade,
-                        biSingleNumber: numero,
-                        nif,
-                        typeUser: 'farmer',
-                        password: 'angola',
-                        confirmPassword: 'angola',
-                        location: {
-                            state_prov,
-                            city
-                        },
-                        phone: 993895962,
-                        pathImage: 'angola',
-                    }));
-
-                    console.log(formValues);
-
-                    if (!validateSchema.safeParse(formValues).success) {
-                        console.error('Error to match datas from the datas with schema validate!');
-                        return;
-                    }
-
-                    setFormValues(prev => {
-                        return Object.values(prev).map((value) => value = '') as {} as IBaseFormKeys;
-                    });
+                // Valide o esquema
+                if (!validateSchema.safeParse(updatedFormValues).success) {
+                    console.error(validateSchema.parse(updatedFormValues))
                 }
-            })
+
+                const response = await fetch(`${BASE_URL}/farmer/create`, {
+                    method: 'POST',
+                    body: JSON.stringify(updatedFormValues),
+                });
+                return;
+
+            }
+
+            console.error('ESTE NIF NAO FOI RECONHECIDO!');
         }
     }
 
     // 
     const handleItemUserType = (e: MouseEvent<HTMLLIElement>) => {
-        const userType = e.currentTarget.dataset['type'];
+        const typeUserDatasetButton = e.currentTarget.dataset['type'];
         const textUserType = e.currentTarget.textContent;
-        const UserTypeChoise = userType as 'costumer' | 'farmer';
+        const UserTypeChoise = typeUserDatasetButton as 'costumer' | 'farmer';
 
         if (TitleUserTypeRef.current) {
             TitleUserTypeRef.current.textContent = textUserType;
-            setFormValues({ ...formValues, typeUser: UserTypeChoise });
+            setTypeUser(UserTypeChoise);
         }
     }
 
@@ -175,49 +151,48 @@ const SignComponent = () => {
 
                             <TextFieldFarmerOnly
                                 content={contentTextFieldNIF}
-                                handleContentFn={handleContentChangeInput}
                                 onChange={(e) => handleContentChangeInput(e, setContentTextFieldNIF)}
                                 setContent={setContentTextFieldNIF}
-                                typeUser={formValues.typeUser}
+                                typeUser={typeUser}
                                 name="nif"
                                 type="text"
                                 placeholder="NIF"
                             />
 
-                            {/* <TextFieldFarmerOnly 
-                                content={contentTextFieldNIF} 
-                                setContent={setContentTextFieldNIF}
-                                handleContentFn={handleContentTextFieldNIF} 
-                                typeUser={formValues.typeUser}
+                            <TextFieldFarmerOnly
+                                content={contentTextFieldPhone}
+                                setContent={setContentTextFieldPhone}
+                                onChange={(e) => handleContentChangeInput(e, setContentTextFieldPhone)}
+                                typeUser={typeUser}
                                 name="phone"
                                 type="tel"
                                 placeholder="Número de telefone"
                             />
-                            
-                            <TextFieldFarmerOnly 
-                                content={contentTextFieldNIF} 
-                                setContent={setContentTextFieldNIF}
-                                handleContentFn={handleContentTextFieldNIF} 
-                                typeUser={formValues.typeUser}
+
+                            <TextFieldFarmerOnly
+                                content={contentTextFieldPassword}
+                                setContent={setContentTextFieldPassword}
+                                onChange={(e) => handleContentChangeInput(e, setContentTextFieldPassword)}
+                                typeUser={typeUser}
                                 name="password"
                                 type="password"
                                 placeholder="Palavra-passe"
                             />
 
-                            <TextFieldFarmerOnly 
-                                content={contentTextFieldNIF} 
-                                setContent={setContentTextFieldNIF}
-                                handleContentFn={handleContentTextFieldNIF} 
-                                typeUser={formValues.typeUser}
-                                name="reconfirm-password"
+                            <TextFieldFarmerOnly
+                                content={contentTextFieldConfirmPassword}
+                                setContent={setContentTextFieldConfirmPassword}
+                                onChange={(e) => handleContentChangeInput(e, setContentTextFieldConfirmPassword)}
+                                typeUser={typeUser}
+                                name="confirm-password"
                                 type="password"
                                 placeholder="Confirmar palavra-passe"
-                            /> */}
+                            />
                             <ButtonSubmitUserInputs type="submit" className="d-flex" onClick={handleButtonSubmitUserInputs}>continuar</ButtonSubmitUserInputs>
                             <ButtonShowHelp type="button">Problemas ao acessar a conta?</ButtonShowHelp>
                         </ContainerUserInputs>
                         {
-                            formValues.typeUser !== 'farmer' && handleStepContainerAccount(1)
+                            typeUser !== 'farmer' && handleStepContainerAccount(1)
                         }
                     </React.Fragment>
                 );

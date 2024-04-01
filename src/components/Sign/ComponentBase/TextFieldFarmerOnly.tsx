@@ -3,14 +3,13 @@ import { ContainerInput, TextField } from "./ComponentBase";
 import ButtonClearTextFieldSignForm from "./TextFieldSignForm";
 
 type ITextFieldFarmerOnly = InputHTMLAttributes<HTMLInputElement> & {
-    typeUser: 'farmer' | 'costumer' | undefined;
+    typeUser: 'farmer' | 'costumer' | null;
     content: string | number | undefined;
     setContent: Dispatch<SetStateAction<string>>;
-    handleContentFn(e?: any, ...callback: any): void;
 }
 
 const TextFieldFarmerOnly: FC<ITextFieldFarmerOnly> = (props) => {
-    const { typeUser, content, setContent, handleContentFn } = props;
+    const { typeUser, content, setContent } = props;
 
     if (typeUser === 'farmer') {
         return (
