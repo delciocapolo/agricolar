@@ -35,10 +35,10 @@ export const Container = styled['div']`
 `;
 
 export const PainelSign = styled['div']`
-    width: 35%;
+    width: 32%;
     min-width: 320px;
     max-width: 527px;
-    height: 505px;
+    height: 565px;
     background-color: var(--White);
     border-radius: var(--border-radius);
     padding: 0.5rem;
@@ -187,13 +187,13 @@ export const ContainerAccountsLinks = styled['div']`
 export const ContainerMessageEasyAccess = styled['div']`
     width: 100%;
     min-height: 25px;
-    gap: 0;
+    gap: 3;
     justify-content: space-between;
     // background-color: brown;
 `;
 export const ContainerLine = styled['div']`
     background-color: var(--Gray-200);
-    width: 30%;
+    width: calc(100% - 265px);
     height: 1px;
 `;
 export const MessageEasyAccess = styled['h1']`
