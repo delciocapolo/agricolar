@@ -28,7 +28,7 @@ export const FeaturedContainer = styled(Container)`
                         background-color: var(--White);
                     }
 
-                    & > div:nth-child(2) > h1, h2 {
+                    & > div:nth-of-type(2) > h1, h2 {
                         color: var(--White);
                     }
                     
@@ -44,7 +44,7 @@ export const FeaturedContainer = styled(Container)`
                     width: 2rem;
                     height: 2rem;
                 }
-                & > div:nth-child(2) {
+                & > div:nth-of-type(2) {
                     gap: 5px;
                 }
             }
