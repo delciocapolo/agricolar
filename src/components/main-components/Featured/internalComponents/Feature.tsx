@@ -1,55 +1,62 @@
 import styled from "@emotion/styled";
-import Box from "../../TopLevelComponent/Box/Box";
 import { FC } from "react";
 
 interface IFeature {
     icon: JSX.Element;
     title: string;
     text?: string;
+    index?: number | string;
 }
 
-const Feature: FC<IFeature> = ({ icon, text, title }) => {
-    const Content = styled(Box)`
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 2px;
-    `;
+const Title = styled['h1'](_ => ({ font: 'var(--Body-Medium-600)', color: 'var(--Gray-900)', textTransform: 'none' }));
+const SubTitle = styled['h2'](_ => ({ font: 'var(--Body-Small-400)', color: 'var(--Gray-500)', textTransform: 'none' }));
 
-    const Title = styled['h1'](_ => ({ font: 'var(--Body-Medium-600)', color: 'var(--Gray-900)', textTransform: 'none' }));
-    const SubTitle = styled['h2'](_ => ({ font: 'var(--Body-Small-400)', color: 'var(--Gray-500)', textTransform: 'none' }));
+const Content = styled['div']`
+    width: calc(100% - 35px);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    // background-color: green;
+`;
+const FeaturedContainer = styled['div']`
+    min-height: 105px;
+    flex-wrap: nowrap;
+    flex: 1 1 200px;
+    justify-content: space-between;
+    
+    &:nth-of-type(1),
+    &[data-index="2"] {
+        border-right: 1px solid rgba(26, 26, 26, 0.2);
+    }
 
-    const Feature = styled(Box)`
-        min-width: 310px;
-        padding: 0.5rem;
-        border-radius: var(--border-radius);
-        width: fit-content;
-        gap: 1px;
-        flex-wrap: nowrap;
-        
-        & > div {
-            width: fit-content;
-        }
-    `;
+    &[data-index="1"] {
+        padding: 0 0 0 7px;
+    }
+`;
 
-    const IconSubContainer = styled(Box)`
-        padding: 0;
-        width: auto;
-        margin: 0;
-        gap: 0;
-    `;
+const ContainerIcon = styled['div']`
+    min-height: 100%;
+`;
+const IconSubContainer = styled['div']`
+    padding: 0;
+    width: auto;
+    margin: 0;
+    gap: 0;
+`;
 
+const Feature: FC<IFeature> = ({ icon, text, title, index }) => {
     return (
-        <Feature className="feature">
-            <Box>
-                <IconSubContainer className="icon-subcontainer">
+        <FeaturedContainer className="d-flex" data-index={index}>
+            <ContainerIcon>
+                <IconSubContainer className="icon-subcontainer d-flex">
                     {icon}
                 </IconSubContainer>
-            </Box>
-            <Content>
+            </ContainerIcon>
+            <Content className="d-flex">
                 <Title>{title}</Title>
                 <SubTitle>{text}</SubTitle>
             </Content>
-        </Feature>
+        </FeaturedContainer>
     )
 }
 
