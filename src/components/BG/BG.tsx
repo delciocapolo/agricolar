@@ -193,13 +193,13 @@ const BG = () => {
                     <ProductItemContainer className="product-item-container d-flex">
                         {/* O limite para cada container eh de 4 items */}
                         {
-                            [1, 2, 3, 4].map(_ => (<Normal price={3000} ratingNumber={3} saleStatus={['new']} />))
+                            [1, 2, 3, 4].map(_ => (<Normal price={Math.round(Math.random() * 4000)} ratingNumber={3} saleStatus={['new']} />))
                         }
                     </ProductItemContainer>
                     <ProductItemContainer className="product-item-container d-flex">
                         {/* O limite para cada container eh de 4 items */}
                         {
-                            [1, 2, 3, 4].map(_ => (<Normal price={3000} ratingNumber={3} saleStatus={['sale']} saleValue={20} />))
+                            [1, 2, 3, 4].map(_ => (<Normal price={Math.round(Math.random() * 4000)} ratingNumber={3} saleStatus={['sale']} saleValue={9} />))
                         }
                     </ProductItemContainer>
                 </Products>

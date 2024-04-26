@@ -70,10 +70,11 @@ const MiddleMenu = () => {
         width: 20px;
         height: 20px;
         border-radius: 50%;
-        top: -4px;
-        right: -5px;
+        top: -1px;
+        right: 0px;
         color: var(--White);
         background-color: var(--Success-Dark);
+        border: 2px solid var(--Gray-100);
     `;
 
     const Title = styled['h1']`

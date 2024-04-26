@@ -26,7 +26,8 @@ export const ContentNewsletterPopup = styled['div']`
     `;
 export const ContainerImageNewsletterPopup = styled['div']`
         width: 35%;
-        height: 100%;
+        height: 298px;
+        // height: 100%;
     `;
 export const ImageNewsletterPopup = styled['img']`
         width: 100%;
