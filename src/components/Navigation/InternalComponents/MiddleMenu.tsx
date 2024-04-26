@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { FavouriteIcon, Search01Icon, ShoppingBag03Icon } from "hugeicons-react";
 import Logo from "../../../assets/Logo";
 import { Heart, Search, ShoppingBag, ShoppingBasket } from "lucide-react";
 import Line from "../../main-components/TopLevelComponent/Box/Line";
@@ -74,7 +75,7 @@ const MiddleMenu = () => {
         right: 0px;
         color: var(--White);
         background-color: var(--Success-Dark);
-        border: 2px solid var(--Gray-100);
+        border: 2px solid var(--White);
     `;
 
     const Title = styled['h1']`
@@ -106,7 +107,7 @@ const MiddleMenu = () => {
                 <Logo />
                 <Form method="post" className="d-flex form">
                     <div className="d-flex" style={{ padding: '0 0 0 0.5rem', backgroundColor: 'var(--White)' }} >
-                        <Search absoluteStrokeWidth={true} />
+                        <Search01Icon />
                     </div>
                     <TextField type="search" name="search_bar" placeholder="Procure por algum produto ou @fazenda" style={{
                         font: 'var(--Body-Tiny-400)',
@@ -118,14 +119,13 @@ const MiddleMenu = () => {
                 </Form>
                 <CartContainer className="d-flex">
                     <ButtonWishList type="button" className="d-flex">
-                        <Heart size={30} absoluteStrokeWidth={true} style={{ color: 'var(--Gray-800)' }} />
+                        <FavouriteIcon size={30} color="var(--Gray-800)" />
                     </ButtonWishList>
                     <Divider />
                     <ShoppingCard className="d-flex">
                         <Cart className="d-flex">
                             <ButtonWishList type="button" className="d-flex">
-                                {/* <ShoppingBasket size={30} absoluteStrokeWidth={true} color="var(--Gray-800)" /> */}
-                                <ShoppingBag size={30} absoluteStrokeWidth={true} color="var(--Gray-800)" />
+                                <ShoppingBag03Icon size={30} color="var(--Gray-800)" />
                             </ButtonWishList>
                             <Span className="d-flex">10</Span>
                         </Cart>

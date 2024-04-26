@@ -1463,6 +1463,7 @@ __metadata:
     eslint: "npm:^8.55.0"
     eslint-plugin-react-hooks: "npm:^4.6.0"
     eslint-plugin-react-refresh: "npm:^0.4.5"
+    hugeicons-react: "npm:^0.2.0"
     ip-geolocation-api-sdk-typescript: "npm:^1.0.7"
     lodash: "npm:^4.17.21"
     lucide-react: "npm:^0.344.0"
@@ -2505,6 +2506,15 @@ __metadata:
     agent-base: "npm:^7.0.2"
     debug: "npm:4"
   checksum: 10c0/bc4f7c38da32a5fc622450b6cb49a24ff596f9bd48dcedb52d2da3fa1c1a80e100fb506bd59b326c012f21c863c69b275c23de1a01d0b84db396822fdf25e52b
+  languageName: node
+  linkType: hard
+
+"hugeicons-react@npm:^0.2.0":
+  version: 0.2.0
+  resolution: "hugeicons-react@npm:0.2.0"
+  peerDependencies:
+    react: ">=16.0.0"
+  checksum: 10c0/4ab431626b1284c4fa5d9a126ad267f3a49f88479527c464242aaeecec2d7223c83c5fb7e798dd418940cf942c2335aeb0b0698140a5200f3246b1c660fedefd
   languageName: node
   linkType: hard
 

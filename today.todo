@@ -1,4 +1,4 @@
-[ ] terminar as modificacoes sobre o component featured
+[x] terminar as modificacoes sobre o component featured
 [ ] ao clicar no card de produto, chamar o component responsavel por renderiza-lo
 [ ] utitlizar useQuery(GraphQL) para chamadas ah API
 [ ] readt-router-dom => construir as rotas
