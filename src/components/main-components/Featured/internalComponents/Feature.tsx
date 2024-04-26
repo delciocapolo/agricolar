@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { FC } from "react";
+import { minHeightFeaturedContainer } from "../DTO/minHeightFeaturedContainer";
 
 interface IFeature {
     icon: JSX.Element;
@@ -19,7 +20,7 @@ const Content = styled['div']`
     // background-color: green;
 `;
 const FeaturedContainer = styled['div']`
-    min-height: 105px;
+    min-height: ${minHeightFeaturedContainer};
     flex-wrap: nowrap;
     flex: 1 1 200px;
     justify-content: space-between;
@@ -46,7 +47,7 @@ const IconSubContainer = styled['div']`
 
 const Feature: FC<IFeature> = ({ icon, text, title, index }) => {
     return (
-        <FeaturedContainer className="d-flex" data-index={index}>
+        <FeaturedContainer className="feature d-flex" data-index={index}>
             <ContainerIcon>
                 <IconSubContainer className="icon-subcontainer d-flex">
                     {icon}

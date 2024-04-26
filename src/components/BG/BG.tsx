@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { Global, css } from "@emotion/react";
-import { useContext, useState } from "react";
-import { PaddingContext } from "../contexts/padding";
+import { useState } from "react";
 import Featured from "../main-components/Featured/Featured";
 import Box from "../main-components/TopLevelComponent/Box/Box";
 import Line from "../main-components/TopLevelComponent/Box/Line";
@@ -9,8 +8,6 @@ import Normal from "../main-components/Product5n/Normal";
 import { Container } from "../Container/Container";
 
 const BG = () => {
-    const { padding } = useContext(PaddingContext);
-    const prevPadding = String(padding).split(' ')[1];
 
     const BGContainer = styled['div']`
         width: 100%;
@@ -26,8 +23,6 @@ const BG = () => {
         background-color: var(--White);
         // background-color: red;
         position: relative;
-        padding: 0 ${prevPadding};
-        
 
         & > .big {
             top: 27%;

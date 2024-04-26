@@ -1,0 +1,1 @@
+export const minHeightFeaturedContainer = '105px';
