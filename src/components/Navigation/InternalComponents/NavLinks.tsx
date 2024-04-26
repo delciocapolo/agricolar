@@ -58,26 +58,9 @@ const NavLink = () => {
             title: 'Recursos',
             list: [
                 {
-                    title: 'Fazendas',
-                    list: [
-                        {
-                            title: 'criar fazenda online',
-                            url: 'http://localhost:5173/farm/createfarm'
-                        },
-                        {
-                            title: 'associar minha fazenda',
-                            url: 'http://localhost:5173/farm/connectionfarm'
-                        }
-                    ]
-                },
-                {
-                    title: 'Obter proteção agri-ocular',
-                    url: 'http://localhost:5173/farm/protection'
-                },
-                {
                     title: 'API',
                     url: 'http://localhost:5173/api'
-                }
+                },
             ]
         },
         {

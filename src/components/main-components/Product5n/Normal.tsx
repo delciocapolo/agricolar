@@ -1,18 +1,19 @@
-import { FC, useEffect, useState } from "react";
-import { ShoppingBag, ShoppingBasket } from "lucide-react";
+import { FC, MouseEvent, useEffect, useState } from "react";
+import { ShoppingBag03Icon } from "hugeicons-react";
 import laranja from "../../../assets/products/Rectangle 5.jpg";
-import maca from "../../../assets/products/Rectangle 5-1.jpg";
 import ImageSection from "./internalComponents/imageSection";
 import Rating from "./internalComponents/Rating";
+import maca from "../../../assets/products/Rectangle 5-1.jpg";
 
 interface INormal {
   ratingNumber?: number;
   saleValue?: number;
   price: number;
-  saleStatus?: Array<"sale" | "new" | "best sale" | "out of stock">
+  saleStatus?: Array<"sale" | "new" | "best sale" | "out of stock">;
+  event?(e?: MouseEvent<HTMLButtonElement>): any;
 }
 
-const Normal: FC<INormal> = ({ ratingNumber = 1, saleStatus = [], saleValue = undefined, price }) => {
+const Normal: FC<INormal> = ({ ratingNumber = 1, saleStatus = [], saleValue = undefined, price, event }) => {
   const sizeStar = 15;
   const size = 30;
   const [sale, setSale] = useState<number>(0);
@@ -51,9 +52,9 @@ const Normal: FC<INormal> = ({ ratingNumber = 1, saleStatus = [], saleValue = un
           <Rating ratingNumber={ratingNumber} sizeStar={sizeStar} />
         </div>
         <div className="container-add-to-cart">
-          <button type="button" className="btn-add-to-cart d-flex" title="Adicionar ao carrinho">
+          <button type="button" className="btn-add-to-cart d-flex" title="Adicionar ao carrinho" onClick={event}>
             {/* <ShoppingBasket absoluteStrokeWidth={true} size={size} className="svg-cart" /> */}
-            <ShoppingBag size={size} absoluteStrokeWidth={true} className="svg-cart" />
+            <ShoppingBag03Icon size={size} className="svg-cart" />
           </button>
         </div>
       </div>

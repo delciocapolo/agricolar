@@ -1,9 +1,9 @@
+import { FavouriteIcon, ViewIcon } from "hugeicons-react";
 import { FC } from "react";
 import Default from "../../Tag/Default";
 import New from "../../Tag/New";
 import BestSale from "../../Tag/BestSale";
 import OutOfStock from "../../Tag/OutOfStock";
-import { Eye, Heart } from "lucide-react";
 
 interface IImageSection {
     urlBaseImage: string;
@@ -33,10 +33,10 @@ const ImageSection: FC<IImageSection> = ({ urlBaseImage, saleValue, saleStatus =
                 </div>
                 <div className="container-view d-flex">
                     <button type="button" className="btn-adore d-flex" title="Adicionar a lista de desejo">
-                        <Heart style={{ color: "var(--Gray-900)" }} size={size} />
+                        <FavouriteIcon color="var(--Gray-900)" size={size} />
                     </button>
                     <button type="button" className="btn-view d-flex" title="Visualizar os detalhes do produto">
-                        <Eye style={{ color: "var(--Gray-900)" }} size={size} />
+                        <ViewIcon color="var(--Gray-900)" size={size} />
                     </button>
                 </div>
             </div>
