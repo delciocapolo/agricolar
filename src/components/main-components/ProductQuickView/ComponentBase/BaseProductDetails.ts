@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 export const BGContainer = styled(BG)`
     z-index: 3;
     background-color: rgba(51, 51, 51, 0.5);
-    transition: 0.2s ease-in-out;
+    transition: 0.3s ease-in-out;
     transform: translate(0, 100%);
     opacity: 0;
     

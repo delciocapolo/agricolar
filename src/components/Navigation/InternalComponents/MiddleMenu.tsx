@@ -4,7 +4,7 @@ import Logo from "../../../assets/Logo";
 import { Heart, Search, ShoppingBag, ShoppingBasket } from "lucide-react";
 import Line from "../../main-components/TopLevelComponent/Box/Line";
 import { PaddingContext } from "../../contexts/padding";
-import { useContext } from "react";
+import { MouseEventHandler, useContext } from "react";
 import { Container as ContainerBase } from "../../Container/Container";
 
 const MiddleMenu = () => {
@@ -100,7 +100,16 @@ const MiddleMenu = () => {
     `;
 
     const moeda = 'AO';
+    const handleClickShowShoppingCartPopup: MouseEventHandler<HTMLElement> = (event) => {
+        event.stopPropagation();
+        const shoppingcartPopup = document.querySelector('.shoppingcart-popup');
 
+        if (shoppingcartPopup) {
+            shoppingcartPopup.classList.toggle('actived');
+            console.log('clicando');
+        }
+
+    }
     return (
         <MiddleMenuContainer>
             <Container className="d-flex">
@@ -124,7 +133,7 @@ const MiddleMenu = () => {
                     <Divider />
                     <ShoppingCard className="d-flex">
                         <Cart className="d-flex">
-                            <ButtonWishList type="button" className="d-flex">
+                            <ButtonWishList type="button" className="d-flex" onClick={handleClickShowShoppingCartPopup}>
                                 <ShoppingBag03Icon size={30} color="var(--Gray-800)" />
                             </ButtonWishList>
                             <Span className="d-flex">10</Span>
