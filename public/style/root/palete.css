@@ -91,9 +91,9 @@
   --White: #ffffff;
 
   /* Primary colors */
-  --Success-Bright: #84d187;
-  --Success: #00b207;
-  --Success-Dark: #2c742f;
+  --Success-Bright: rgb(132, 209, 135);
+  --Success: rgb(0, 178, 7);
+  --Success-Dark: rgb(44, 116, 47);
   --Warning: #ff8a00;
   --Error: #ea4b48;
 

@@ -18,6 +18,7 @@ import i20 from './assets/products/Image.jpg';
 import { cacheImages } from "./components/utils/CacheImages";
 import Spinner from "./components/main-components/Spinner/Spinner";
 import SignComponent from "./components/Sign/Sign";
+import { ProductdetailsProvider } from "./components/contexts/ProductDetails";
 
 const Menu = lazy(() => import("./components/Navigation/Menu"));
 const Skeleton = lazy(() => import("./components/Body/Skeleton"));
@@ -35,13 +36,15 @@ const App = () => {
 
   return (
     <HeaderContextProvider>
-      <Suspense fallback={<Spinner loading={isLoading} />}>
-        <SignComponent />
-        <Menu />
-        <Header />
-        <Skeleton />
-        <Footer />
-      </Suspense>
+      <ProductdetailsProvider>
+        <Suspense fallback={<Spinner loading={isLoading} />}>
+          <SignComponent />
+          <Menu />
+          <Header />
+          <Skeleton />
+          <Footer />
+        </Suspense>
+      </ProductdetailsProvider>
     </HeaderContextProvider>
   );
 };

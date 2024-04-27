@@ -3,7 +3,6 @@ import { ShoppingBag03Icon } from "hugeicons-react";
 import laranja from "../../../assets/products/Rectangle 5.jpg";
 import ImageSection from "./internalComponents/imageSection";
 import Rating from "./internalComponents/Rating";
-import maca from "../../../assets/products/Rectangle 5-1.jpg";
 
 interface INormal {
   ratingNumber?: number;

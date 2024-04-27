@@ -4,6 +4,14 @@ import styled from "@emotion/styled";
 export const BGContainer = styled(BG)`
     z-index: 3;
     background-color: rgba(51, 51, 51, 0.5);
+    transition: 0.2s ease-in-out;
+    transform: translate(0, 100%);
+    opacity: 0;
+    
+    &.actived {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
 `;
 export const ProductDetailsContainer = styled['div']`
     width: 65%;
@@ -68,37 +76,49 @@ export const ImageProductDetailsContainer = styled['div']`
     width: calc(100% - 80px);
     height: 100%;
     background-color: var(--White);
+    position: relative;
+    overflow: hidden;
+
+    &.empty {
+        width: 100%
+    }
 `;
 export const ImageProductDetails = styled['img']`
     width: 100%;
     height: 100%;
     object-fit: contain;
+
+    transition: transform 0.2s ease-in-out; /* Transição suave para a ampliação */
+    &.zoomed {
+        transform: scale(1.5); /* Ampliação de 1.5x (150%) */
+    }
 `;
 
 // 
 
 export const ContainerDetails = styled['div']`
-
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
 `;
 
 // For 0 Stage
-export const Frame224 = styled['div']`
-    
-`;
-
 export const Frame219 = styled['div']`
     height: fit-content;
-    background-color: orange;
+    & > div {
+        margin: 0 0 7px 0;
+    }
 `;
 export const O_TitleStockContainer = styled['div']`
-    gap: 0;
+    gap: 8px;
     justify-content: space-between;
     flex-wrap: nowrap;
     height: 40px;
-    background-color: red;
 `;
 export const O_TitleStock = styled['h1']`
     font: var(--Heading05-600);
+    line-height: 1.2;
 `;
 
 export const StockTag = styled['span']`
@@ -110,8 +130,8 @@ export const StockTag = styled['span']`
 `;
 
 export const O_Frame220 = styled['div']`
-    justify-content: space-between;
-    height: calc(100% - 40px);
+    justify-content: flex-start;
+    height: fit-content;
 `;
 export const O_RatingAndSku = styled['div']``;
 export const O_Span220 = styled['span']`
@@ -156,4 +176,77 @@ export const SpanSale = styled['span']`
     background-color: rgba(234, 75, 72, 0.1);
     padding: 3px 10px;
     border-radius: 50px;
+`;
+
+export const Frame223 = styled['div']`
+    flex-direction: column;
+    gap: 0;
+
+    & > div {
+        flex: 1 1 50px;
+    }
+`;
+
+export const Frame222 = styled['div']`
+    width: 100%;
+    height: 50px;
+    justify-content: space-between;
+`;
+
+export const Frame221 = styled['div']``;
+export const TextIn_Fram221 = styled['h1']`
+    font: var(--Body-Small-400);
+    color: var(--Gray-900);
+`;
+export const Brand_Frame221 = styled['img']`
+    width: 35px;
+    height: 35px;
+    box-shadow: var(--box-shadow-outline);
+    object-fit: contain;
+`;
+export const ShareContainer = styled['div']``;
+export const Share = styled['ul']`
+    gap: 2px;
+`;
+export const ItemShare = styled['li']``;
+export const LinkShare = styled['a']`
+padding: 0.6rem;
+border-radius: 50px;
+
+    &:hover {
+        background-color: var(--Success);
+
+        & > .svg-icon {
+            fill: var(--White);
+        }
+        & > .svg-icon-stroke {
+            color: var(--White) !important;
+        }
+    }
+`;
+export const Frame224 = styled['div']``;
+
+export const TextFrame224 = styled['p']`
+    font: var(--Body-Tiny-400);
+    text-align: justify;
+    color: var(--Gray-500);
+    padding: 0 0.75rem 0 0;
+`;
+
+export const SmallDetails = styled['div']`
+    width: 100%;
+    gap: 7px;
+
+    flex-direction: column;
+    align-items: flex-start;
+`;
+export const Category = styled['div']``;
+export const BaseTextcategory = styled['span']`
+    font: var(--Body-Small-400);
+    color: var(--Gray-500);
+`;
+export const BoldCategoryText = styled['span']`
+    font: var(--Body-Small-500);
+    color: var(--Gray-900);
+    font-weight: 600;
 `;

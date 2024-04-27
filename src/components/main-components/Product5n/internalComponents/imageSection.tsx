@@ -4,6 +4,7 @@ import Default from "../../Tag/Default";
 import New from "../../Tag/New";
 import BestSale from "../../Tag/BestSale";
 import OutOfStock from "../../Tag/OutOfStock";
+import { ProductdetalisContext, useProductdetails } from "../../../contexts/ProductDetails";
 
 interface IImageSection {
     urlBaseImage: string;
@@ -14,6 +15,11 @@ interface IImageSection {
 
 const ImageSection: FC<IImageSection> = ({ urlBaseImage, saleValue, saleStatus = [], size }) => {
     const saleStatusExists = saleStatus.includes("sale");
+    const { setDetails } = useProductdetails();
+
+    const handleClickShowDetailsProduct = () => {
+        setDetails((prev) => ({ ...prev, actived: true }));
+    }
 
     if (saleStatus.length > 2) {
         throw new Error('Seleccione apenas 2 ou menos tags!');
@@ -35,7 +41,7 @@ const ImageSection: FC<IImageSection> = ({ urlBaseImage, saleValue, saleStatus =
                     <button type="button" className="btn-adore d-flex" title="Adicionar a lista de desejo">
                         <FavouriteIcon color="var(--Gray-900)" size={size} />
                     </button>
-                    <button type="button" className="btn-view d-flex" title="Visualizar os detalhes do produto">
+                    <button type="button" className="btn-view d-flex" title="Visualizar os detalhes do produto" onClick={handleClickShowDetailsProduct}>
                         <ViewIcon color="var(--Gray-900)" size={size} />
                     </button>
                 </div>
