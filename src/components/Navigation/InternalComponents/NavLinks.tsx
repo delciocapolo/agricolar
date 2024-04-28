@@ -4,6 +4,7 @@ import { MenuCustom } from "../../main-components/MenuToggle/MenuCustom";
 import { IITemMenuCustom } from "../../main-components/MenuToggle/interfaces/interfaces";
 import { Container as ContainerBase } from "../../Container/Container";
 import { useHeaderContext } from "../../contexts/HeaderContext";
+import { Link } from "react-router-dom";
 
 const NavLink = () => {
     const Container = styled(ContainerBase)`
@@ -22,7 +23,7 @@ const NavLink = () => {
     background-color: var(--Gray-50);
     // border-radius: var(--border-radius);
   `;
-    const LinkCallPhone = styled['a']`
+    const LinkCallPhone = styled(Link)`
     font: var(--Body-Small-500);
     color: var(--Gray-900);
     line-height: 2;
@@ -48,18 +49,18 @@ const NavLink = () => {
     const IListItemMenuCustom: IITemMenuCustom[] = [
         {
             title: 'Home',
-            url: 'http://localhost:5173/'
+            url: '/'
         },
         {
             title: 'Fazendas',
-            url: 'http://localhost:5173/farms'
+            url: '/farms'
         },
         {
             title: 'Recursos',
             list: [
                 {
                     title: 'API',
-                    url: 'http://localhost:5173/api'
+                    url: '/api'
                 },
             ]
         },
@@ -68,11 +69,11 @@ const NavLink = () => {
             list: [
                 {
                     title: 'Sobre nós',
-                    url: 'http://localhost:5173/aboutus'
+                    url: '/aboutus'
                 },
                 {
                     title: 'Entrar em contacto',
-                    url: 'http://localhost:5173/#'
+                    url: '/contact'
                 }
             ]
         }
@@ -97,7 +98,7 @@ const NavLink = () => {
                 </div>
                 <div className="d-flex">
                     <Phone size={20} style={{ color: 'var(--Gray-900)' }} />
-                    <LinkCallPhone href="tel:+244993895962" className="d-flex">+244 (993) 895 962</LinkCallPhone>
+                    <LinkCallPhone to="tel:+244993895962" className="d-flex">+244 (993) 895 962</LinkCallPhone>
                 </div>
             </Container>
         </CallNow>

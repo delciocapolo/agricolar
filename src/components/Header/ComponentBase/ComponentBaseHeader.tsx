@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Container as ContainerBase } from "../../Container/Container";
+import { Link } from "react-router-dom";
 
 
 export const ContainerCategoryAndImage = styled(ContainerBase)`
@@ -134,7 +135,7 @@ export const ItemButtonCategory = styled['li']`
     display: initial;
     margin-bottom: 0;
 `;
-export const LinkButtonCategory = styled['a']`
+export const LinkButtonCategory = styled(Link)`
     justify-content: flex-start;
     padding: 0;
     

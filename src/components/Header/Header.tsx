@@ -48,6 +48,7 @@ const Header = () => {
     };
 
     const { actived } = useHeaderContext();
+    const baseUrl = '/products';
 
     return (
         <HeaderContainer className="d-flex">
@@ -56,48 +57,48 @@ const Header = () => {
             <ContainerCategoryAndImage className={`d-flex ${actived === true && 'actived'}`}>
                 <ContainerMenuButtonCategory className="container-menu-button-category">
                     <ItemButtonCategory>
-                        <LinkButtonCategory className="d-flex" href="#">
+                        <LinkButtonCategory className="d-flex" to={`${baseUrl}/fruta`}>
                             <Apple className="icon-buttoncategory-svg" />
                             <span>frutas</span>
                         </LinkButtonCategory>
                     </ItemButtonCategory>
                     <ItemButtonCategory>
-                        <LinkButtonCategory className="d-flex" href="#">
+                        <LinkButtonCategory className="d-flex" to={`${baseUrl}/vegetal`}>
                             <Salad className="icon-buttoncategory-svg" />
                             <span>vegetais</span>
                         </LinkButtonCategory>
                     </ItemButtonCategory>
 
                     <ItemButtonCategory>
-                        <LinkButtonCategory className="d-flex" href="#">
+                        <LinkButtonCategory className="d-flex" to={`${baseUrl}/peixe`}>
                             <Fish className="icon-buttoncategory-svg" />
                             <span>frutos do mar</span>
                         </LinkButtonCategory>
                     </ItemButtonCategory>
 
                     <ItemButtonCategory>
-                        <LinkButtonCategory className="d-flex" href="#">
+                        <LinkButtonCategory className="d-flex" to={`${baseUrl}/carne`}>
                             <Drumstick className="icon-buttoncategory-svg" />
                             <span>carne</span>
                         </LinkButtonCategory>
                     </ItemButtonCategory>
 
                     <ItemButtonCategory>
-                        <LinkButtonCategory className="d-flex" href="#">
+                        <LinkButtonCategory className="d-flex" to={`${baseUrl}/bebida`}>
                             <Coffee className="icon-buttoncategory-svg" />
                             <span>drinks e bebidas</span>
                         </LinkButtonCategory>
                     </ItemButtonCategory>
 
                     <ItemButtonCategory>
-                        <LinkButtonCategory className="d-flex" href="#">
+                        <LinkButtonCategory className="d-flex" to={`${baseUrl}/comida`}>
                             <CookingPot className="icon-buttoncategory-svg" />
                             <span>cozinha</span>
                         </LinkButtonCategory>
                     </ItemButtonCategory>
 
                     <ItemButtonCategory>
-                        <LinkButtonCategory className="d-flex" href="#">
+                        <LinkButtonCategory className="d-flex" to={`${baseUrl}:todas`}>
                             <Plus className="icon-buttoncategory-svg" />
                             <span>todas categorias</span>
                         </LinkButtonCategory>

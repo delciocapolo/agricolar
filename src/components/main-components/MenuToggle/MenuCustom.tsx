@@ -3,6 +3,7 @@ import { FC } from "react";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { v4 as uuid } from "uuid";
 import { IMenuCustom } from "./interfaces/interfaces";
+import { Link } from "react-router-dom";
 
 export const MenuCustom: FC<IMenuCustom> = ({ items, className }) => {
     const MenuBar = styled['div']`
@@ -40,7 +41,7 @@ export const MenuCustom: FC<IMenuCustom> = ({ items, className }) => {
             padding: 0.1rem;
         }
     `;
-    const LinkItem = styled['a']`
+    const LinkItem = styled(Link)`
         font: var(--Body-Medium-400);
     `;
     const DropdownMenu = styled['div']`
@@ -89,14 +90,14 @@ export const MenuCustom: FC<IMenuCustom> = ({ items, className }) => {
             padding: 0 0.5rem;
         }
     `;
-    const iconConfigs = {
-        size: 20
-    };
     const SpanFlex = styled['span']`
         justify-content: space-between;
         color: var(--Gray-900);
         // font: var(--Body-Medium-400);
     `;
+    const iconConfigs = {
+        size: 20
+    };
 
     return (
         <MenuBar className={`d-flex ${className}`}>
@@ -104,7 +105,7 @@ export const MenuCustom: FC<IMenuCustom> = ({ items, className }) => {
                 {
                     items.map((item) => (
                         <Item className="item-menu" key={uuid()}>
-                            <LinkItem href={item.url}>
+                            <LinkItem to={item.url as string}>
                                 {
                                     item.list ? (
                                         <SpanFlex className="d-flex">
@@ -126,17 +127,19 @@ export const MenuCustom: FC<IMenuCustom> = ({ items, className }) => {
                                                     dropdown.list !== undefined ?
                                                         (
                                                             <li key={uuid()}>
-                                                                <a href={dropdown.url}>
+                                                                <LinkItem to={dropdown.url as string}>
                                                                     <SpanFlex className="d-flex">
                                                                         {dropdown.title}
                                                                         <ChevronRight {...iconConfigs} />
                                                                     </SpanFlex>
-                                                                </a>
+                                                                </LinkItem>
                                                                 <DropdownSubMenu className="dropdown-submenu">
                                                                     <ul>
                                                                         {
                                                                             dropdown.list.map((dropdown_submenu) => (
-                                                                                <li key={uuid()}><a href={dropdown_submenu.url}>{dropdown_submenu.title}</a></li>
+                                                                                <li key={uuid()}>
+                                                                                    <LinkItem to={dropdown_submenu.url as string}>{dropdown_submenu.title}</LinkItem>
+                                                                                </li>
                                                                             ))
                                                                         }
                                                                     </ul>
@@ -144,7 +147,9 @@ export const MenuCustom: FC<IMenuCustom> = ({ items, className }) => {
                                                             </li>
                                                         ) :
                                                         (
-                                                            <li key={uuid()}><a href={dropdown.url}>{dropdown.title}</a></li>
+                                                            <li key={uuid()}>
+                                                                <LinkItem to={dropdown.url as string}>{dropdown.title}</LinkItem>
+                                                            </li>
                                                         )
                                                 ))
                                             }

@@ -1,10 +1,20 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import '../public/style/main.css'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import '../public/style/main.css';
+import {
+  createBrowserRouter,
+  RouterProvider
+} from 'react-router-dom';
+import HomeRoute from './routes/Home.tsx';
+import ProductsByCategory from './routes/ProductByCategory.tsx';
+
+const controllers = createBrowserRouter([
+  HomeRoute,
+  ProductsByCategory
+]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={controllers} />
   </React.StrictMode>,
-)
+);

@@ -6,6 +6,7 @@ import Box from "../main-components/TopLevelComponent/Box/Box";
 import Line from "../main-components/TopLevelComponent/Box/Line";
 import Normal from "../main-components/Product5n/Normal";
 import { Container } from "../Container/Container";
+import { Link } from "react-router-dom";
 
 const BG = () => {
 
@@ -62,7 +63,7 @@ const BG = () => {
         }
     `;
     const ButtonMenuCategory = styled['button']``;
-    const LinkMenuCategory = styled['a']``;
+    const LinkMenuCategory = styled(Link)``;
     const Divider = styled(Line)`
         width: 1px;
         height: 15px;
@@ -178,7 +179,7 @@ const BG = () => {
                             <div></div>
                         </ButtonMenuCategory>
                         <Divider />
-                        <LinkMenuCategory href="/product/all" className="btn-menu-category d-flex">
+                        <LinkMenuCategory to="/products" className="btn-menu-category d-flex">
                             <NameCategory>ver todos</NameCategory>
                             <div></div>
                         </LinkMenuCategory>

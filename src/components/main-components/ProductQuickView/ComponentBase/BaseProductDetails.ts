@@ -23,6 +23,18 @@ export const ProductDetailsContainer = styled['div']`
     & > div {
         flex: 1 1 200px;
     }
+
+    @media screen and (max-width: 1190px) {
+        & {
+            height: fit-content;
+        }
+        & > div:first-of-type {
+            display: none;
+        }
+        & > div:nth-of-type(2) {
+            padding: 0.8rem;
+        }
+    }
 `;
 
 export const ProductDetailsImageContainer = styled['div']`

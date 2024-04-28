@@ -1,7 +1,7 @@
 [x] terminar as modificacoes sobre o component featured
-[ ] ao clicar no card de produto, chamar o component responsavel por renderiza-lo
+[x] ao clicar no card de produto, chamar o component responsavel por renderiza-lo
+[ ] react-router-dom => construir as rotas
 [ ] utitlizar useQuery(GraphQL) para chamadas ah API
-[ ] readt-router-dom => construir as rotas
 
 Menu -
     Fazendeiro: 
@@ -15,11 +15,10 @@ Menu -
                 [ ] Sobre nos
                 [ ] Entrar em contacto
     Consumidor:
-        [ ] Home
-        [ ] Fazendas
+        [x] Home
+        [x] Fazendas
         Recursos -
-            [ ] API
-            [ ] Ranking
+            [x] API
         Ajuda -
-            [ ] Sobre nos
-            [ ] Entrar em contacto
+            [x] Sobre nos
+            [x] Entrar em contacto
