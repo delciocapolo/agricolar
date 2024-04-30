@@ -1,7 +1,7 @@
 import type { RouteObject } from 'react-router-dom';
 import ErrorPage from '../components/ErrorPage/error-page';
 import Category from '../components/Categories/Category';
-import { loader as CategoryLoader } from '../components/Categories/Category';
+import { loader as CategoryLoader } from '../components/Categories/InternalComponents/BaseCategory';
 
 const ProductsByCategory: RouteObject = {
     path: "/products/:category",

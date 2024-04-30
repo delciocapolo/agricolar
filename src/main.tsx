@@ -15,6 +15,6 @@ const controllers = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={controllers} />
+    <RouterProvider router={controllers} fallbackElement={<h1>Carregando</h1>} />
   </React.StrictMode>,
 );

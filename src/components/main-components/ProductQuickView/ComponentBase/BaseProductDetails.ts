@@ -102,7 +102,7 @@ export const ImageProductDetails = styled['img']`
 
     transition: transform 0.2s ease-in-out; /* Transição suave para a ampliação */
     &.zoomed {
-        transform: scale(1.5); /* Ampliação de 1.5x (150%) */
+        transform: scale(2); /* Ampliação de 1.5x (150%) */
     }
 `;
 

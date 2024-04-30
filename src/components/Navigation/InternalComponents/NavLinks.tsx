@@ -5,8 +5,13 @@ import { IITemMenuCustom } from "../../main-components/MenuToggle/interfaces/int
 import { Container as ContainerBase } from "../../Container/Container";
 import { useHeaderContext } from "../../contexts/HeaderContext";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Divider } from "@mui/material";
 
 const NavLink = () => {
+    const { setActived, actived } = useHeaderContext();
+    const [pathname, setPathname] = useState<string>("/");
+
     const Container = styled(ContainerBase)`
     min-height: 0;
     padding: 0;
@@ -20,8 +25,8 @@ const NavLink = () => {
   `;
     const CallNow = styled['div']`
     width: 100%;
-    background-color: var(--Gray-50);
-    // border-radius: var(--border-radius);
+    ${pathname !== '/' && ('padding: 0.65rem 0;')}
+    background-color: ${pathname === '/' ? 'var(--Gray-50)' : 'var(--Whiite'};
   `;
     const LinkCallPhone = styled(Link)`
     font: var(--Body-Small-500);
@@ -79,7 +84,9 @@ const NavLink = () => {
         }
     ];
 
-    const { setActived, actived } = useHeaderContext();
+    useEffect(() => {
+        setPathname(window.location.pathname);
+    }, [window.location.pathname])
 
     const handleClick = () => {
         setActived(prev => !prev);
@@ -87,13 +94,22 @@ const NavLink = () => {
 
     return (
         <CallNow className="d-flex">
+            {
+                pathname !== '/' && (
+                    <Divider color="var(--Gray-600)" sx={{ width: '100%' }} />
+                )
+            }
             <Container className="d-flex">
                 <div className="d-flex">
-                    <ButtonCategory type="button" className="btn-category d-grid" onClick={handleClick}>
-                        <Menu />
-                        <span>Categorias</span>
-                        <ChevronDown />
-                    </ButtonCategory>
+                    {
+                        pathname === '/' && (
+                            <ButtonCategory type="button" className="btn-category d-grid" onClick={handleClick}>
+                                <Menu />
+                                <span>Categorias</span>
+                                <ChevronDown />
+                            </ButtonCategory>
+                        )
+                    }
                     <MenuCustom items={IListItemMenuCustom} className="menu-custom-navlinks" />
                 </div>
                 <div className="d-flex">

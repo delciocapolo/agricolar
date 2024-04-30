@@ -10,7 +10,7 @@ interface IVideo {
 const VideoContainer = styled['video']`
     width: 100%;
     height: 100%;
-    border-radius: 20px;
+    border-radius: 17px;
 `;
 
 const Video: FC<IVideo> = ({ forwarededRef }) => {

@@ -98,7 +98,7 @@ const Header = () => {
                     </ItemButtonCategory>
 
                     <ItemButtonCategory>
-                        <LinkButtonCategory className="d-flex" to={`${baseUrl}:todas`}>
+                        <LinkButtonCategory className="d-flex" to={`${baseUrl}/todas`}>
                             <Plus className="icon-buttoncategory-svg" />
                             <span>todas categorias</span>
                         </LinkButtonCategory>

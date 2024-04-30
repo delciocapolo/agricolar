@@ -5,7 +5,7 @@ import ErrorPage from '../components/ErrorPage/error-page';
 const HomeRoute: RouteObject = {
     path: "/",
     element: <App />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
 };
 
 export default HomeRoute;

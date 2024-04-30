@@ -24,14 +24,12 @@ const Testimonies = () => {
         }
     `;
     const Container = styled(ContainerBase)`
-        // background-color: yellow;
         margin: auto;
         padding: 0;
     `;
     const ContainerRelative = styled(ContainerBase)`
         position: relative;
         margin: auto;
-        // background-color: purple;
         padding: 0;
         min-height: 379px !important;
     `;
@@ -39,7 +37,6 @@ const Testimonies = () => {
         width: 100%;
         min-height: 681px;
         position: absolute;
-        // background-color: green;
 
         top: 25%;
     `;
@@ -47,14 +44,12 @@ const Testimonies = () => {
     const Title = styled['h1']`
         font: var(--Heading05-600);
         color: var(--Green-900);
-        // background-color: red;
         text-align: center;
         padding: 1.7rem 0;
     `;
     const CommentContainer = styled['div']`
         width: 100%;
         pading: 0;
-        // background-color: brown;
         
         & > div {
             flex: 1 1 303px;

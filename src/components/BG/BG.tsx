@@ -179,7 +179,7 @@ const BG = () => {
                             <div></div>
                         </ButtonMenuCategory>
                         <Divider />
-                        <LinkMenuCategory to="/products" className="btn-menu-category d-flex">
+                        <LinkMenuCategory to="/products/todas" className="btn-menu-category d-flex">
                             <NameCategory>ver todos</NameCategory>
                             <div></div>
                         </LinkMenuCategory>
