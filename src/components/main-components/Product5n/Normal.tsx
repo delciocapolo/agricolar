@@ -14,7 +14,7 @@ interface INormal {
 
 const Normal: FC<INormal> = ({ ratingNumber = 1, saleStatus = [], saleValue = undefined, price, event }) => {
   const sizeStar = 15;
-  const size = 30;
+  const size = 25;
   const [sale, setSale] = useState<number>(0);
   const saleStatusExists = saleStatus.includes("sale");
 
