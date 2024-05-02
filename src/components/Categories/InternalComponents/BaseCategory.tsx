@@ -6,7 +6,7 @@ import { FC, MouseEventHandler } from "react";
 import Rating from "../../main-components/Product5n/internalComponents/Rating";
 
 export async function loader({ params }: ILoader) {
-    // objecto para pegar os produto da categoria correspondente;
+    // funcao para pegar, do banco de dados,os produto da categoria correspondente;
     return { params };
 }
 

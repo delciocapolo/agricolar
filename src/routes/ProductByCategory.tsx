@@ -4,7 +4,7 @@ import Category from '../components/Categories/Category';
 import { loader as CategoryLoader } from '../components/Categories/InternalComponents/BaseCategory';
 
 const ProductsByCategory: RouteObject = {
-    path: "/products/:category",
+    path: "/produtos/:category",
     element: <Category />,
     loader: CategoryLoader,
     errorElement: <ErrorPage />

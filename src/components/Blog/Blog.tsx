@@ -34,11 +34,13 @@ const Blog = () => {
         min-height: 360px;
     `;
     const Title = styled['h1']`
-        font: var(--Display03-600);
-        font-size: 2rem;
-        text-align: center;
-        line-height: 1.2;
+        font: var(--Heading05-600);
+        text-align: left;
         color: var(--Green-900);
+        
+        // font: var(--Display03-600);
+        // font-size: 2rem;
+        // line-height: 1.2;
         // padding: 1.5rem 0
     `;
     const BlogCardContainer = styled['div']`
@@ -46,7 +48,6 @@ const Blog = () => {
         gap: 23px;
         position: absolute;
         top: 80px;
-        // background-color: brown;
 
         & > div {
             flex: 1 1 200px;

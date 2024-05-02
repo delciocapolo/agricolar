@@ -44,7 +44,7 @@ const Testimonies = () => {
     const Title = styled['h1']`
         font: var(--Heading05-600);
         color: var(--Green-900);
-        text-align: center;
+        text-align: left;
         padding: 1.7rem 0;
     `;
     const CommentContainer = styled['div']`
@@ -87,7 +87,7 @@ const Testimonies = () => {
                     <VideoDescribeContainer className="d-flex" ref={videoDescribeContainerRef}>
                         <VideoDescribeSubContainer>
                             <SubTitleVideoDescribe>video</SubTitleVideoDescribe>
-                            <TitleVideoDescribe>somos a melhor fazenda orgânica no mundo</TitleVideoDescribe>
+                            <TitleVideoDescribe>somos a melhor fazenda orgânica em angola</TitleVideoDescribe>
                         </VideoDescribeSubContainer>
                         <ButtonPlayPause type="button" className="d-flex" onClick={handleClickPlayVideo}>
                             <Play className="icon-play-svg" />

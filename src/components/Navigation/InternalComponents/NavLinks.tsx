@@ -58,7 +58,7 @@ const NavLink = () => {
         },
         {
             title: 'Fazendas',
-            url: '/farms'
+            url: '/fazendas'
         },
         {
             title: 'Recursos',

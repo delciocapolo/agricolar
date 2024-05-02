@@ -8,7 +8,6 @@ import {
     CategoryContainer,
     Container0,
     ContainerAllCategories,
-    ContainerCategory,
     ContainerProducts,
     FilterContainer,
     FormControl,
@@ -39,7 +38,6 @@ import {
     Select,
     SelectChangeEvent,
     Checkbox,
-    Box,
     Stack
 } from "@mui/material";
 import { useState } from "react";

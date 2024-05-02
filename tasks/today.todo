@@ -1,6 +1,6 @@
 [x] terminar as modificacoes sobre o component featured
 [x] ao clicar no card de produto, chamar o component responsavel por renderiza-lo
-[ ] react-router-dom => construir as rotas
+[x] react-router-dom => construir as rotas
 [ ] utitlizar useQuery(GraphQL) para chamadas ah API
 
 Menu -

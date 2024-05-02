@@ -48,7 +48,7 @@ const Header = () => {
     };
 
     const { actived } = useHeaderContext();
-    const baseUrl = '/products';
+    const baseUrl = '/produtos';
 
     return (
         <HeaderContainer className="d-flex">
@@ -98,7 +98,7 @@ const Header = () => {
                     </ItemButtonCategory>
 
                     <ItemButtonCategory>
-                        <LinkButtonCategory className="d-flex" to={`${baseUrl}/todas`}>
+                        <LinkButtonCategory className="d-flex" to={`${baseUrl}/todos`}>
                             <Plus className="icon-buttoncategory-svg" />
                             <span>todas categorias</span>
                         </LinkButtonCategory>

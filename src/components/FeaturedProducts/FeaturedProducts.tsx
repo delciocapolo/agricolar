@@ -5,17 +5,16 @@ import Normal from "../main-components/Product5n/Normal";
 const FeaturedProductsContainer = styled['div']`
     width: 100%;
     padding: 3rem 0;
-    // background-color: red;
 `;
 const Container = styled(ContainerBase)`
     margin: auto;
     min-height: 0;
 `;
 const Title = styled['h1']`
-    font: var(--Display03-600);
+    // font: var(--Display03-600);
+    font: var(--Heading05-600);
     color: var(--Green-900);
-    text-align: center;
-    // background-color: brown;
+    text-align: left;
 `;
 const Products = styled['div']`
     width: 100%;
