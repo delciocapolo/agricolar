@@ -46,6 +46,7 @@ import { useState } from "react";
 import Normal from "../main-components/Product5n/Normal";
 import TitleContainerCategory from "./InternalComponents/TitleContainerCategory";
 import SliderPriceComponent from "./InternalComponents/SliderPriceComponent";
+import ProductDetails from "../main-components/ProductQuickView/ProductDetails";
 
 export default function Category() {
     const [sort, setSort] = useState('');
@@ -117,6 +118,10 @@ export default function Category() {
         <ContextComponent>
             <CategoryContainer>
                 <Menu />
+
+                {/* Product Details */}
+                <ProductDetails />
+                {/*  */}
 
                 <ProductContainer>
                     <TopContainer className="d-flex">
