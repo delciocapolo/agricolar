@@ -36,7 +36,7 @@ const FeaturedProducts = () => {
     return (
         <FeaturedProductsContainer>
             <Container>
-                <Title>produtos em destaque</Title>
+                <Title className="txt_prod_dest">produtos em destaque</Title>
                 <Products className="d-flex">
                     <Normal price={12} ratingNumber={3} saleStatus={['sale']} saleValue={50} />
                     <Normal price={12} ratingNumber={3} />

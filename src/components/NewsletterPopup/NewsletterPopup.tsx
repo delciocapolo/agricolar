@@ -1,7 +1,9 @@
 import { Global, css } from "@emotion/react";
 import imagePopup from "../../assets/newsletterpopup/newsletterpopup.jpg";
 import { X } from "lucide-react";
-import { useRef, useLayoutEffect, ChangeEvent } from "react";
+import { useRef, useEffect, ChangeEvent } from "react";
+import ms from "ms";
+
 
 import {
     NewsletterPopupContainer,
@@ -20,34 +22,46 @@ import {
 const NewsletterPopup = () => {
     const NewsletterPopupContainerRef = useRef<HTMLDivElement>({} as HTMLDivElement);
 
+    // cookies
+    const cookies = document.cookie.split('; ');
+    const data = cookies.find((cookie) => cookie.startsWith('newsletterpopup'));
+
     const handleCLickButtonDontShowAgain = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.checked) {
             const dateExpires = new Date();
-            dateExpires.setTime(dateExpires.getTime() + (60 * 60 * 24 * 365));
+            dateExpires.setTime(dateExpires.getTime() + (ms('5d')));
             document.cookie = `newsletterpopup: false; Secure; path=/; SameSite=lax; expires=${dateExpires.toUTCString()}`;
         }
     }
 
-    const handleClickButtonCloseNewsletterPopup = (e: any) => {
-        e.stopPropagation();
+    const handleClickButtonCloseNewsletterPopup = (e?: any) => {
+        if (e) {
+            e.stopPropagation();
+        }
+
         if (NewsletterPopupContainerRef.current) {
-            NewsletterPopupContainerRef.current.classList.add('d-none');
+            NewsletterPopupContainerRef.current.classList.replace('d-flex', 'd-none');
         }
     };
 
-    useLayoutEffect(() => {
-        const cookies = document.cookie.split('; ');
-        const data = cookies.find((cookie) => cookie.startsWith('newsletterpopup'));
-
+    useEffect(() => {
         if (data) {
             if (NewsletterPopupContainerRef.current) {
-                NewsletterPopupContainerRef.current.classList.add('d-none');
+                handleClickButtonCloseNewsletterPopup();
             }
+        }
+
+        if (!data) {
+            setTimeout(() => {
+                if (NewsletterPopupContainerRef) {
+                    NewsletterPopupContainerRef.current.classList.replace('d-none', 'd-flex');
+                }
+            }, ms('9s'));
         }
     }, []);
 
     return (
-        <NewsletterPopupContainer className="d-flex" ref={NewsletterPopupContainerRef} onClick={handleClickButtonCloseNewsletterPopup}>
+        <NewsletterPopupContainer className="d-none" ref={NewsletterPopupContainerRef} onClick={handleClickButtonCloseNewsletterPopup}>
             <Global styles={css`
                 .email-newsletter-component {
                     padding: 1.5rem 0;
