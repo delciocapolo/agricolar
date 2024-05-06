@@ -56,7 +56,7 @@ const NewsletterPopup = () => {
                 if (NewsletterPopupContainerRef) {
                     NewsletterPopupContainerRef.current.classList.replace('d-none', 'd-flex');
                 }
-            }, ms('9s'));
+            }, ms('12s'));
         }
     }, []);
 

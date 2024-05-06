@@ -5,6 +5,7 @@ import { MapPin } from "lucide-react";
 import Line from "../../main-components/TopLevelComponent/Box/Line";
 import { SelectCustom } from "../../main-components/MenuToggle/SelectCustom";
 import { Container as ContainerBase } from "../../Container/Container";
+import { Link } from "react-router-dom";
 
 const SmallOne = () => {
     const Container = styled(ContainerBase)`
@@ -49,24 +50,16 @@ const SmallOne = () => {
         padding: 0
     });
 
-    const ButtonSignUpIn = styled['button']`
+    const ButtonSignUpIn = styled(Link)`
         text-align: right;
         text-transform: capitalize;
         font: var(--Body-Tiny-400);
-        color: var(--Gray-600);
+        color: var(--White);
         height: fit-content;
         padding: 0.4rem 0 0.4rem 0.7rem;
         background-color: transparent;
     `;
 
-    const handleButtonSignUpIn = () => {
-        const SignContainer = document.getElementById('sign-container');
-        if (SignContainer) {
-            if (SignContainer.classList.contains('d-none')) {
-                SignContainer.classList.remove('d-none');
-            }
-        }
-    }
     return (
         <SmallOneContainer>
             <Container className="d-flex">
@@ -78,7 +71,7 @@ const SmallOne = () => {
                     <SelectCustom title="Idioma" items={[{ text: 'PT', url: 'http://localhost:5173/pt' }, { text: 'EN', url: 'http://localhost:5173/en' }]} />
                     <SelectCustom title="Moeda" items={[{ text: 'USD' }, { text: 'AO' }]} />
                     <LineContainer />
-                    <ButtonSignUpIn onClick={handleButtonSignUpIn}>criar conta | entrar</ButtonSignUpIn>
+                    <ButtonSignUpIn to="/login">Entrar</ButtonSignUpIn>
                 </LinksContainer>
             </Container>
         </SmallOneContainer>
