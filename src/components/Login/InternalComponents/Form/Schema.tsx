@@ -9,7 +9,7 @@ import SignDefaultComponent from "./UserTypeSchemaComponent/default";
 import { SignType } from "./@types/signType";
 import { v4 as uuid } from "uuid";
 
-import { gql, useQuery } from "@apollo/client";
+import { gql, useLazyQuery } from "@apollo/client";
 
 // import Divider from '@mui/material/Divider';
 // import Chip from '@mui/material/Chip';
@@ -20,22 +20,25 @@ import { Facebook02Icon, GoogleIcon } from "hugeicons-react";
 import { Alert } from "@mui/material";
 import ms from "ms";
 import { ValidateEmail } from "./helpers/emailValidate";
+import NIFValidate from "./helpers/nifValidate";
 
 const SchemaLoginComponent = () => {
-    const [usertype, setUserType] = useState<UserType>("default");
-    const [sign, setSign] = useState<SignType>("default");
-    const [arrError, setArrError] = useState<string[]>([]);
-    const [submitted, setSubmitted] = useState<string>("");
-
+    // Template String Query
     const GET_USER = gql`
-        query USER {
-            user(email: "${submitted}") {
+        query USER($usermail: String) {
+            user(email: $usermail) {
                 field
                 status
             }
         }
     `;
-    const { loading, error, data } = useQuery(GET_USER);
+
+    const [usertype, setUserType] = useState<UserType>("default");
+    const [sign, setSign] = useState<SignType>("default");
+    const [arrError, setArrError] = useState<string[]>([]);
+    const [getUser, { loading, error, data }] = useLazyQuery(GET_USER);
+    const [isLogging, setIsLogging] = useState<boolean>(true);
+
 
     const UsertTypeSchema: FC<{ sign: SignType }> = ({ sign }) => {
         switch (sign) {
@@ -75,7 +78,46 @@ const SchemaLoginComponent = () => {
                     setArrError(arr => ([...arr, sanitizacao.message]));
                     break;
                 }
-                setSubmitted(value as string);
+            }
+
+            if (isLogging) {
+                const _ = getUser({
+                    variables: {
+                        usermail: value
+                    }
+                });
+
+                if (data) {
+                    const { user: { field, status } } = data as {
+                        user: {
+                            field: UserType;
+                            status: boolean;
+                        }
+                    };
+        
+                    setUserType(field);
+        
+                    if (status) {
+                        setSign("sign");
+                        return;
+                    }
+        
+                    if (!status) {
+                        setSign("signup");
+                        return;
+                    }
+                }
+
+                setIsLogging(false);
+            }
+            console.log(isLogging);
+
+            if (name === 'nif' || name.includes('nif')) {
+                const sanitizacao = NIFValidate(value.toString());
+                if (sanitizacao && !sanitizacao.success) {
+                    setArrError(arr => ([...arr, sanitizacao.message]));
+                    break;
+                }
             }
         }
     }
@@ -86,30 +128,11 @@ const SchemaLoginComponent = () => {
                 setArrError([]);
             }, ms('4s'));
         }
-    }, [arrError]);
 
-    useEffect(() => {
-        if (data) {
-            const { user: { field, status } } = data as {
-                user: {
-                    field: UserType;
-                    status: boolean;
-                }
-            };
-
-            setUserType(field);
-
-            if (status) {
-                setSign("sign");
-                return;
-            }
-
-            if (!status) {
-                setSign("signup");
-                return;
-            }
+        if (error) {
+            console.log(error);
         }
-    }, [data]);
+    }, [arrError, error]);
 
     return (
         <Form
