@@ -1,4 +1,4 @@
-import React, { FC, Fragment, MouseEvent, useRef } from "react";
+import React, { FC, Fragment } from "react";
 import { UserType } from "../@types/userType";
 import { TabUserType } from "./BaseComponent/BaseSign";
 import SignDefaultComponent from "./default";
@@ -16,13 +16,18 @@ const SignunComponent: FC<ISignunComponent> = ({ user, set }) => {
             return (
                 <ContainerBaseSign>
                     <InputEmail />
+                    <InputText name="username" placeholder="Nome de fazendeiro" />
                     <InputText name="nif" placeholder="NIF" />
                     <InputPassword name="password" placeholder="Palavra-Passe" />
                 </ContainerBaseSign>
             );
         case "customer":
             return (
-                <h1>singun customer</h1>
+                <ContainerBaseSign>
+                    <InputEmail />
+                    <InputText name="username" placeholder="Nome de usuário" />
+                    <InputPassword name="password" placeholder="Palavra-Passe" />
+                </ContainerBaseSign>
             );
         case "default":
             return (

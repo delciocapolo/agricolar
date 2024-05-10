@@ -11,9 +11,6 @@ import { v4 as uuid } from "uuid";
 
 import { gql, useLazyQuery } from "@apollo/client";
 
-// import Divider from '@mui/material/Divider';
-// import Chip from '@mui/material/Chip';
-
 import Divider from "../Divider";
 import CardLinkAccountComponent from "../CardAccount";
 import { Facebook02Icon, GoogleIcon } from "hugeicons-react";
@@ -21,6 +18,7 @@ import { Alert } from "@mui/material";
 import ms from "ms";
 import { ValidateEmail } from "./helpers/emailValidate";
 import NIFValidate from "./helpers/nifValidate";
+import BarLoader from "react-spinners/BarLoader";
 
 const SchemaLoginComponent = () => {
     // Template String Query
@@ -37,8 +35,6 @@ const SchemaLoginComponent = () => {
     const [sign, setSign] = useState<SignType>("default");
     const [arrError, setArrError] = useState<string[]>([]);
     const [getUser, { loading, error, data }] = useLazyQuery(GET_USER);
-    const [isLogging, setIsLogging] = useState<boolean>(true);
-
 
     const UsertTypeSchema: FC<{ sign: SignType }> = ({ sign }) => {
         switch (sign) {
@@ -63,12 +59,25 @@ const SchemaLoginComponent = () => {
     const handleSubmitForm: FormEventHandler<HTMLFormElement> = (event) => {
         event.stopPropagation();
         event.preventDefault();
+
         const form = event.target as HTMLFormElement;
         const formData = new FormData(form);
+        type canKeepOnType = {
+            status: boolean;
+            thereAreNIF: boolean
+        };
 
+        let canKeepOn: canKeepOnType = {
+            status: true,
+            thereAreNIF: false
+        };
+
+        // Limpeza dos dados
         for (let [name, value] of formData.entries()) {
-            if (!value.toString().trim()) {
+            const thereAreValue = value.toString().trim();
+            if (thereAreValue === '' || !thereAreValue) {
                 setArrError(arr => ([...arr, `O campo ${name} não pode estar vazio!`]));
+                canKeepOn = { ...canKeepOn, status: false };
                 break;
             }
 
@@ -76,15 +85,33 @@ const SchemaLoginComponent = () => {
                 const sanitizacao = ValidateEmail(value.toString());
                 if (sanitizacao && !sanitizacao.success) {
                     setArrError(arr => ([...arr, sanitizacao.message]));
+                    canKeepOn = { ...canKeepOn, status: false };
                     break;
                 }
             }
 
-            if (isLogging) {
-                const _ = getUser({
-                    variables: {
-                        usermail: value
-                    }
+            if (name === 'nif' || name.includes('nif')) {
+                const sanitizacao = NIFValidate(value.toString());
+                if (sanitizacao && !sanitizacao.success) {
+                    setArrError(arr => ([...arr, sanitizacao.message]));
+                    canKeepOn = { ...canKeepOn, status: false };
+                    break;
+                }
+
+                canKeepOn = { ...canKeepOn, thereAreNIF: true };
+            }
+
+            if (name === 'username' || name.includes('username')) {
+                canKeepOn = { ...canKeepOn, thereAreNIF: true };
+            }
+        }
+
+        switch (canKeepOn.status) {
+            case true:
+                const usermail = formData.get('email');
+
+                getUser({
+                    variables: { usermail }
                 });
 
                 if (data) {
@@ -94,39 +121,37 @@ const SchemaLoginComponent = () => {
                             status: boolean;
                         }
                     };
-        
+
+                    if (canKeepOn.thereAreNIF) {
+                        // if (status) {
+                        //     setArrError(arr => ([...arr, 'O email já está sendo utilizado']));
+                        //     return;
+                        // }
+                        return;
+                    }
+
                     setUserType(field);
-        
+
                     if (status) {
                         setSign("sign");
                         return;
                     }
-        
-                    if (!status) {
-                        setSign("signup");
-                        return;
-                    }
-                }
 
-                setIsLogging(false);
-            }
-            console.log(isLogging);
-
-            if (name === 'nif' || name.includes('nif')) {
-                const sanitizacao = NIFValidate(value.toString());
-                if (sanitizacao && !sanitizacao.success) {
-                    setArrError(arr => ([...arr, sanitizacao.message]));
-                    break;
+                    setSign("signup");
                 }
-            }
+                break;
+            default:
+                break;
         }
     }
 
     useEffect(() => {
         if (arrError.length !== 0) {
-            setTimeout(() => {
+            const timeoutId = setTimeout(() => {
                 setArrError([]);
             }, ms('4s'));
+
+            return () => clearTimeout(timeoutId);
         }
 
         if (error) {
@@ -144,7 +169,7 @@ const SchemaLoginComponent = () => {
             {
                 loading && (
                     <ContainerCustom>
-                        <span>carregando</span>
+                        <BarLoader color="var(--Success)" />
                     </ContainerCustom>
                 )
             }

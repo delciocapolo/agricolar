@@ -1,12 +1,6 @@
 import styled from "@emotion/styled";
-import { CSSProperties, FC } from "react";
+import { FC } from "react";
 import PuffLoader from "react-spinners/PuffLoader";
-
-const override: CSSProperties = {
-    // display: "block",
-    // margin: "0 auto",
-    // borderColor: "var(--Success)",
-};
 
 const ContainerDivSpinner = styled['div']`
     position: fixed;

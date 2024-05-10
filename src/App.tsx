@@ -1,5 +1,4 @@
 import { useEffect, useState, lazy, Suspense } from "react";
-import { HeaderContextProvider } from "./components/contexts/HeaderContext";
 
 // import i4 from './assets/blogcard/card1.jpg';
 // import i5 from './assets/blogcard/card2.jpg';
@@ -18,7 +17,6 @@ import i20 from './assets/products/Image.jpg';
 import { cacheImages } from "./components/utils/CacheImages";
 import Spinner from "./components/main-components/Spinner/Spinner";
 import SignComponent from "./components/Sign/Sign";
-import { ProductdetailsProvider } from "./components/contexts/ProductDetails";
 import ContextComponent from "./components/ContextComponent/ContextComponent";
 
 const Menu = lazy(() => import("./components/Navigation/Menu"));
