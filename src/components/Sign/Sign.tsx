@@ -66,12 +66,12 @@ const SignComponent = () => {
         // IP: https://api.ipgeolocation.io/getip
 
         if (typeUser === 'farmer') {
-            const [BIDataFech, IPDataFetch] = await Promise.all([
+            const [BIDataFetch, IPDataFetch] = await Promise.all([
                 fetch(`http://localhost:4001/bi/${contentTextFieldNIF}`),
                 fetch('https://api.ipgeolocation.io/getip'),
             ]).then((res) => res.map((data) => data.json()))
 
-            const { data } = await BIDataFech;
+            const { data } = await BIDataFetch;
             const { ip } = await IPDataFetch;
 
             if (data) {

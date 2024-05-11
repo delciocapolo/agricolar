@@ -100,7 +100,7 @@ const SignunComponent: FC<ISignunComponent> = ({ user, set, content, setContent 
             return (
                 <Fragment>
                     <TabUserType state={user} set={set!} />
-                    <SignDefaultComponent content={content} setContent={setContent} />
+                    {/* <SignDefaultComponent content={content} setContent={setContent} /> */}
                 </Fragment>
             );
         default:

@@ -39,43 +39,38 @@ const SchemaLoginComponent = () => {
             }
         }
     `;
+    // const CREATE_FARMER = gql``;
 
     const [usertype, setUserType] = useState<UserType>("default");
     const [sign, setSign] = useState<SignType>("default");
     const [arrError, setArrError] = useState<string[]>([]);
     const [getUser, { loading, error, data }] = useLazyQuery(GET_USER);
+    // const [farmer, {loading: loadingFarmerData, error: farmerErrorCreate, data: farmerData}] = useLazyQuery(CREATE_FARMER);
 
     const UsertTypeSchema: FC<{ sign: SignType }> = ({ sign }) => {
         switch (sign) {
             case "default":
-                return (
-                    <SignDefaultComponent content={content} setContent={setContent} />
-                );
+                return (<SignDefaultComponent content={content} setContent={setContent} />);
             case "sign":
-                return (
-                    <SigninComponent user={usertype} />
-                );
+                return (<SigninComponent user={usertype} />);
             case "signup":
-                return (
-                    <SignunComponent user={usertype} set={setUserType} content={content} setContent={setContent} />
-                );
-
+                return (<SignunComponent user={usertype} set={setUserType} content={content} setContent={setContent} />);
             default:
                 return <></>;
         }
     }
 
-    const handleSubmitForm: FormEventHandler<HTMLFormElement> = (event) => {
+    const handleSubmitForm: FormEventHandler<HTMLFormElement> = async (event) => {
         event.stopPropagation();
         event.preventDefault();
 
         const form = event.target as HTMLFormElement;
         const formData = new FormData(form);
+
         type canKeepOnType = {
             status: boolean;
             thereAreNIF: boolean
         };
-
         let canKeepOn: canKeepOnType = {
             status: true,
             thereAreNIF: false
@@ -132,6 +127,28 @@ const SchemaLoginComponent = () => {
                     };
 
                     if (canKeepOn.thereAreNIF) {
+                        const BIEndPoint = "http://localhost:5055/v1/bi";
+                        const IPEndPoint = `https://api.ipgeolocation.io/ipgeo?apiKey=${import.meta.env.VITE_APIKEY_IPGEOLOCATION}`;
+                        const fetchProps = { method: "GET" };
+                        const nif = formData.get('nif');
+
+                        if (nif !== null && nif) {
+                            const [NIFDataFetch, IPDataFetch] = await Promise.all([fetch(`${BIEndPoint}/${nif}`, fetchProps), fetch(IPEndPoint, fetchProps)])
+                                .then(resolve => resolve.map(response => response.json()));
+                            const NIFData = await NIFDataFetch;
+                            const IPData = await IPDataFetch;
+
+                            if (NIFData && IPData) {
+                                const { state_prov: province, city } = IPData;
+                                // const {} = NIFData;
+                                console.log(province, city);
+                            }
+
+
+                        } else {
+                            console.log('USER IS LOGGING IN NORMAL MODE!');
+                        }
+
                         // if (status) {
                         //     setArrError(arr => ([...arr, 'O email já está sendo utilizado']));
                         //     return;
