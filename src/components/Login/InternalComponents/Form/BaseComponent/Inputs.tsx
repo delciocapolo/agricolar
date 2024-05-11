@@ -1,7 +1,6 @@
 import { Cancel01Icon } from "hugeicons-react";
-import React, { FC, MouseEventHandler, useRef } from "react";
+import React, { FC } from "react";
 import { ButtonClean, Container, Input } from "./BaseDefault";
-import { ContentType } from "../@types/ContentType";
 
 interface InputType extends React.InputHTMLAttributes<HTMLInputElement> {
     content: string;
