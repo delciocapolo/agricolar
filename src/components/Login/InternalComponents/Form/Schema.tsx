@@ -19,8 +19,17 @@ import ms from "ms";
 import { ValidateEmail } from "./helpers/emailValidate";
 import NIFValidate from "./helpers/nifValidate";
 import BarLoader from "react-spinners/BarLoader";
+import { ContentType } from "./@types/ContentType";
 
 const SchemaLoginComponent = () => {
+    // Declaracao dos estados
+    const [content, setContent] = useState<ContentType>({
+        email: '',
+        username: '',
+        nif: '',
+        password: '',
+    });
+
     // Template String Query
     const GET_USER = gql`
         query USER($usermail: String) {
@@ -40,7 +49,7 @@ const SchemaLoginComponent = () => {
         switch (sign) {
             case "default":
                 return (
-                    <SignDefaultComponent />
+                    <SignDefaultComponent content={content} setContent={setContent} />
                 );
             case "sign":
                 return (
@@ -48,7 +57,7 @@ const SchemaLoginComponent = () => {
                 );
             case "signup":
                 return (
-                    <SignunComponent user={usertype} set={setUserType} />
+                    <SignunComponent user={usertype} set={setUserType} content={content} setContent={setContent} />
                 );
 
             default:

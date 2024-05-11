@@ -1,34 +1,25 @@
 import { Cancel01Icon } from "hugeicons-react";
-import { ChangeEventHandler, FC, useState } from "react";
+import React, { FC, MouseEventHandler, useRef } from "react";
 import { ButtonClean, Container, Input } from "./BaseDefault";
+import { ContentType } from "../@types/ContentType";
 
-type InputType = {
-    name?: string;
-    placeholder?: string;
-}
+interface InputType extends React.InputHTMLAttributes<HTMLInputElement> {
+    content: string;
+    handleCleanContent: React.MouseEventHandler<HTMLButtonElement>;
+};
 
-export const InputEmail = () => {
-    const [content, setContent] = useState<string>("");
-
-    const handleCleanContent = () => {
-        setContent("");
-    };
-    const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-        setContent(event.target.value);
-    };
-
+export const InputEmail: FC<InputType> = ({ content, handleCleanContent, ...props }) => {
     return (
         <Container className="d-flex">
             <Input
                 type="email"
                 name="email"
                 placeholder="Email"
-                value={content}
-                onChange={handleChange}
                 inputMode="text"
+                {...props}
             />
             {
-                content && (
+                (content !== "") && (
                     <ButtonClean className="d-flex" onClick={handleCleanContent} type="button">
                         <Cancel01Icon size={15} strokeWidth={2} color="var(--Green-700)" />
                     </ButtonClean>
@@ -38,25 +29,14 @@ export const InputEmail = () => {
     );
 };
 
-export const InputText: FC<InputType> = ({ name = "Nome", placeholder }) => {
-    const [content, setContent] = useState<string>("");
-
-    const handleCleanContent = () => {
-        setContent("");
-    };
-    const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-        setContent(event.target.value);
-    };
+export const InputText: FC<InputType> = ({ content, handleCleanContent, ...props }) => {
 
     return (
         <Container className="d-flex">
             <Input
                 type="text"
-                name={name}
-                placeholder={placeholder}
-                value={content}
-                onChange={handleChange}
                 inputMode="text"
+                {...props}
             />
             {
                 content && (
@@ -69,25 +49,13 @@ export const InputText: FC<InputType> = ({ name = "Nome", placeholder }) => {
     );
 };
 
-export const InputPassword: FC<InputType> = ({ name = "Nome", placeholder }) => {
-    const [content, setContent] = useState<string>("");
-
-    const handleCleanContent = () => {
-        setContent("");
-    };
-    const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-        setContent(event.target.value);
-    };
-
+export const InputPassword: FC<InputType> = ({ content, handleCleanContent, ...props }) => {
     return (
         <Container className="d-flex">
             <Input
                 type="password"
-                name={name}
-                placeholder={placeholder}
-                value={content}
-                onChange={handleChange}
                 inputMode="text"
+                {...props}
             />
             {
                 content && (
