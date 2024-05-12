@@ -1,4 +1,7 @@
+import React, { useState } from "react";
 import { FcFilingCabinet, FcBullish } from "react-icons/fc";
+import Badge from "@mui/material/Badge";
+import Avatar from "@mui/material/Avatar";
 import {
   DashboardSquare01Icon,
   ChartRelationshipIcon,
@@ -29,12 +32,17 @@ import {
   SubitemNavbar,
   Subtitle,
   FilterOverview,
+  TitleSortContainer,
+  SelectFilter,
+  OptionFilter,
 } from "./InternalComponents/BaseDefaultDashboard";
+// for the filter component
+import Box from "@mui/material/Box";
 
 const DashboardComponent = () => {
   const iconSidebarProps = {
-    size: 22,
-    color: "#979595",
+    size: 20,
+    color: "rgb(151, 149, 149)",
     strokeWidth: 1.9,
   };
   return (
@@ -44,7 +52,7 @@ const DashboardComponent = () => {
           <ItemCardSidebar
             className="d-flex"
             icon={<FcFilingCabinet size={28} />}
-            content={<HeaderOverviewText>Dashboard</HeaderOverviewText>}
+            elementContent={<HeaderOverviewText>Dashboard</HeaderOverviewText>}
           />
         </CardSidebar>
 
@@ -110,7 +118,9 @@ const DashboardComponent = () => {
                 <SubcontainerSettings className="d-flex">
                   <ItemSettings>
                     <LinkSettings className="d-flex" to="/dashboard">
-                      <Notification02Icon {...iconSidebarProps} />
+                      <Badge badgeContent={10} max={99}>
+                        <Notification02Icon {...iconSidebarProps} />
+                      </Badge>
                     </LinkSettings>
                   </ItemSettings>
                   <ItemSettings>
@@ -120,14 +130,40 @@ const DashboardComponent = () => {
                   </ItemSettings>
                   <ItemSettings>
                     <LinkSettings className="d-flex" to="/dashboard">
-                      <Settings01Icon {...iconSidebarProps} />
+                      <Avatar
+                        alt="Delcio Capolo"
+                        src="https://randomuser.me/api/portraits/med/men/75.jpg"
+                        sx={{ width: 35, height: 35 }}
+                      />
                     </LinkSettings>
                   </ItemSettings>
                 </SubcontainerSettings>
               </ContainerSettings>
             </ItemNavbar>
           </Navbar>
-          <FilterOverview />
+          <FilterOverview>
+            <Box
+              display="flex"
+              gap={2}
+              alignItems="center"
+              sx={{
+                minWidth: 120,
+                backgroundColor: "rgb(248, 248, 248)",
+                borderRadius: 50,
+                padding: "0.1rem 1.1rem",
+              }}
+            >
+              <TitleSortContainer htmlFor="filter-by-dashboard-overview">
+                mostrar:
+              </TitleSortContainer>
+              <SelectFilter name="filter" id="filter-by-dashboard-overview">
+                <OptionFilter selected value="this_year">
+                  este ano
+                </OptionFilter>
+                <OptionFilter value="2023">Ano passado</OptionFilter>
+              </SelectFilter>
+            </Box>
+          </FilterOverview>
         </ContainerListSettings>
       </ContainerOverview>
     </Container>

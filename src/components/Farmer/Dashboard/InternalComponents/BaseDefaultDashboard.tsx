@@ -1,9 +1,13 @@
-import { Search01Icon } from "hugeicons-react";
+import { Search01Icon, Download04Icon } from "hugeicons-react";
 import React, { FC, JSX } from "react";
 import { Form, Link } from "react-router-dom";
 import styled from "styled-components";
 
 const heightSearch_Bar = "50px";
+const iconNavbarProps = {
+  size: 21,
+  strokeWidth: 2.1,
+};
 export const Container = styled["section"]`
   width: 100%;
   background-color: yellow;
@@ -35,15 +39,17 @@ export const CardSidebar = styled["ul"]`
   }
 `;
 
-interface ItemCardSidebarType extends React.HTMLAttributes<HTMLLIElement> {
+interface ItemCardSidebarType extends React.HTMLAttributes<HTMLElement> {
   icon: JSX.Element;
-  content: string | JSX.Element;
+  content?: string;
   custom?: JSX.Element;
+  elementContent?: JSX.Element;
 }
 export const ItemCardSidebar: FC<ItemCardSidebarType> = ({
   icon,
   content,
   custom,
+  elementContent,
   ...props
 }) => {
   const ItemCardSidebarContainer = styled["li"]`
@@ -93,7 +99,7 @@ export const ItemCardSidebar: FC<ItemCardSidebarType> = ({
       <LinkItemSidebar to="" className="d-flex">
         <MainContentItemSidebar className="d-flex">
           {icon}
-          <ContentItem>{content}</ContentItem>
+          <ContentItem>{!content ? elementContent : content}</ContentItem>
         </MainContentItemSidebar>
         {custom}
       </LinkItemSidebar>
@@ -120,10 +126,10 @@ export const Navbar = styled(Headers)`
 export const BaseItemNavbar = styled["div"]`
   flex: 1 1 200px;
 
-  &: first-of-type {
+  &:first-of-type {
     justify-content: flex-start;
   }
-  &: last-of-type {
+  &:last-of-type {
     justify-content: flex-end;
   }
 `;
@@ -142,13 +148,13 @@ export const SearchBar = () => {
   const SubcontainerForm = styled["div"]`
     width: 230px;
     height: fit-content;
-    background-color: #f3f3f3;
+    background-color: rgb(248, 248, 248);
     gap: 0;
     justify-content: space-between;
     border-radius: var(--border-radius);
     box-shadow:
       0 0 2px 1px rgba(51, 51, 51, 0.1),
-      0px 0px 8px 2px rgba(51, 51, 51, 0.03);
+      0px 0px 10px 1px rgba(51, 51, 51, 0.02);
   `;
   const Search = styled["input"]`
     width: calc(100% - 40px);
@@ -202,12 +208,16 @@ export const ItemSettings = styled["li"]`
 export const LinkSettings = styled(Link)`
   // background-color: red;
   padding: 0.5rem 0;
+
+  & > .MuiBadge-root > .MuiBadge-badge {
+    background-color: var(--Success);
+  }
 `;
 
 export const ContainerListSettings = styled["nav"]`
   width: 100%;
   flex-direction: column;
-  gap: 0;
+  gap: 1.7rem;
 `;
 
 export const HeaderOverviewText = styled["h1"]`
@@ -220,34 +230,46 @@ export const Subtitle = styled["h1"]`
 `;
 
 // container filter
-export const FilterOverview = () => {
+interface IFilterOverview {
+  children?: JSX.Element;
+}
+export const FilterOverview: FC<IFilterOverview> = ({ children }) => {
   const ContainerFilterOverview = styled["div"]`
     width: 100%;
     height: 50px;
     justify-content: space-between;
-    background-color: red;
-  `;
-  const ContainerSort = styled["div"]`
-    border-radius: var(--border-radius);
-    padding: 0.7rem;
-    background-color: #f3f3f3;
-  `;
-  const TitleSortContainer = styled["h1"]`
-    font: var(--Body-Small-500);
+    // background-color: red;
   `;
   const ContainerButtons = styled["nav"]``;
-  const Button = styled["a"]``;
+  const ButtonDownloadReport = styled(Link)`
+    background-color: var(--Success);
+    font: var(--Body-Medium-500);
+    font-size: 0.85rem;
+    border-radius: var(--border-radius);
+    padding: 10px 20px;
+  `;
   return (
     <ContainerFilterOverview className="d-flex">
-      <ContainerSort className="d-flex">
-        <TitleSortContainer>mostrar:</TitleSortContainer>
-        <select>
-          <option selected>este ano</option>
-        </select>
-      </ContainerSort>
+      {children && children}
       <ContainerButtons>
-        <Button type="">gerar relatório</Button>
+        <ButtonDownloadReport to="/dashboard" download={""} className="d-flex">
+          <Download04Icon {...iconNavbarProps} />
+          gerar relatório
+        </ButtonDownloadReport>
       </ContainerButtons>
     </ContainerFilterOverview>
   );
 };
+export const TitleSortContainer = styled["label"]`
+  font: var(--Body-Medium-500);
+  font-size: 0.85rem;
+  color: rgba(151, 149, 149, 0.8);
+`;
+export const SelectFilter = styled["select"]`
+  padding: 10px;
+  border: none;
+  background-color: transparent;
+  border-radius: var(--border-radius);
+  font: var(--Body-Tiny-600);
+`;
+export const OptionFilter = styled["option"]``;
