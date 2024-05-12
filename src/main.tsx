@@ -1,15 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {
-  createBrowserRouter,
-  RouterProvider
-} from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 // rotes
 import HomeRoute from './routes/Home.tsx';
 import ProductsByCategory from './routes/ProductByCategory.tsx';
 import FarmRoute from './routes/Farms.tsx';
 import LoginRoute from './routes/LoginOrRegister.tsx';
+import Dashboard from './routes/Dashboard.tsx';
 
 const configInMemoryCache = {
   addTypename: true,
@@ -43,7 +41,8 @@ const controllers = createBrowserRouter([
   HomeRoute,
   ProductsByCategory,
   FarmRoute,
-  LoginRoute
+  LoginRoute,
+  Dashboard,
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

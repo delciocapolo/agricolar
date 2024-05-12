@@ -2,7 +2,7 @@
   "name": "agricolar",
   "decription": "Ecossistema aberto para o mercado agricola nacional. Oferecendo ainda, dados como o relatorio das safras, plantacoes, terras araveis, e outros",
   "private": true,
-  "version": "1.0.3",
+  "version": "2.0.3",
   "author": "Delcio Capolo",
   "licence": "MIT",
   "type": "module",
