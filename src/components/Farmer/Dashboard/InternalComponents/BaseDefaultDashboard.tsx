@@ -1,13 +1,9 @@
-import { Search01Icon, Download04Icon } from "hugeicons-react";
+import { Search01Icon } from "hugeicons-react";
 import React, { FC, JSX } from "react";
 import { Form, Link } from "react-router-dom";
 import styled from "styled-components";
 
 const heightSearch_Bar = "50px";
-const iconNavbarProps = {
-  size: 21,
-  strokeWidth: 2.1,
-};
 export const Container = styled["section"]`
   width: 100%;
   background-color: yellow;
@@ -23,7 +19,17 @@ export const ContainerSides = styled["article"]`
 export const Sidebar = styled(ContainerSides)`
   flex: 1 1 200px;
   // padding: 0.5rem;
+`;
+
+export const FixedSidebar = styled["div"]`
+  width: 254px;
+  height: 100%;
   background-color: var(--White);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 500;
 `;
 
 export const CardSidebar = styled["ul"]`
@@ -110,7 +116,7 @@ export const ItemCardSidebar: FC<ItemCardSidebarType> = ({
 // ContainerOverview
 export const ContainerOverview = styled(ContainerSides)`
   flex: 15 1 360px;
-  padding: 0 0.5rem;
+  // padding: 0 0.5rem;
   background-color: var(--White);
 `;
 
@@ -216,8 +222,8 @@ export const LinkSettings = styled(Link)`
 
 export const ContainerListSettings = styled["nav"]`
   width: 100%;
-  flex-direction: column;
-  gap: 1.7rem;
+  // background-color: red;
+  margin: 0 0 1.2em 0;
 `;
 
 export const HeaderOverviewText = styled["h1"]`
@@ -228,48 +234,3 @@ export const Subtitle = styled["h1"]`
   font: var(--Body-XL-500);
   color: #b5b5b5;
 `;
-
-// container filter
-interface IFilterOverview {
-  children?: JSX.Element;
-}
-export const FilterOverview: FC<IFilterOverview> = ({ children }) => {
-  const ContainerFilterOverview = styled["div"]`
-    width: 100%;
-    height: 50px;
-    justify-content: space-between;
-    // background-color: red;
-  `;
-  const ContainerButtons = styled["nav"]``;
-  const ButtonDownloadReport = styled(Link)`
-    background-color: var(--Success);
-    font: var(--Body-Medium-500);
-    font-size: 0.85rem;
-    border-radius: var(--border-radius);
-    padding: 10px 20px;
-  `;
-  return (
-    <ContainerFilterOverview className="d-flex">
-      {children && children}
-      <ContainerButtons>
-        <ButtonDownloadReport to="/dashboard" download={""} className="d-flex">
-          <Download04Icon {...iconNavbarProps} />
-          gerar relatório
-        </ButtonDownloadReport>
-      </ContainerButtons>
-    </ContainerFilterOverview>
-  );
-};
-export const TitleSortContainer = styled["label"]`
-  font: var(--Body-Medium-500);
-  font-size: 0.85rem;
-  color: rgba(151, 149, 149, 0.8);
-`;
-export const SelectFilter = styled["select"]`
-  padding: 10px;
-  border: none;
-  background-color: transparent;
-  border-radius: var(--border-radius);
-  font: var(--Body-Tiny-600);
-`;
-export const OptionFilter = styled["option"]``;
