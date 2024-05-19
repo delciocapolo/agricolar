@@ -23,6 +23,8 @@ import {
   TopContainer,
   StarAvaliacaoContainer,
   ButtonTag,
+  SelectSort,
+  OptionOrder,
 } from "./InternalComponents/BaseCategory";
 import Menu from "../Navigation/Menu";
 import ContextComponent from "../ContextComponent/ContextComponent";
@@ -40,11 +42,12 @@ import {
   Checkbox,
   Stack,
 } from "@mui/material";
-import { useState } from "react";
+import React, { useState } from "react";
 import Normal from "../main-components/Product5n/Normal";
 import TitleContainerCategory from "./InternalComponents/TitleContainerCategory";
 import SliderPriceComponent from "./InternalComponents/SliderPriceComponent";
 import ProductDetails from "../main-components/ProductQuickView/ProductDetails";
+import { categories_list, radio_config, checkbox_config, divider_config } from "./configProps";
 
 export default function Category() {
   const [sort, setSort] = useState("");
@@ -67,46 +70,9 @@ export default function Category() {
     params: { category },
   } = useLoaderData() as ILoader<ILoaderSchema>;
   const [toggleAllCategories, setToggleAllCategories] = useState<boolean>(true);
-  const radio_config = {
-    color: "var(--Success)",
-    "&.Mui-checked": {
-      color: "var(--Success)",
-    },
-  };
-  const checkbox_config = {
-    color: "var(--Gray-200)",
-    "&.Mui-checked": {
-      color: "var(--Success)",
-    },
-    "& .MuiSvgIcon-root": {
-      // boxShadow: 'var(--box-shadow-outline)',
-      fontSize: 20,
-      padding: 0,
-    },
-  };
-  const FormControlLabel_config = {
-    "& .MuiTypography-root": {
-      textTransform: "none",
-    },
-  };
-  const categories_list = [
-    {
-      name: "fruta",
-      label: "Frutas",
-      quantidade: 150,
-    },
-    {
-      name: "vegetal",
-      label: "Vegetais",
-      quantidade: 75,
-    },
-    {
-      name: "snack",
-      label: "Snack",
-      quantidade: 47,
-    },
-  ];
-
+  const [togglePriceCategories, setTogglePriceCategories] = useState<boolean>(true);
+  const [toggleRateCategories, setToggleRateCategories] = useState<boolean>(true);
+  const [toggleTagCategories, setToggleTagCategories] = useState<boolean>(true);
   const find_category = categories_list.find(({ name }) => name == category);
   let category_finded = "";
   if (find_category) {
@@ -122,8 +88,8 @@ export default function Category() {
 
         {/* Product Details */}
         <ProductDetails />
-        {/*  */}
 
+        {/*  */}
         <ProductContainer>
           <TopContainer className="d-flex">
             <Container0 className="d-flex">
@@ -148,10 +114,6 @@ export default function Category() {
                     <MenuItem value="mais_vendidos">mais vendidos</MenuItem>
                   </Select>
                 </FormControl>
-                {/* <SelectSort name="order_by">
-                                    <OptionOrder>Mais relevantes</OptionOrder>
-                                    <OptionOrder>Recentes</OptionOrder>
-                                </SelectSort> */}
               </SortByContainer>
             </Container0>
             <Container0 className="d-flex">
@@ -160,6 +122,7 @@ export default function Category() {
               </TextResult>
             </Container0>
           </TopContainer>
+
           <Frame345 className="d-flex">
             <FilterContainer>
               <ContainerAllCategories>
@@ -168,111 +131,131 @@ export default function Category() {
                   state={toggleAllCategories}
                   setState={setToggleAllCategories}
                 />
-                <FormControl fullWidth>
-                  {/* <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel> */}
-                  <RadioGroup
-                    aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue={category_finded}
-                    name="radio-buttons-group"
-                  >
-                    {categories_list.map((desc_cat) => (
-                      <FormControlLabel
-                        value={desc_cat.name}
-                        control={
-                          <Radio sx={{ ...radio_config }} size="small" />
-                        }
-                        label={
-                          <TitleCategoryComponent
-                            title={desc_cat.label}
-                            quantidade={desc_cat.quantidade}
+                {
+                  toggleAllCategories && (
+                    <FormControl fullWidth>
+                      {/* <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel> */}
+                      <RadioGroup
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        defaultValue={category_finded}
+                        name="radio-buttons-group"
+                      >
+                        {categories_list.map((desc_cat) => (
+                          <FormControlLabel
+                            value={desc_cat.name}
+                            control={
+                              <Radio sx={{ ...radio_config }} size="small" />
+                            }
+                            label={
+                              <TitleCategoryComponent
+                                title={desc_cat.label}
+                                quantidade={desc_cat.quantidade}
+                              />
+                            }
                           />
-                        }
-                      />
-                    ))}
-                  </RadioGroup>
-                </FormControl>
+                        ))}
+                      </RadioGroup>
+                    </FormControl>
+                  )
+                }
               </ContainerAllCategories>
 
-              <Divider color="var(--Gray-100)" sx={{ width: "100%" }} />
+              <Divider color={divider_config['color']} sx={{ ...divider_config['sx'] }} />
               <ContainerAllCategories>
                 <TitleContainerCategory
                   title="Preço"
-                  state={toggleAllCategories}
-                  setState={setToggleAllCategories}
+                  state={togglePriceCategories}
+                  setState={setTogglePriceCategories}
                 />
-                <SliderPriceComponent
-                  value={sliderPriceValue}
-                  set={setSliderPriceValue}
-                />
-                <TitleCategoryComponentContainer className="d-flex">
-                  <SubText4EachCategory>preço</SubText4EachCategory>
-                  <Title4EachCategory>
-                    {sliderPriceValue[0]} - {sliderPriceValue[1]}
-                  </Title4EachCategory>
-                </TitleCategoryComponentContainer>
+                {
+                  togglePriceCategories && (
+                    <React.Fragment>
+                      <SliderPriceComponent
+                        value={sliderPriceValue}
+                        set={setSliderPriceValue}
+                      />
+                      <TitleCategoryComponentContainer className="d-flex">
+                        <SubText4EachCategory>preço</SubText4EachCategory>
+                        <Title4EachCategory>
+                          {sliderPriceValue[0]} - {sliderPriceValue[1]}
+                        </Title4EachCategory>
+                      </TitleCategoryComponentContainer>
+                    </React.Fragment>
+                  )
+                }
               </ContainerAllCategories>
 
-              <Divider color="var(--Gray-100)" sx={{ width: "100%" }} />
+              <Divider color={divider_config['color']} sx={{ ...divider_config['sx'] }} />
               <ContainerAllCategories>
                 <TitleContainerCategory
                   title="Avaliação"
-                  state={toggleAllCategories}
-                  setState={setToggleAllCategories}
+                  state={toggleRateCategories}
+                  setState={setToggleRateCategories}
                 />
-                <FormGroup sx={{ width: "100%" }}>
-                  <FormControlLabel
-                    control={<Checkbox sx={{ ...checkbox_config }} />}
-                    label={
-                      <StarAvaliacaoContainer rating_number={5} label="5.0" />
-                    }
-                  />
-                  <FormControlLabel
-                    control={<Checkbox sx={{ ...checkbox_config }} />}
-                    label={
-                      <StarAvaliacaoContainer rating_number={4} label="4.0+" />
-                    }
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox sx={{ ...checkbox_config }} defaultChecked />
-                    }
-                    label={
-                      <StarAvaliacaoContainer rating_number={3} label="3.0+" />
-                    }
-                  />
-                  <FormControlLabel
-                    control={<Checkbox sx={{ ...checkbox_config }} />}
-                    label={
-                      <StarAvaliacaoContainer rating_number={2} label="2.0+" />
-                    }
-                  />
-                  <FormControlLabel
-                    control={<Checkbox sx={{ ...checkbox_config }} />}
-                    label={
-                      <StarAvaliacaoContainer rating_number={1} label="1.0+" />
-                    }
-                  />
-                </FormGroup>
+                {
+                  toggleRateCategories && (
+                    <FormGroup sx={{ width: "100%" }}>
+                      <FormControlLabel
+                        control={<Checkbox sx={{ ...checkbox_config }} />}
+                        label={
+                          <StarAvaliacaoContainer rating_number={5} label="5.0" />
+                        }
+                      />
+                      <FormControlLabel
+                        control={<Checkbox sx={{ ...checkbox_config }} />}
+                        label={
+                          <StarAvaliacaoContainer rating_number={4} label="4.0+" />
+                        }
+                      />
+                      <FormControlLabel
+                        control={
+                          <Checkbox sx={{ ...checkbox_config }} defaultChecked />
+                        }
+                        label={
+                          <StarAvaliacaoContainer rating_number={3} label="3.0+" />
+                        }
+                      />
+                      <FormControlLabel
+                        control={<Checkbox sx={{ ...checkbox_config }} />}
+                        label={
+                          <StarAvaliacaoContainer rating_number={2} label="2.0+" />
+                        }
+                      />
+                      <FormControlLabel
+                        control={<Checkbox sx={{ ...checkbox_config }} />}
+                        label={
+                          <StarAvaliacaoContainer rating_number={1} label="1.0+" />
+                        }
+                      />
+                    </FormGroup>
+                  )
+                }
               </ContainerAllCategories>
-              <Divider color="var(--Gray-100)" sx={{ width: "100%" }} />
+
+              <Divider color={divider_config['color']} sx={{ ...divider_config['sx'] }} />
               <ContainerAllCategories>
                 <TitleContainerCategory
                   title="Tags Populares"
-                  state={toggleAllCategories}
-                  setState={setToggleAllCategories}
+                  state={toggleTagCategories}
+                  setState={setToggleTagCategories}
                 />
-                <Stack direction="row" spacing={1} flexWrap="wrap" gap={1}>
-                  <ButtonTag title="tiffin" />
-                  <ButtonTag title="tiffin" />
-                  <ButtonTag title="tiffin" />
-                  <ButtonTag title="tiffin" />
-                  <ButtonTag title="tiffin" />
-                  <ButtonTag title="tiffin" />
-                  <ButtonTag title="tiffin" />
-                  <ButtonTag title="tiffin" />
-                </Stack>
+                {
+                  toggleTagCategories && (
+                    <Stack direction="row" spacing={1} flexWrap="wrap" gap={1}>
+                      <ButtonTag title="tiffin" />
+                      <ButtonTag title="tiffin" />
+                      <ButtonTag title="tiffin" />
+                      <ButtonTag title="tiffin" />
+                      <ButtonTag title="tiffin" />
+                      <ButtonTag title="tiffin" />
+                      <ButtonTag title="tiffin" />
+                      <ButtonTag title="tiffin" />
+                    </Stack>
+                  )
+                }
               </ContainerAllCategories>
             </FilterContainer>
+
             <ContainerProducts className="d-grid">
               {[2, 1, 4, 2, 5, 2, 1, 4, 2, 9].map((_) => (
                 <Normal

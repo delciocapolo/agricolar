@@ -4,6 +4,7 @@
 	/* background-color: red; */
 	width: 264px;
 	height: 327px;
+	max-width: 302.75px;
 
 	background-color: var(--White);
 	padding: 0.8rem;

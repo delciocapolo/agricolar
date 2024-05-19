@@ -51,13 +51,12 @@ const SmallOne = () => {
     });
 
     const ButtonSignUpIn = styled(Link)`
-        text-align: right;
+        text-align: center;
         text-transform: capitalize;
         font: var(--Body-Tiny-400);
         color: var(--White);
         height: fit-content;
         padding: 0.4rem 0 0.4rem 0.7rem;
-        background-color: transparent;
     `;
 
     return (
@@ -68,10 +67,10 @@ const SmallOne = () => {
                     <TitleContact>Localização do escritório: Cassequel - 61B, Luanda, Angola</TitleContact>
                 </ContactContainer>
                 <LinksContainer className="links-container d-flex">
-                    <SelectCustom title="Idioma" items={[{ text: 'PT', url: 'http://localhost:5173/pt' }, { text: 'EN', url: 'http://localhost:5173/en' }]} />
-                    <SelectCustom title="Moeda" items={[{ text: 'USD' }, { text: 'AO' }]} />
-                    <LineContainer />
-                    <ButtonSignUpIn to="/login">Entrar</ButtonSignUpIn>
+                    {/* <SelectCustom title="Idioma" items={[{ text: 'PT', url: 'http://localhost:5173/pt' }, { text: 'EN', url: 'http://localhost:5173/en' }]} />
+                    <SelectCustom title="Moeda" items={[{ text: 'USD' }, { text: 'AO' }]} /> */}
+                    {/* <LineContainer /> */}
+                    <ButtonSignUpIn to="/login">Criar conta | Entrar</ButtonSignUpIn>
                 </LinksContainer>
             </Container>
         </SmallOneContainer>

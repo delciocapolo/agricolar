@@ -8,6 +8,7 @@ import ProductsByCategory from './routes/ProductByCategory.tsx';
 import FarmRoute from './routes/Farms.tsx';
 import LoginRoute from './routes/LoginOrRegister.tsx';
 import Dashboard from './routes/Dashboard.tsx';
+import ContextComponent from './components/ContextComponent/ContextComponent.tsx';
 
 const configInMemoryCache = {
   addTypename: true,
@@ -25,7 +26,7 @@ const customer = new ApolloClient({
   cache: new InMemoryCache({
     ...configInMemoryCache
   }),
-  name: 'customer-server',
+  name: 'Customer-server',
 });
 
 const all = new ApolloClient({
@@ -33,7 +34,7 @@ const all = new ApolloClient({
   cache: new InMemoryCache({
     ...configInMemoryCache
   }),
-  name: 'set-server',
+  name: 'Set-server',
 });
 
 
@@ -50,7 +51,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <ApolloProvider client={farmer}>
       <ApolloProvider client={customer}>
         <ApolloProvider client={all}>
-          <RouterProvider router={controllers} fallbackElement={<h1>Carregando</h1>} />
+          <ContextComponent>
+            <RouterProvider router={controllers} />
+          </ContextComponent>
         </ApolloProvider>
       </ApolloProvider>
     </ApolloProvider>

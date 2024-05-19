@@ -72,7 +72,6 @@ export const FormControl = styled(BaseFormControl)`
 
 export const Frame345 = styled['div']`
     width: 100%;
-    // background-color: red;
     padding: 0.5rem 0;
 
     gap: 0;
@@ -83,7 +82,7 @@ const widthFilterContainer = "307px";
 export const FilterContainer = styled['section']`
     width: ${widthFilterContainer};
     min-height: 185px;
-    padding: 0 0.5rem 0 0;
+    padding: 0 2em 0 0;
 `;
 
 export const ContainerProducts = styled['nav']`

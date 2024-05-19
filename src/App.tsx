@@ -1,10 +1,7 @@
-import { useEffect, useState, lazy, Suspense } from "react";
-import i10 from './assets/header/HeaderPhoto2.jpg';
-import i19 from './assets/newsletterpopup/newsletterpopup.jpg';
-import i20 from './assets/products/Image.jpg';
-import { cacheImages } from "./components/utils/CacheImages";
+import { useEffect, useState, lazy, Suspense, useLayoutEffect } from "react";
+// import { cacheImages } from "./components/utils/CacheImages";
 import Spinner from "./components/main-components/Spinner/Spinner";
-import ContextComponent from "./components/ContextComponent/ContextComponent";
+import { useUserData } from "./components/contexts/UserData";
 
 const Menu = lazy(() => import("./components/Navigation/Menu"));
 const Skeleton = lazy(() => import("./components/Body/Skeleton"));
@@ -13,6 +10,16 @@ const Header = lazy(() => import("./components/Header/Header"));
 
 const App = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const { setUserContext } = useUserData();
+
+  useLayoutEffect(() => {
+    const token = localStorage.getItem('token');
+    const email = localStorage.getItem('usermail');
+
+    if (token || email) {
+      setUserContext(prev => ({ ...prev, token, email }));
+    }
+  }, []);
 
   useEffect(() => {
     // const imgs = [i10, i19, i20];
@@ -21,14 +28,12 @@ const App = () => {
   }, []);
 
   return (
-    <ContextComponent>
-      <Suspense fallback={<Spinner loading={isLoading} />}>
-        <Menu />
-        <Header />
-        <Skeleton />
-        <Footer />
-      </Suspense>
-    </ContextComponent>
+    <Suspense fallback={<Spinner loading={isLoading} />}>
+      <Menu />
+      <Header />
+      <Skeleton />
+      <Footer />
+    </Suspense>
   );
 };
 
@@ -37,7 +42,9 @@ export default App;
 
 
 
-
+// import i10 from './assets/header/HeaderPhoto2.jpg'; // Important
+// import i19 from './assets/newsletterpopup/newsletterpopup.jpg'; // Important
+// import i20 from './assets/products/Image.jpg'; // Important
 
 
 // import i4 from './assets/blogcard/card1.jpg';

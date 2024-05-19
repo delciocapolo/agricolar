@@ -1,0 +1,1 @@
+export type SalesStatusType = "sale" | "new" | "best sale" | "out of stock";

@@ -1,5 +1,4 @@
 // delcioextensas2022@gmail.com
-
 import { FC, FormEventHandler, useEffect, useState } from "react";
 import { AccountContainer, ButtonSubmit, ContainerCustom, ContainerFixed, Form, iconConfig } from "./BaseComponent/BaseDefault";
 import { UserType } from "./@types/userType";
@@ -9,7 +8,7 @@ import SignDefaultComponent from "./UserTypeSchemaComponent/default";
 import { SignType } from "./@types/signType";
 import { v4 as uuid } from "uuid";
 
-import { gql, useLazyQuery } from "@apollo/client";
+import { gql, useLazyQuery, useMutation } from "@apollo/client";
 
 import Divider from "../Divider";
 import CardLinkAccountComponent from "../CardAccount";
@@ -39,13 +38,25 @@ const SchemaLoginComponent = () => {
             }
         }
     `;
-    // const CREATE_FARMER = gql``;
+    const CREATE_FARMER = gql`
+        mutation CREATEFARMER(
+            $DATA_FAZENDEIRO: FazendeiroInput
+            $DATA_LOCALIZACAO: LocalizacaoInput
+        ) {
+            createFarmer(
+            fazendeiro: $DATA_FAZENDEIRO
+            localizacao: $DATA_LOCALIZACAO
+            ) {
+                token
+            }
+        }
+    `;
 
     const [usertype, setUserType] = useState<UserType>("default");
     const [sign, setSign] = useState<SignType>("default");
     const [arrError, setArrError] = useState<string[]>([]);
     const [getUser, { loading, error, data }] = useLazyQuery(GET_USER);
-    // const [farmer, {loading: loadingFarmerData, error: farmerErrorCreate, data: farmerData}] = useLazyQuery(CREATE_FARMER);
+    const [FarmerDispatch, { loading: loadingFarmerData, error: errorCreateFrmer, data: dataReturnedForFarmer }] = useMutation(CREATE_FARMER);
 
     const UsertTypeSchema: FC<{ sign: SignType }> = ({ sign }) => {
         switch (sign) {
@@ -113,6 +124,8 @@ const SchemaLoginComponent = () => {
         switch (canKeepOn.status) {
             case true:
                 const usermail = formData.get('email');
+                const password = formData.get('password');
+                const username = formData.get('username');
 
                 getUser({
                     variables: { usermail }
@@ -127,24 +140,52 @@ const SchemaLoginComponent = () => {
                     };
 
                     if (canKeepOn.thereAreNIF) {
-                        const BIEndPoint = "http://localhost:5055/v1/bi";
-                        const IPEndPoint = `https://api.ipgeolocation.io/ipgeo?apiKey=${import.meta.env.VITE_APIKEY_IPGEOLOCATION}`;
-                        const fetchProps = { method: "GET" };
+                        // const BIEndPoint = "http://localhost:5055/v1/bi";
+                        // const IPEndPoint = `https://api.ipgeolocation.io/ipgeo?apiKey=${import.meta.env.VITE_APIKEY_IPGEOLOCATION}`;
+                        // const fetchProps = { method: "GET" };
                         const nif = formData.get('nif');
 
                         if (nif !== null && nif) {
-                            const [NIFDataFetch, IPDataFetch] = await Promise.all([fetch(`${BIEndPoint}/${nif}`, fetchProps), fetch(IPEndPoint, fetchProps)])
-                                .then(resolve => resolve.map(response => response.json()));
-                            const NIFData = await NIFDataFetch;
-                            const IPData = await IPDataFetch;
+                            // const [NIFDataFetch, IPDataFetch] = await Promise.all([
+                            //     fetch(`${BIEndPoint}/${nif}`, fetchProps),
+                            //     fetch(IPEndPoint, fetchProps)
+                            // ]).then(resolve => resolve.map(response => response.json()));
+                            // const NIFData = await NIFDataFetch;
+                            // const IPData = await IPDataFetch;
 
-                            if (NIFData && IPData) {
-                                const { state_prov: province, city } = IPData;
-                                // const {} = NIFData;
-                                console.log(province, city);
+                            // if (NIFData && IPData) {
+                            //     const { state_prov: province, city } = IPData;
+                            //     // const {} = NIFData;
+                            //     console.log(province, city);
+                            // }
+                            FarmerDispatch({
+                                variables: {
+                                    "DATA_FAZENDEIRO": {
+                                        "nome_fazendeiro": username,
+                                        "email": usermail,
+                                        "senha": password,
+                                        "caminho_foto_fazendeiro": "foto/fazendeiro",
+                                        "sexo": "M",
+                                        "data_nascimento": new Date().getTime(),
+                                    },
+                                    "DATA_LOCALIZACAO": {
+                                        "cidade": "Zona cultivo",
+                                        "provincia": "Huambo"
+                                    }
+                                },
+                            });
+
+                            if (errorCreateFrmer) {
+                                console.error(errorCreateFrmer)
                             }
 
+                            if (loadingFarmerData) {
+                                console.log('Query is runing yet');
+                            }
 
+                            if (dataReturnedForFarmer) {
+                                console.log(dataReturnedForFarmer);
+                            }
                         } else {
                             console.log('USER IS LOGGING IN NORMAL MODE!');
                         }
