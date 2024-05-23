@@ -108,7 +108,7 @@ const BlogCard: FC<IBlogCard> = ({ image }) => {
             Etiam nisi augue, malesuada et pulvinar at, posuere eu neque.
           </Text>
         </Content>
-        <Link to="#" className="d-flex">
+        <Link to="/services" className="d-flex">
           Ler mais <ArrowRight size={20} strokeWidth={1.65} />
         </Link>
       </ContentBase>

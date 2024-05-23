@@ -18,11 +18,11 @@ export default function ErrorPage() {
 
   return (
     <ContainerErrorPage id="error-page" className="d-flex">
-      <h1>Oops!</h1>
-      <HomeLink to="/">Voltar para Home</HomeLink>
+      <h1>Hum!</h1>
       <p>
         <i>Parece que esta página, ainda está sendo construída.</i>
       </p>
+      <HomeLink to="/">Voltar para Home</HomeLink>
     </ContainerErrorPage>
   );
 }
