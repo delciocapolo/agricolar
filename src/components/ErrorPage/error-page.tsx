@@ -1,18 +1,28 @@
 import { useRouteError } from "react-router-dom";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 export default function ErrorPage() {
-    const error = useRouteError() as {
-        statusText: string | undefined | null;
-        message: string | undefined | null;
-    };
+  const error = useRouteError() as {
+    statusText: string | undefined | null;
+    message: string | undefined | null;
+  };
+  const HomeLink = styled(Link)`
+    background-color: var(--Success-Dark);
+    border-radius: var(--border-radius);
+    padding: 8px 10px;
+  `;
+  const ContainerErrorPage = styled["div"]`
+    flex-direction: column;
+  `;
 
-    return (
-        <div id="error-page">
-            <h1>Oops!</h1>
-            <p>Sorry, an unexpected error has occurred.</p>
-            <p>
-                <i>{error.statusText || error.message}</i>
-            </p>
-        </div>
-    );
+  return (
+    <ContainerErrorPage id="error-page" className="d-flex">
+      <h1>Oops!</h1>
+      <HomeLink to="/">Voltar para Home</HomeLink>
+      <p>
+        <i>Parece que esta página, ainda está sendo construída.</i>
+      </p>
+    </ContainerErrorPage>
+  );
 }

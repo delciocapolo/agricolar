@@ -2,6 +2,7 @@ import { useEffect, useState, lazy, Suspense, useLayoutEffect } from "react";
 // import { cacheImages } from "./components/utils/CacheImages";
 import Spinner from "./components/main-components/Spinner/Spinner";
 import { useUserData } from "./components/contexts/UserData";
+import { useCookies } from "react-cookie";
 
 const Menu = lazy(() => import("./components/Navigation/Menu"));
 const Skeleton = lazy(() => import("./components/Body/Skeleton"));
@@ -11,13 +12,14 @@ const Header = lazy(() => import("./components/Header/Header"));
 const App = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const { setUserContext } = useUserData();
+  const [cookies] = useCookies();
 
   useLayoutEffect(() => {
-    const token = localStorage.getItem('token');
-    const email = localStorage.getItem('usermail');
+    const token = cookies['token'] || localStorage.getItem('token');
+    const email = cookies['email'] || localStorage.getItem('email');
 
-    if (token || email) {
-      setUserContext(prev => ({ ...prev, token, email }));
+    if (token) {
+      setUserContext(prev => ({ ...prev, token: token, email: email }));
     }
   }, []);
 

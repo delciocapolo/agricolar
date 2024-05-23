@@ -5,16 +5,11 @@ import {
   ShoppingBag03Icon,
 } from "hugeicons-react";
 import Logo from "../../../assets/Logo";
-import { Heart, Search, ShoppingBag, ShoppingBasket } from "lucide-react";
 import Line from "../../main-components/TopLevelComponent/Box/Line";
-import { PaddingContext } from "../../contexts/padding";
-import { MouseEventHandler, useContext } from "react";
+import { MouseEventHandler } from "react";
 import { Container as ContainerBase } from "../../Container/Container";
 
 const MiddleMenu = () => {
-  const { padding } = useContext(PaddingContext);
-  const prevPadding = String(padding).split(" ")[1];
-
   const Container = styled(ContainerBase)`
     padding: 1rem 0;
     margin: auto;
@@ -25,13 +20,12 @@ const MiddleMenu = () => {
   const MiddleMenuContainer = styled["div"]`
     width: 100%;
     padding: 0;
-    // padding: 1.5rem ${prevPadding};
   `;
   const Form = styled["form"]`
     width: 35%;
     min-width: 320px;
     gap: 0;
-    border-radius: var(--border-radius);
+    border-radius: 50px;
     box-shadow: var(--box-shadow-outline);
     background-color: var(--White);
   `;
@@ -39,7 +33,14 @@ const MiddleMenu = () => {
     outline: none;
     border: none;
   `;
-
+  const TextFieldSearch = styled(TextField)`
+    padding: 1rem 1.2rem;
+    cursor: pointer;
+    border-radius: 0 50px 50px 0;
+    background-color: var(--Success);
+    color: var(--White);
+    font: var(--Body-Tiny-500);
+  `;
   const ButtonWishList = styled["button"]`
     padding: 0.3rem;
     border-radius: var(--border-radius);
@@ -98,7 +99,6 @@ const MiddleMenu = () => {
     gap: 0;
     flex-direction: column;
     color: 100%;
-    backgroun-color: red;
   `;
   const CartContainer = styled["div"]`
     min-width: 218px;
@@ -123,9 +123,9 @@ const MiddleMenu = () => {
         <Form method="post" className="d-flex form">
           <div
             className="d-flex"
-            style={{ padding: "0 0 0 0.5rem", backgroundColor: "var(--White)" }}
+            style={{ padding: "0 0 0 0.5rem" }}
           >
-            <Search01Icon />
+            <Search01Icon color="var(--Gray-700)" size={20} />
           </div>
           <TextField
             type="search"
@@ -138,18 +138,10 @@ const MiddleMenu = () => {
               padding: "0.3rem",
             }}
           />
-          <TextField
+          <TextFieldSearch
             type="submit"
             name="submit_search_bar"
             value="Pesquisar"
-            style={{
-              padding: "0.8rem 0.5rem",
-              cursor: "pointer",
-              borderRadius: "0 8px 8px 0",
-              backgroundColor: "var(--Success)",
-              color: "var(--White)",
-              font: "var(--Body-Small-600)",
-            }}
           />
         </Form>
         <CartContainer className="d-flex">
@@ -166,11 +158,11 @@ const MiddleMenu = () => {
               >
                 <ShoppingBag03Icon size={30} color="var(--Gray-800)" />
               </ButtonWishList>
-              <Span className="d-flex">10</Span>
+              <Span className="d-flex">0</Span>
             </Cart>
             <Info className="d-flex">
               <Title>carrinho</Title>
-              <TotalPrice>{moeda} 320.000 kz</TotalPrice>
+              <TotalPrice>{moeda} 0.0 kz</TotalPrice>
             </Info>
           </ShoppingCard>
         </CartContainer>

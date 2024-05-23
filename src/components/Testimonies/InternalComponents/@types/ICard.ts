@@ -1,6 +1,7 @@
 export interface ICard {
-    textComment?: string;
-    image?: {
-        path?: string;
-    }
+  textComment?: string;
+  image?: {
+    path?: string;
+  };
+  role?: string;
 }

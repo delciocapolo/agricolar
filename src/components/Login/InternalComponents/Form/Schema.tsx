@@ -19,6 +19,10 @@ import { ValidateEmail } from "./helpers/emailValidate";
 import NIFValidate from "./helpers/nifValidate";
 import BarLoader from "react-spinners/BarLoader";
 import { ContentType } from "./@types/ContentType";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { setExpiresDate } from "./helpers/expiresToDate";
+import { loadCredentials } from "./helpers/loadCredentials";
 
 const SchemaLoginComponent = () => {
     // Declaracao dos estados
@@ -31,32 +35,51 @@ const SchemaLoginComponent = () => {
 
     // Template String Query
     const GET_USER = gql`
-        query USER($usermail: String) {
-            user(email: $usermail) {
-                field
-                status
-            }
+    query User($USEREMAIL: String) {
+        user(email: $USEREMAIL) {
+          field
+          status
+          userid
         }
+    }
     `;
     const CREATE_FARMER = gql`
-        mutation CREATEFARMER(
-            $DATA_FAZENDEIRO: FazendeiroInput
-            $DATA_LOCALIZACAO: LocalizacaoInput
-        ) {
-            createFarmer(
-            fazendeiro: $DATA_FAZENDEIRO
-            localizacao: $DATA_LOCALIZACAO
-            ) {
-                token
+    mutation CREATEFARMER($FAZENDEIROINPUT: FazendeiroInput, $LOCALIZACAOINPUT: LocalizacaoInput) {
+        createFarmer(fazendeiro: $FAZENDEIROINPUT, localizacao: $LOCALIZACAOINPUT) {
+            fazendeiro {
+                email
             }
+            token
         }
+      }
     `;
+    const CREATE_CUSTOMER = gql`mutation CreateCostumer($CONSUMIDOR_INPUT: ConsumidorInput, $LOCALIZACAO_INPUT: LocalizacaoInput) {
+        createCostumer(consumidor: $CONSUMIDOR_INPUT, localizacao: $LOCALIZACAO_INPUT) {
+          consumidor {
+            id_consumidor
+            nome_consumidor
+            email
+            sexo
+            data_nascimento
+            caminho_foto_consumidor
+            createdAt
+            localizacao {
+              cidade
+              provincia
+            }
+          }
+          token
+        }
+      }`
 
     const [usertype, setUserType] = useState<UserType>("default");
     const [sign, setSign] = useState<SignType>("default");
     const [arrError, setArrError] = useState<string[]>([]);
     const [getUser, { loading, error, data }] = useLazyQuery(GET_USER);
     const [FarmerDispatch, { loading: loadingFarmerData, error: errorCreateFrmer, data: dataReturnedForFarmer }] = useMutation(CREATE_FARMER);
+    const [CustomerDispatch, { loading: loadingCustomerData, error: errorCreateCustomer, data: dataReturnedForCustomer }] = useMutation(CREATE_CUSTOMER);
+    const navigate = useNavigate();
+    const [, setCookie] = useCookies();
 
     const UsertTypeSchema: FC<{ sign: SignType }> = ({ sign }) => {
         switch (sign) {
@@ -128,7 +151,9 @@ const SchemaLoginComponent = () => {
                 const username = formData.get('username');
 
                 getUser({
-                    variables: { usermail }
+                    variables: {
+                        "USEREMAIL": usermail
+                    }
                 });
 
                 if (data) {
@@ -139,55 +164,60 @@ const SchemaLoginComponent = () => {
                         }
                     };
 
+
+                    const fetchProps = { method: "GET" };
+                    const IPEndPoint = `https://api.ipgeolocation.io/ipgeo?apiKey=${import.meta.env.VITE_APIKEY_IPGEOLOCATION}`;
+                    const IPDataFetch = await fetch(IPEndPoint, fetchProps);
+                    const IPData = await IPDataFetch.json();
+
                     if (canKeepOn.thereAreNIF) {
-                        // const BIEndPoint = "http://localhost:5055/v1/bi";
-                        // const IPEndPoint = `https://api.ipgeolocation.io/ipgeo?apiKey=${import.meta.env.VITE_APIKEY_IPGEOLOCATION}`;
-                        // const fetchProps = { method: "GET" };
+                        const BIEndPoint = "http://localhost:5053/v1/bi";
                         const nif = formData.get('nif');
 
                         if (nif !== null && nif) {
-                            // const [NIFDataFetch, IPDataFetch] = await Promise.all([
-                            //     fetch(`${BIEndPoint}/${nif}`, fetchProps),
-                            //     fetch(IPEndPoint, fetchProps)
-                            // ]).then(resolve => resolve.map(response => response.json()));
-                            // const NIFData = await NIFDataFetch;
-                            // const IPData = await IPDataFetch;
+                            const NIFDataFetch = await fetch(`${BIEndPoint}/${nif}`, fetchProps);
+                            const NIFData = await NIFDataFetch.json();
 
-                            // if (NIFData && IPData) {
-                            //     const { state_prov: province, city } = IPData;
-                            //     // const {} = NIFData;
-                            //     console.log(province, city);
-                            // }
-                            FarmerDispatch({
-                                variables: {
-                                    "DATA_FAZENDEIRO": {
-                                        "nome_fazendeiro": username,
-                                        "email": usermail,
-                                        "senha": password,
-                                        "caminho_foto_fazendeiro": "foto/fazendeiro",
-                                        "sexo": "M",
-                                        "data_nascimento": new Date().getTime(),
+                            if (NIFData && IPData) {
+                                const { state_prov: province, city } = IPData;
+                                const { numero, nome, data_nasc, genero, } = NIFData;
+
+                                FarmerDispatch({
+                                    variables: {
+                                        "FAZENDEIROINPUT": {
+                                            "bi_fazendeiro": numero,
+                                            "nome_fazendeiro": nome,
+                                            "email": usermail,
+                                            "senha": password,
+                                            "caminho_foto_fazendeiro": "/phot/fazendeiro",
+                                            "sexo": genero,
+                                            "data_nascimento": Date.parse(data_nasc),
+                                        },
+                                        "LOCALIZACAOINPUT": {
+                                            "cidade": city,
+                                            "provincia": province,
+                                        }
                                     },
-                                    "DATA_LOCALIZACAO": {
-                                        "cidade": "Zona cultivo",
-                                        "provincia": "Huambo"
-                                    }
-                                },
-                            });
-
-                            if (errorCreateFrmer) {
-                                console.error(errorCreateFrmer)
-                            }
-
-                            if (loadingFarmerData) {
-                                console.log('Query is runing yet');
-                            }
-
-                            if (dataReturnedForFarmer) {
-                                console.log(dataReturnedForFarmer);
+                                });
                             }
                         } else {
-                            console.log('USER IS LOGGING IN NORMAL MODE!');
+                            const { state_prov: province, city } = IPData;
+                            CustomerDispatch({
+                                variables: {
+                                    "CONSUMIDOR_INPUT": {
+                                        "nome_consumidor": username,
+                                        "email": usermail,
+                                        "senha": password,
+                                        //   "sexo": "M",
+                                        //   "data_nascimento": null,
+                                        "caminho_foto_consumidor": "photo/consumidor"
+                                    },
+                                    "LOCALIZACAO_INPUT": {
+                                        "provincia": province,
+                                        "cidade": city
+                                    }
+                                }
+                            })
                         }
 
                         // if (status) {
@@ -220,11 +250,49 @@ const SchemaLoginComponent = () => {
 
             return () => clearTimeout(timeoutId);
         }
+    }, [arrError]);
 
+    useEffect(() => {
         if (error) {
-            console.log(error);
+            console.error(error);
         }
-    }, [arrError, error]);
+
+        if (errorCreateFrmer) {
+            console.error(errorCreateFrmer);
+        }
+
+        if (errorCreateCustomer) {
+            console.error(errorCreateCustomer);
+        }
+
+    }, [errorCreateFrmer, errorCreateCustomer]);
+
+    useEffect(() => {
+        if (dataReturnedForFarmer) {
+            const { email } = dataReturnedForFarmer["createFarmer"]['fazendeiro'];
+            const { token } = dataReturnedForFarmer["createFarmer"];
+            loadCredentials(email, token);
+            setCookie('token', token, {
+                sameSite: "lax",
+                expires: setExpiresDate(30),
+                secure: true
+            });
+            navigate('/');
+        }
+
+        if (dataReturnedForCustomer) {
+            const { email } = dataReturnedForCustomer['createCostumer']['consumidor'];
+            const { token } = dataReturnedForCustomer['createCostumer'];
+            loadCredentials(email, token);
+            setCookie('token', token, {
+                sameSite: "lax",
+                expires: setExpiresDate(30),
+                secure: true
+            });
+            navigate('/');
+        }
+    }, [dataReturnedForFarmer, dataReturnedForCustomer])
+
 
     return (
         <Form
@@ -234,7 +302,7 @@ const SchemaLoginComponent = () => {
         >
             <UsertTypeSchema sign={sign} />
             {
-                loading && (
+                (loading || loadingFarmerData || loadingCustomerData) && (
                     <ContainerCustom>
                         <BarLoader color="var(--Success)" />
                     </ContainerCustom>
