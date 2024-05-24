@@ -11,3 +11,6 @@ O sistema foi construído usando o gerenciador de pacotes Yarn. Para instalar em
 
 
 * DESIGN: [Figma/delciocapolo](https://www.figma.com/file/SAyQifz1b1RQ3N0sWOhx4k/Shopery---Organic-eCommerce-Shop-Website-Figma-Template-(Community)-(Community)?type=design&node-id=674%3A53788&mode=design&t=yUbgIJJJjHWH8NuU-1)
+
+# Nota
+Com base em resultados inalcançados e o estado prematuro do projecto, ele foi descontinuado e o projecto centraliza-se agora em um outro Repositório, porém privado.
